@@ -5,6 +5,6 @@ Maksym,Maksymenko was here
 Serhii,Starovoit
 Volodymyr,Novokhats'kyi
 Kostiantyn,Pavlunenko +
-Oleksandr,Bushyn,bushin
+Oleksandr,Bushyn,bushin +
 Roman,Penteleichuk
 Roman,Mocherniuk

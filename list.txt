@@ -6,5 +6,5 @@ Serhii,Starovoit
 Volodymyr,Novokhats'kyi
 Kostiantyn,Pavlunenko +
 Oleksandr,Bushyn,bushin
-Roman,Penteleichuk
+Roman,Penteleichuk+
 Roman,Mocherniuk

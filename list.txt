@@ -1,5 +1,5 @@
 Yura,Matiushyn
-Andrii,Haisan
+Andrii,Haisan +
 Ihor,Havryliuk
 Maksym,Maksymenko was here
 Serhii,Starovoit

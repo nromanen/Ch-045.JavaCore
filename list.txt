@@ -3,7 +3,7 @@ Andrii,Haisan
 Ihor,Havryliuk
 Maksym,Maksymenko was here
 Serhii,Starovoit +
-Volodymyr,Novokhats'kyi
+Volodymyr,Novokhats'kyi+
 Kostiantyn,Pavlunenko +
 Oleksandr,Bushyn,bushin +
 Roman,Penteleichuk

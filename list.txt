@@ -1,7 +1,7 @@
 Yura,Matiushyn
 Andrii,Haisan
 Ihor,Havryliuk
-Maksym,Maksymenko was here
+Maksym,Maksymenko +
 Serhii,Starovoit +
 Volodymyr,Novokhats'kyi+
 Kostiantyn,Pavlunenko +

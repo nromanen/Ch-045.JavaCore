@@ -1,6 +1,6 @@
 Yura,Matiushyn
 Andrii,Haisan
-Ihor,Havryliuk
+Ihor,Havryliuk +
 Maksym,Maksymenko +
 Serhii,Starovoit +
 Volodymyr,Novokhats'kyi+

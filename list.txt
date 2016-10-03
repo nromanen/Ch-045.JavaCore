@@ -1,4 +1,4 @@
-Yura,Matiushyn
+Yura,Matiushyn +
 Andrii,Haisan
 Ihor,Havryliuk +
 Maksym,Maksymenko +

@@ -25,7 +25,7 @@ public class FlowerBed {
     }
 
     private double getArea(double radius) {
-        return Math.PI*radius;
+        return Math.PI*radius*radius;
     }
     private double getPerimeter(double radius){
         return 2*Math.PI*radius;

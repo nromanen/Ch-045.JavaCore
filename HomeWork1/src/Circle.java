@@ -5,6 +5,7 @@ public class Circle {double radius;
 		radius = r;
 	}
 	
+	
 	public double findPerimetr(){
 		
 		return  2 * radius *  Math.PI;

@@ -8,26 +8,27 @@ public class Task {
 		
 		input.message = "Enter radius: ";
 		
-		if (numberOfTasks == 1) {
+		switch (numberOfTasks){
+		case 1:
 			
 			Circle task = new Circle(input.inputDouble());
 			
 			System.out.println("Perimetr is :" + task.findPerimetr());
 			System.out.println("Area is :" + task.findArea());
-		}
-		else if (numberOfTasks == 2){
-			PersonalDetails task = new PersonalDetails();
+
+		case 2:
+			PersonalDetails person = new PersonalDetails();
 			
-			task.fillDetails();
-			task.displayInformation();
-		}
+			person.fillDetails();
+			person.displayInformation();
+
 		
-		else if (numberOfTasks == 3){
-			Country task = new Country();
+		case 3:
+			Country country = new Country();
 			
-			task.makeCall();
-		}
-		else {
+			country.makeCall();
+		
+		default :
 			System.out.println("Not found such task!");
 		}
 	}

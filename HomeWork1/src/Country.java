@@ -4,6 +4,7 @@ public class Country {double summ;
 	int duration;
 	
 	public void makeCall(){
+		
 		InputOperations input = new InputOperations();
 		
 		while (true){

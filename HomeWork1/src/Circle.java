@@ -8,7 +8,7 @@ public class Circle {double radius;
 	public double findPerimetr(){
 		
 		return  2 * radius *  Math.PI;
-		
+ 		
 	}
 	
 	public double findArea(){

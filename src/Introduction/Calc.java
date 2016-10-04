@@ -1,6 +1,6 @@
-package Introduction;
+package introduction;
 
-import static Introduction.Scan.getInt;
+import static introduction.Scan.getInt;
 
 /**
  * Created by Ariezz on 28.09.16.

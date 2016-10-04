@@ -1,7 +1,7 @@
-package Introduction;
+package introduction;
 
-import static Introduction.Calc.println;
-import static Introduction.Scan.getString;
+import static introduction.Calc.println;
+import static introduction.Scan.getString;
 
 /**
  * Created by Ariezz on 28.09.16.

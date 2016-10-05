@@ -1,4 +1,4 @@
-Yura,Matiushyn +
+﻿Yura,Matiushyn +
 Andrii,Haisan
 Ihor,Havryliuk +
 Maksym,Maksymenko +
@@ -15,3 +15,6 @@ Roman,Mocherniuk +
 На Вкраїні милій,
 Щоб лани широкополі,
 І Дніпро, і кручі
+Було видно, було чути,
+Як реве ревучий.
+Як понесе з України

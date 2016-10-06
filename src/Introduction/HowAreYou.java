@@ -1,7 +1,9 @@
 package introduction;
 
-import static introduction.Calc.println;
-import static introduction.Scan.getString;
+import util.Scan;
+
+import static util.Print.println;
+import static util.Scan.getString;
 
 /**
  * Created by Ariezz on 28.09.16.

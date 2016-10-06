@@ -1,8 +1,10 @@
 package introduction;
 
-import static introduction.Calc.print;
-import static introduction.Calc.println;
-import static introduction.Scan.getDouble;
+import util.Scan;
+
+import static util.Print.print;
+import static util.Print.println;
+import static util.Scan.getDouble;
 
 /**
  * Created by Ariezz on 29.09.16.

@@ -1,6 +1,9 @@
 package introduction;
 
-import static introduction.Scan.getInt;
+import util.Scan;
+
+import static util.Print.println;
+import static util.Scan.getInt;
 
 /**
  * Created by Ariezz on 28.09.16.
@@ -44,29 +47,6 @@ public class Calc {
 
             return a / b;
     }
-
-    public static void print( Object... data){
-        String result = "";
-        for (Object item : data){
-            result += item;
-        }
-
-            System.out.print(result);
-
-    }
-
-    public static void println( Object... data){
-        String result = "";
-        for (Object item : data){
-            result += item;
-        }
-
-        System.out.println(result);
-
-    }
-
-
-
 
 }
 

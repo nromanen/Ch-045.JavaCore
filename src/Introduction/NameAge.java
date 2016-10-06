@@ -1,7 +1,11 @@
 package introduction;
 
-import static introduction.Scan.getInt;
-import static introduction.Scan.getString;
+import util.Scan;
+
+import static util.Print.print;
+import static util.Print.println;
+import static util.Scan.getInt;
+import static util.Scan.getString;
 
 /**
  * Created by Ariezz on 29.09.16.
@@ -10,26 +14,26 @@ public class NameAge {
 
     public static void main(String ... args){
 
-        System.out.println("Enter your name and age:");
+        println("Enter your name and age:");
 
-        System.out.print("Name: ");
+        print("Name: ");
         String name = getString(3);
 
         System.out.print("Age: ");
         int age = getInt();
 
-        System.out.println("Where are you from, " + name + "?");
-        System.out.print("Address: ");
+        println("Where are you from, " + name + "?");
+        print("Address: ");
         String address = getString(3);
 
-        System.out.println();
-        System.out.println("------------------------");
-        System.out.println();
+        println();
+        println("------------------------");
+        println();
 
-        System.out.println("Information:");
-        System.out.println("Name: " + name + ".");
-        System.out.println("Age: " + age + ".");
-        System.out.println("Address: " + address + ".");
+        println("Information:");
+        println("Name: " + name + ".");
+        println("Age: " + age + ".");
+        println("Address: " + address + ".");
 
         Scan.scanner.close();
     }

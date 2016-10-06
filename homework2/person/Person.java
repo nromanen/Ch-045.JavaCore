@@ -1,15 +1,13 @@
 package homework2.person;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by roma on 05.10.2016.
  */
 public class Person {
     
-    static int number = 2;
+    static int number;
     static GregorianCalendar today = new GregorianCalendar();
     private String name;
     private int birthYear;
@@ -43,10 +41,11 @@ public class Person {
     }
 
     public String toString(){
-        return String.format("[Name: %-10s age: %5d ]\n", this.name,this.birthYear);
+        return String.format("[Name: %-10s age: %5d ]\n", this.name,this.agePerson());
     }
 
     public void input(){
+        Person.number = inputInt("Enter number of person ");
         persons = new LinkedList<Person>();
         for (int i=0; i<number; i++){
             persons.add(inputPerson());
@@ -54,7 +53,8 @@ public class Person {
     }
     public Person inputPerson(){
         String name = inputName("Enter name ");
-        int dateUser = inputYear("Enter birthYear ");
+        int dateUser = inputInt("Enter birthYear ");
+        System.out.print("--------------------------\n");
         return new Person(name,dateUser );
     }
 
@@ -70,13 +70,13 @@ public class Person {
         String rez = scan.next();
         return rez;
     }
-    public static int inputYear(String message) {
+    public static int inputInt(String message) {
         int result = 0;
         Scanner scan = new Scanner(System.in);
         do {
             System.out.print(message + ": ");
             while(!scan.hasNextInt()){
-                System.out.print("not year format: ");
+                System.out.print("error format: ");
                 scan.next();
             }
             result = scan.nextInt();

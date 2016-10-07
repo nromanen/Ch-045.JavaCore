@@ -5,7 +5,7 @@ import java.util.UUID;
 
 /**
  *
- * Created by GipSoft on 05.10.2016.
+ * Created by Igor Gavrilyuk on 05.10.2016.
  */
 public class PersonLab {
     private static final String DB_FILENAME = "persons.json";

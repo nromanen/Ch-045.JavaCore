@@ -6,7 +6,7 @@ import java.util.regex.PatternSyntaxException;
 
 /**
  * Person Util Class from calculate Age and etc..
- * Created by igor on 05.10.2016.
+ * Created by Igor Gavrilyuk on 05.10.2016.
  */
 public class PersonUtil {
 

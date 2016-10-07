@@ -10,7 +10,7 @@ import java.util.UUID;
 
 /**
  * Person Class
- * Created by igor on 05.10.2016.
+ * Created by Igor Gavrilyuk on 05.10.2016.
  */
 public class Person {
 

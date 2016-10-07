@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
- *
- * Created by igor on 06.10.2016.
+ * DateLabelFormatter calss
+ * Created by Igor Gavrilyuk on 06.10.2016.
  */
 public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter
 {

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  *
- * Created by GipSoft on 05.10.2016.
+ * Created by Igor Gavrilyuk on 05.10.2016.
  */
 public class PersonAdapter extends AbstractTableModel {
     private final static int COLUMN_COUNT = 3;

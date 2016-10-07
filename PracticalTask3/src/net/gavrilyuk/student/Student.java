@@ -4,7 +4,7 @@ package net.gavrilyuk.student;
  * Student model Class
  * todo I am not a supporter of calculating the average and total rating in the model class.
  * todo Implemented for clarity with static fields and methods!
- * Created by igor on 05.10.2016.
+ * Created by Igor Gavrilyuk on 05.10.2016.
  */
 public class Student {
 

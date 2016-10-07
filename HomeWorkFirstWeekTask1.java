@@ -8,9 +8,9 @@ public class HomeWorkFirstWeekTask1 {
 	public static void main(String[] args) {
 		double radius = 4.3;
 
-		System.out.printf("площадь круга с радиусом " + radius + " = " + "'%.4f'",Area(radius));
+		System.out.printf("Flower's area with radius  " + radius + " is: " + "'%.4f'",Area(radius));
 		System.out.println(" ");
-		System.out.printf("периметр круга с радиусом " + radius + " = " + "'%.4f'",Perimeter(radius));
+		System.out.printf("Flower's perimeter with radius  " + radius + " is: " + "'%.4f'",Perimeter(radius));
 	}
 
 	private static double Area(double radius) {

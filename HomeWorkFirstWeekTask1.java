@@ -6,7 +6,7 @@ public class HomeWorkFirstWeekTask1 {
 	
 
 	public static void main(String[] args) {
-		double radius = 4.3;
+		double radius = 4.5;
 
 		System.out.printf("Flower's area with radius  " + radius + " is: " + "'%.4f'",Area(radius));
 		System.out.println(" ");

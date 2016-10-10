@@ -1,12 +1,12 @@
 package net.gavrilyuk.kennel;
 
 /**
- *Ñreate class Dog with fields name, breed, age.
- *Declare enum for field breed.
- *Create 3 instances of type Dog.
- *Check if there is no two dogs with the same name.
- *Display the name and the kind of the oldest dog.
- *Add Unit Tests to each task, publish code on GitHub
+ * Create class Dog with fields name, breed, age.
+ * Declare enum for field breed.
+ * Create 3 instances of type Dog.
+ * Check if there is no two dogs with the same name.
+ * Display the name and the kind of the oldest dog.
+ * Add Unit Tests to each task, publish code on GitHub
  * Created by Igor Gavryliuk on 07.10.2016.
  */
 public class KennelHelper {

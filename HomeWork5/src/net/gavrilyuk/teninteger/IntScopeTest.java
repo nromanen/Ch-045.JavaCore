@@ -24,8 +24,8 @@ public class IntScopeTest {
     public void testGetSumFirstFivePositive() throws Exception {
         IntScope scope = new IntScope();
         scope.setValues(fillData(2));
-        assertEquals("Sum=10", scope.getSumFirstFivePositive());
+        assertEquals(10, scope.getSumFirstFivePositive());//todo fix issue #5
         scope.setValues(fillData(-2));
-        assertEquals("Prod=16", scope.getSumFirstFivePositive());
+        assertEquals(16, scope.getSumFirstFivePositive());//todo fix issue #5
     }
 }

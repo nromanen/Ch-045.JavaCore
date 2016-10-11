@@ -50,7 +50,12 @@ public class EmployeeApp {
         int dep = readDep(scanner);
         employees.orderBySalary(true);
         System.out.println();
-        System.out.println(employees.getEmpOnDepartment(dep));
+        //todo fix issue #8
+        if (employees.getEmpOnDepartment(dep).size() > 0) {
+            for (Employee employee : employees.getEmpOnDepartment(dep)) {
+                System.out.println(employee.toString());
+            }
+        } else System.out.println("No employees in the department "+dep);
         scanner.close();
     }
 }

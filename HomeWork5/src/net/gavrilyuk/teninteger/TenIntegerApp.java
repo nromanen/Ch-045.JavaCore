@@ -12,7 +12,7 @@ public class TenIntegerApp {
         IntScope scope = new IntScope();
         scope.fillData(10);
         System.out.println(scope.toString());
-        System.out.println(scope.getSumFirstFivePositive());
+        System.out.println("Sum="+scope.getSumFirstFivePositive());//todo fix issue #5
 
     }
 }

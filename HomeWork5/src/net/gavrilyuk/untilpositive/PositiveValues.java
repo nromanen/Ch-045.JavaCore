@@ -29,7 +29,7 @@ public class PositiveValues {
         long res=1;
         if (mList.size() > 0) {
             for (Integer value : mList) {
-                if (value%2==0) res=res*value;
+                if (value%2==0) res *= value;//todo fix issue #7
             }
             return res == 1 ? 0 : res;
         } else return 0;

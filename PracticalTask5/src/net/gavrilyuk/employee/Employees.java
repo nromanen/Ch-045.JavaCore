@@ -34,19 +34,23 @@ public class Employees {
 
     }
 
-    public String getEmpOnDepartment(int dep) {
-        StringBuilder result = new StringBuilder();
+    //todo fix issue #8
+    public ArrayList<Employee> getEmpOnDepartment(int dep) {
+        //StringBuilder result = new StringBuilder();
+        ArrayList<Employee>  result= new ArrayList<>();
         if (mEmployees != null) {
             for (Employee employee : mEmployees) {
                 if (employee.getDepNumber() == dep) {
-                    result.append(employee.toString()).append("\n");
+                    //result.append(employee.toString()).append("\n");
+                    result.add(employee);
                 }
             }
         }
-        if (result.length() == 0) {
+        /*if (result.length() == 0) {
             result.append("No employees in the department ").append(dep);
         }
-        return result.toString();
+        return result.toString();*/
+        return result;
     }
 
     @Override

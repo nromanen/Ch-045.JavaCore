@@ -34,7 +34,10 @@ public class FiveNumbersApp {
             scope.addValue(readInt(scanner));
         }
         System.out.println(scope.toString());
-        System.out.println(scope.getPosSecondPositive(scope.findPosSecondPositive()));
+        //todo fix issue #6
+        if (scope.findPosSecondPositive() == -1) {
+            System.out.println("No second positive present");
+        } else  System.out.println("Position ="+scope.findPosSecondPositive());
         System.out.println(scope.getMinAndPosition());
         scanner.close();
 

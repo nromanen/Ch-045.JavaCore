@@ -23,12 +23,13 @@ public class NumbersScope {
         mValues = values;
     }
 
-    public String getPosSecondPositive(int pos) {
+    //todo fix issue #6
+   /* public String getPosSecondPositive(int pos) {
         if (pos != -1) {
             return "Position ="+pos;
         } else return "No second positive present";
 
-    }
+    }*/
 
     //return second positive position or -1 on not present
     public int findPosSecondPositive() {

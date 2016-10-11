@@ -32,19 +32,19 @@ public class IntScope {
         return true;
     }
 
-    public String getSumFirstFivePositive() {
+    public long getSumFirstFivePositive() { //todo fix issue #5
         long res = 0;
         if (checkPositive(5)) {
             for (int i = 0; i < 5; i++) {
                 res += mValues.get(i);
             }
-            return String.format("Sum=%d",res);
+            return res;
         } else {
             res = 1;
             for (int i = mValues.size()-1; i > mValues.size() - 5; i--) {
                 res *= mValues.get(i);
             }
-            return String.format("Prod=%,d",res);
+            return res;
         }
 
     }

@@ -17,7 +17,7 @@ public class TenIntegersTask2 {
 			if(array[b]>0){
 				sum +=array[b];
 			}else{
-				sum +=array[5+b];
+				sum =sum*array[5+b];
 			}
 				}System.out.println(sum);
 	}

@@ -27,16 +27,20 @@ public class Cars {
         return "Cars=" + mCars ;
     }
 
-    public String filterByYear(int year) {
-        StringBuilder builder = new StringBuilder();
+    //fix teacher comments
+    public ArrayList<Car> filterByYear(int year) {
+        ArrayList<Car> result= new ArrayList<>();
         for (Car car : mCars) {
-            if (car.getYear()==year) builder.append(car.toString()).append("\n");
+            if (car.getYear()==year) {
+                result.add(car);
+            }
         }
-        return builder.toString();
+        return result;
     }
-
-    public void orderByYears() {
-        Collections.sort(mCars, new Comparator<Car>() {
+    //fix teacher comments
+    public ArrayList<Car> orderByYears() {
+        ArrayList<Car> result = new ArrayList<>(mCars);
+        Collections.sort(result, new Comparator<Car>() {
             @Override
             public int compare(Car c1, Car c2) {
                 if (c1.getYear() < c2.getYear())
@@ -46,6 +50,7 @@ public class Cars {
                 return 1;
             }
         });
+        return result;
     }
 
     public void fillList(int carCount) {

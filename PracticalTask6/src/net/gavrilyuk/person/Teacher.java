@@ -9,12 +9,16 @@ public class Teacher extends Staff {
     private final static String TYPE_PERSON = Teacher.class.getSimpleName();
 
     public Teacher() {
-        super();
         System.out.println(TYPE_PERSON);
     }
 
     @Override
-    public void salary() {
+    public void print() {
+        System.out.print("I am a " + TYPE_PERSON);
+    }
 
+    @Override
+    public void salary() {
+        System.out.println(" salary=100$");
     }
 }

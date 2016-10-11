@@ -35,7 +35,7 @@ public class EmployeeApp {
     private static void fillEmployeeList(Employees employees) {
         Random r = new Random(System.currentTimeMillis());
         for (int i = 0; i < EMP_COUNT; i++) {
-            employees.addEmployee(new Employee("Employee" + i,
+            employees.addEmployee(new NewEmployee("Employee" + i,
                     //i % 2 == 0 ? 1 : i % 3 == 0 ? 3 : 2,
                     r.nextInt(3),
                     r.nextInt(1000)));
@@ -52,7 +52,7 @@ public class EmployeeApp {
         System.out.println();
         //todo fix issue #8
         if (employees.getEmpOnDepartment(dep).size() > 0) {
-            for (Employee employee : employees.getEmpOnDepartment(dep)) {
+            for (NewEmployee employee : employees.getEmpOnDepartment(dep)) {
                 System.out.println(employee.toString());
             }
         } else System.out.println("No employees in the department "+dep);

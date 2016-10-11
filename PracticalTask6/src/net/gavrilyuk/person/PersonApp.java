@@ -17,7 +17,30 @@ public class PersonApp {
 
     public static void main(String[] args) {
         Person[] persons = new Person[10];
+        for (int i = 0; i < persons.length; i++) {
+            switch (i) {
+                case 0:
+                case 3:
+                case 5:
+                    persons[i]= new Student();
+                    break;
+                case 1:
+                case 4:
+                case 7:
+                    persons[i]= new Cleaner();
+                    break;
+               default:persons[i]= new Teacher();
+                    break;
 
+            }
+        }
+        System.out.println("Call method print() and salary():");
+        for (Person person : persons) {
+            person.print();
+            if (person instanceof Staff) {
+                ((Staff) person).salary();
+            }
+        }
     //
     }
 }

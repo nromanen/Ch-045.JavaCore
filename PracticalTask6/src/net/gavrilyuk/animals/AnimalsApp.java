@@ -11,13 +11,16 @@ package net.gavrilyuk.animals;
 public class AnimalsApp {
 
     public static void main(String[] args) {
-        Animals animals = new Animals(10);
+        Animal[] animals = new Animal[10];
         for (int i = 0; i < 10; i++) { // fill
             if (i % 2 == 0) {
-                animals.addAnimal(i, new Cat());
-            } else animals.addAnimal(i, new Dog());
+                animals[i]= new Cat();
+            } else animals[i]= new Dog();
         }
-       animals.voiceAll();
-       animals.feedAll();
+        for (Animal animal : animals) {
+            animal.voice();
+            animal.feed();
+        }
+
     }
 }

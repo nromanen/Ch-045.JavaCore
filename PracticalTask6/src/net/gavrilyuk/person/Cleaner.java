@@ -9,12 +9,15 @@ public class Cleaner extends Staff {
     private final static String TYPE_PERSON = Cleaner.class.getSimpleName();
 
     public Cleaner() {
-        super();
         System.out.println(TYPE_PERSON);
+    }
+    @Override
+    public void print() {
+        System.out.print("I am a " + TYPE_PERSON);
     }
 
     @Override
     public void salary() {
-
+        System.out.println(" salary=50$");
     }
 }

@@ -3,6 +3,7 @@ package net.gavrilyuk.employee;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -10,21 +11,21 @@ import java.util.Collections;
  */
 public class Employees {
 
-    private ArrayList<Employee> mEmployees;
+    private List<NewEmployee> mEmployees;
 
     public Employees() {
         mEmployees = new ArrayList<>();
     }
 
-    public ArrayList<Employee> getEmployees() {
+    public List<NewEmployee> getEmployees() {
         return mEmployees;
     }
 
-    public void setEmployees(ArrayList<Employee> employees) {
+    public void setEmployees(List<NewEmployee> employees) {
         mEmployees = employees;
     }
 
-    public void addEmployee(Employee employee) {
+    public void addEmployee(NewEmployee employee) {
         if (mEmployees!=null) mEmployees.add(employee);
     }
     public void orderBySalary(boolean isDesc) {
@@ -35,11 +36,11 @@ public class Employees {
     }
 
     //todo fix issue #8
-    public ArrayList<Employee> getEmpOnDepartment(int dep) {
+    public ArrayList<NewEmployee> getEmpOnDepartment(int dep) {
         //StringBuilder result = new StringBuilder();
-        ArrayList<Employee>  result= new ArrayList<>();
+        ArrayList<NewEmployee>  result= new ArrayList<>();
         if (mEmployees != null) {
-            for (Employee employee : mEmployees) {
+            for (NewEmployee employee : mEmployees) {
                 if (employee.getDepNumber() == dep) {
                     //result.append(employee.toString()).append("\n");
                     result.add(employee);
@@ -57,7 +58,7 @@ public class Employees {
     public String toString() {
         StringBuilder res = new StringBuilder();
         if (mEmployees != null) {
-            for (Employee employee : mEmployees) {
+            for (NewEmployee employee : mEmployees) {
                 res.append(employee.toString()).append("\n");
             }
         }

@@ -9,12 +9,11 @@ public class Student extends Person {
     private final static String TYPE_PERSON = Student.class.getSimpleName();
 
     public Student() {
-        super();
         System.out.println(TYPE_PERSON);
     }
 
     @Override
     public void print() {
-
+        System.out.println("I am a "+TYPE_PERSON);
     }
 }

@@ -6,12 +6,10 @@ package net.gavrilyuk.person;
  */
 public abstract class Person  {
 
-    private final static String TYPE_PERSON = Person.class.getSimpleName();
 
-    private String mName;
+    private String name;
     public abstract void print();
 
-    public Person() {
-        System.out.println(TYPE_PERSON);
+    public Person(){
     }
 }

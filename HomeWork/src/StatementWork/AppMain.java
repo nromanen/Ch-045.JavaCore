@@ -12,5 +12,11 @@ public class AppMain {
         if (Number.checkFloatNumber(num1, num2, num3)){
             System.out.println("Number is between -5 5");
         } else System.out.println("Number is not between -5 5");
+
+        //check int number
+        int number1 = Number.readIntNumber();
+        int number2 = Number.readIntNumber();
+        int number3 = Number.readIntNumber();
+        Number.findMinMaxInt(number1, number2, number3);
     }
 }

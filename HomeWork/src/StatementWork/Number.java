@@ -21,4 +21,23 @@ public class Number {
         }
         return true;
     }
+
+    public static int readIntNumber(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Print integer number");
+        int num = in.nextInt();
+        return num;
+    }
+
+    public static void findMinMaxInt (int num1, int num2, int num3){
+        int [] number = {num1, num2, num3};
+        int max = number[0];
+        int min = number[0];
+        for (int i = 0; i < number.length; i++){
+            if (number[i] > max) max = number[i];
+            if (number[i] < min) min = number[i];
+        }
+        System.out.println("Min number is " + min
+                            + " max number is " + max);
+    }
 }

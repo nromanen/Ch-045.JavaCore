@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Created by evil on 11.10.16.
  */
-public class Task {
+public class OddTask {
     public static void main(String[] args) {
         int [] number = new int[3];
         Scanner in = new Scanner(System.in);

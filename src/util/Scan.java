@@ -35,6 +35,7 @@ public class Scan {
         while (!isCorrect){
 
             line  = scanner.nextLine();
+
             if (line.length()<min)
                 System.out.println("To short. Try again.");
             else
@@ -62,5 +63,28 @@ public class Scan {
         }
 
         return result;
+    }
+
+    public static float getFloat(){
+
+        boolean isFloat = false;
+        String line;
+        float result = 0.0f;
+
+        while (!isFloat){
+            try{
+                line  = scanner.nextLine();
+                result = Float.parseFloat(line);
+                isFloat = true;
+            } catch (Exception e){
+                System.out.println("Error. Try again.");
+            }
+        }
+
+        return result;
+    }
+
+    public static void close(){
+        scanner.close();
     }
 }

@@ -1,6 +1,7 @@
 package net.gavrilyuk.odd;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Odd Or Even Class
@@ -8,10 +9,10 @@ import java.util.ArrayList;
  */
 public class OddOrEven {
 
-    private ArrayList<Integer> mList;
+    private List<Integer> list;
 
     public OddOrEven() {
-        mList = new ArrayList<>();
+        list = new ArrayList<>();
     }
 
     public static boolean isOdd(int number) {
@@ -19,23 +20,23 @@ public class OddOrEven {
     }
 
     public void addValue(int value) {
-        mList.add(value);
+        list.add(value);
     }
 
-    public ArrayList<Integer> getList() {
-        return mList;
+    public List<Integer> getList() {
+        return list;
     }
 
-    public void setList(ArrayList<Integer> list) {
-        mList = list;
+    public void setList(List<Integer> list) {
+        this.list = list;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        if (mList != null ) {
-            if (mList.size() > 0) {
-                for (Integer value : mList) {
+        if (list != null ) {
+            if (list.size() > 0) {
+                for (Integer value : list) {
                     if (isOdd(value)) {
                         builder.append(value).append(" is even number.").append("\n");
                     } else builder.append(value).append(" is odd number.").append("\n");

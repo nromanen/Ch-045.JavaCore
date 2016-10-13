@@ -6,9 +6,12 @@ package net.gavrilyuk.countries;
  */
 public enum Continents {
 
-    AFRICA("AF","Africa"), ASIA("AS","Asia"),
-    ANTARCTICA("AN","Antarctica"), EUROPE("EU","Europe"),
-    NORTH_AMERICA("NA","North America"), OCEANIA("OC","Oceania"),
+    AFRICA("AF","Africa"),
+    ASIA("AS","Asia"),
+    ANTARCTICA("AN","Antarctica"),
+    EUROPE("EU","Europe"),
+    NORTH_AMERICA("NA","North America"),
+    OCEANIA("OC","Oceania"),
     SOUTH_AMERICA("SA","South America");
 
     private String mCode;

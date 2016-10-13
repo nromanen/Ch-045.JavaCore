@@ -6,37 +6,37 @@ package net.gavrilyuk.countries;
  */
 public class Country {
 
-    private String mName;
-    private String mISO;
-    private Continents mContinent;
+    private String name;
+    private String iso;
+    private Continents continent;
 
     public Country(String name, Continents continent) {
-        mName = name;
-        mContinent = continent;
+        this.name = name;
+        this.continent = continent;
 
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
-    public String getISO() {
-        return mISO;
+    public String getIso() {
+        return iso;
     }
 
-    public void setISO(String ISO) {
-        mISO = ISO;
+    public void setIso(String iso) {
+        this.iso = iso;
     }
 
     public Continents getContinent() {
-        return mContinent;
+        return continent;
     }
 
     public void setContinent(Continents continent) {
-        mContinent = continent;
+        this.continent = continent;
     }
 }

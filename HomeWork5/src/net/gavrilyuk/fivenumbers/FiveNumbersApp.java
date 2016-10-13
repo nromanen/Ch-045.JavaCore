@@ -10,6 +10,8 @@ import java.util.Scanner;
  */
 public class FiveNumbersApp {
 
+    private static final int INTEGER_COUNT=5;
+
     private static int readInt(Scanner scanner) {
         String line = null;
         int result = 0;
@@ -30,7 +32,7 @@ public class FiveNumbersApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         NumbersScope scope = new NumbersScope();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < INTEGER_COUNT; i++) {
             scope.addValue(readInt(scanner));
         }
         System.out.println(scope.toString());

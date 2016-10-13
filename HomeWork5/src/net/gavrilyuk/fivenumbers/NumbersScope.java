@@ -2,6 +2,7 @@ package net.gavrilyuk.fivenumbers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -9,18 +10,18 @@ import java.util.Collections;
  */
 public class NumbersScope {
 
-    private ArrayList<Integer> mValues;
+    private List<Integer> values;
 
     public NumbersScope() {
-        mValues = new ArrayList<>();
+        values = new ArrayList<>();
     }
 
-    public ArrayList<Integer> getValues() {
-        return mValues;
+    public List<Integer> getValues() {
+        return values;
     }
 
     public void setValues(ArrayList<Integer> values) {
-        mValues = values;
+        this.values = values;
     }
 
     //todo fix issue #6
@@ -35,21 +36,24 @@ public class NumbersScope {
     public int findPosSecondPositive() {
         int res = -1;
         int count = 0;
-        for (int i = 0; i < mValues.size(); i++) {
-            if (mValues.get(i)>0) {
-                count++;
-                if (count==2) return i;
+        if (values != null) {
+            for (int i = 0; i < values.size(); i++) {
+                if (values.get(i)>0) {
+                    count++;
+                    if (count==2) return i;
+                }
             }
         }
+
         return res;
     }
 
     public int getMinPosition(int min) {
-        return mValues.indexOf(min);
+        return values.indexOf(min);
     }
 
     public int getMin() {
-        return Collections.min(mValues);
+        return Collections.min(values);
     }
 
     public String getMinAndPosition() {
@@ -57,12 +61,12 @@ public class NumbersScope {
     }
 
     public void addValue(int value) {
-        if (mValues!=null) mValues.add(value);
+        if (values !=null) values.add(value);
     }
 
     @Override
     public String toString() {
-        return  "Values=" + mValues ;
+        return  "Values=" + values;
 
     }
 }

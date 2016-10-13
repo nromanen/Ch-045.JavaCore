@@ -55,7 +55,7 @@ public class EmployeeApp {
             for (NewEmployee employee : employees.getEmpOnDepartment(dep)) {
                 System.out.println(employee.toString());
             }
-        } else System.out.println("No employees in the department "+dep);
+        } else System.out.println("Opps..No employees in the department "+dep);
         scanner.close();
     }
 }

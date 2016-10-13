@@ -11,36 +11,36 @@ import java.util.List;
  */
 public class Employees {
 
-    private List<NewEmployee> mEmployees;
+    private List<NewEmployee> employees;
 
     public Employees() {
-        mEmployees = new ArrayList<>();
+        employees = new ArrayList<>();
     }
 
     public List<NewEmployee> getEmployees() {
-        return mEmployees;
+        return employees;
     }
 
     public void setEmployees(List<NewEmployee> employees) {
-        mEmployees = employees;
+        this.employees = employees;
     }
 
     public void addEmployee(NewEmployee employee) {
-        if (mEmployees!=null) mEmployees.add(employee);
+        if (employees !=null) employees.add(employee);
     }
     public void orderBySalary(boolean isDesc) {
-        if (mEmployees != null && mEmployees.size() > 0) {
-            Collections.sort(mEmployees, new SalaryComparator(isDesc));
+        if (employees != null && employees.size() > 0) {
+            Collections.sort(employees, new SalaryComparator(isDesc));
         }
 
     }
 
     //todo fix issue #8
-    public ArrayList<NewEmployee> getEmpOnDepartment(int dep) {
+    public List<NewEmployee> getEmpOnDepartment(int dep) {
         //StringBuilder result = new StringBuilder();
-        ArrayList<NewEmployee>  result= new ArrayList<>();
-        if (mEmployees != null) {
-            for (NewEmployee employee : mEmployees) {
+        List<NewEmployee>  result= new ArrayList<>();
+        if (employees != null) {
+            for (NewEmployee employee : employees) {
                 if (employee.getDepNumber() == dep) {
                     //result.append(employee.toString()).append("\n");
                     result.add(employee);
@@ -57,8 +57,8 @@ public class Employees {
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        if (mEmployees != null) {
-            for (NewEmployee employee : mEmployees) {
+        if (employees != null) {
+            for (NewEmployee employee : employees) {
                 res.append(employee.toString()).append("\n");
             }
         }

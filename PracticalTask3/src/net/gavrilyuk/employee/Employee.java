@@ -23,10 +23,10 @@ public class Employee {
     public static final String JSON_HOURS = "Hours";
     public static final String JSON_RATE = "Rate";
 
-    private UUID mId;
-    private String mName;
-    private long mHours;
-    private double mRate;
+    private UUID id;
+    private String name;
+    private long hours;
+    private double rate;
 
     public Employee() {
         this("", 0, 0);
@@ -41,54 +41,54 @@ public class Employee {
     }
 
     public Employee(String name, int rate, int hours ) {
-        this.mId = UUID.randomUUID();
-        this.mName = name;
-        this.mHours = hours;
-        this.mRate = rate;
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.hours = hours;
+        this.rate = rate;
     }
 
     public Employee(JSONObject json) throws JSONException {
-        mId = UUID.fromString(json.getString(JSON_ID));
-        mName = json.getString(JSON_NAME);
-        mRate = json.getDouble(JSON_RATE);
-        mHours = json.getLong(JSON_HOURS);
+        id = UUID.fromString(json.getString(JSON_ID));
+        name = json.getString(JSON_NAME);
+        rate = json.getDouble(JSON_RATE);
+        hours = json.getLong(JSON_HOURS);
     }
 
     public JSONObject toJSON() throws JSONException {
         JSONObject json = new JSONObject();
-        json.put(JSON_ID, mId.toString());
-        json.put(JSON_NAME, mName);
-        json.put(JSON_RATE, mRate);
-        json.put(JSON_HOURS, mHours);
+        json.put(JSON_ID, id.toString());
+        json.put(JSON_NAME, name);
+        json.put(JSON_RATE, rate);
+        json.put(JSON_HOURS, hours);
         return json;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public UUID getId() {
-        return mId;
+        return id;
     }
 
     public void setName(String name) {
-        this.mName = name;
+        this.name = name;
     }
 
     public long getHours() {
-        return mHours;
+        return hours;
     }
 
     public void setHours(int hours) {
-        this.mHours = hours;
+        this.hours = hours;
     }
 
     public double getRate() {
-        return mRate;
+        return rate;
     }
 
     public void setRate(double rate) {
-        this.mRate = rate;
+        this.rate = rate;
     }
 
     public void changeRate(int rate) {
@@ -97,11 +97,11 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee [Name=" + mName +  ", Hours=" + mHours +", Rating=" + mRate + "]";
+        return "Employee [Name=" + name +  ", Hours=" + hours +", Rating=" + rate + "]";
     }
 
     public double salary() {
-        return mRate * mHours;
+        return rate * hours;
     }
 
     public double bonuses() {

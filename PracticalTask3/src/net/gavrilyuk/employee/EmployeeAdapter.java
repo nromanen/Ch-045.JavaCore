@@ -3,6 +3,7 @@ package net.gavrilyuk.employee;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Employee Adapter from
@@ -15,25 +16,27 @@ public class EmployeeAdapter extends AbstractTableModel {
     private final static String COLUMN_BONUS = "Bonus";
     private static final String COLUMN_SALARY = "Salary";
 
-    private ArrayList<Employee> mEmployees;
+    private List<Employee> employees;
 
     public EmployeeAdapter() {
-        mEmployees = new ArrayList<>();//create empty
+        employees = new ArrayList<>();//create empty
     }
 
-    public ArrayList<Employee> getData() {
-        return mEmployees;
+    public List<Employee> getData() {
+        return employees;
     }
 
     public void sortData() {
         // sort by hours DESC
-        Collections.sort(mEmployees, new HoursComparator(true));
+        if (employees != null) {
+        Collections.sort(employees, new HoursComparator(true));
         fireTableDataChanged();
+        }
     }
 
-    public void setData(ArrayList<Employee> employees) {
+    public void setData(List<Employee> employees) {
         if (employees != null) {
-            mEmployees = employees;
+            this.employees = employees;
             sortData();
         }
 
@@ -53,7 +56,7 @@ public class EmployeeAdapter extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return mEmployees != null ? mEmployees.size() : 0;
+        return employees != null ? employees.size() : 0;
     }
 
     @Override
@@ -65,16 +68,16 @@ public class EmployeeAdapter extends AbstractTableModel {
     public Object getValueAt(int r, int c) {
         switch (c) {
             case 0:
-                return mEmployees.get(r).getName();
+                return employees.get(r).getName();
             case 1:
-                return mEmployees.get(r).getRate();
+                return employees.get(r).getRate();
             case 2:
-                return mEmployees.get(r).getHours();
+                return employees.get(r).getHours();
             case 3:
-                return String.format("%,.2f", mEmployees.get(r).salary());
+                return String.format("%,.2f", employees.get(r).salary());
             case 4:
                 if (r < BONUS_COUNT) {//first 5 get bonus  record r 0...4
-                    return String.format("%,.2f", mEmployees.get(r).bonuses());
+                    return String.format("%,.2f", employees.get(r).bonuses());
                 } else return 0;
             default:
                 return "";
@@ -102,8 +105,8 @@ public class EmployeeAdapter extends AbstractTableModel {
 
     public long getTotalHours() {
         long result = 0;
-        if (mEmployees != null && mEmployees.size()>0 ) {
-            for (Employee employee : mEmployees) {
+        if (employees != null && employees.size()>0 ) {
+            for (Employee employee : employees) {
                 result+=employee.getHours();
             }
         }

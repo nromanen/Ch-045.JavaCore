@@ -1,6 +1,7 @@
 package net.gavrilyuk.employee;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -12,16 +13,16 @@ public class EmployeeLab {
     private static final String DB_FILENAME = "employee.json";
     private static EmployeeLab sEmployeeLab;
 
-    private ArrayList<Employee> mEmployees;
+    private List<Employee> employees;
     private EmployeeJSONSerializer mSerializer;
 
 
     private EmployeeLab() {
         mSerializer = new EmployeeJSONSerializer(DB_FILENAME);
         try {
-            mEmployees = mSerializer.loadEmployee();
+            employees = mSerializer.loadEmployee();
         } catch (Exception e) {
-            mEmployees = new ArrayList<>();
+            employees = new ArrayList<>();
             e.printStackTrace();
         }
     }
@@ -34,7 +35,7 @@ public class EmployeeLab {
     }
 
     public Employee getEmployee(UUID id) {
-        for (Employee e : mEmployees) {
+        for (Employee e : employees) {
             if (e.getId().equals(id))
                 return e;
         }
@@ -42,22 +43,22 @@ public class EmployeeLab {
     }
 
     public void addEmployee(Employee e) {
-        mEmployees.add(e);
+        employees.add(e);
         saveEmployees();
     }
 
     public void removeEmployee(int index) {
-        mEmployees.remove(index);
+        employees.remove(index);
         saveEmployees();
     }
 
-    public ArrayList<Employee> getEmployees() {
-        return mEmployees;
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
     public boolean saveEmployees() {
         try {
-            mSerializer.saveEmployee(mEmployees);
+            mSerializer.saveEmployee(employees);
             //System.out.println("Employees saved to file");
             return true;
         } catch (Exception e) {

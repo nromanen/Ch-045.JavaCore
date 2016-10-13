@@ -8,14 +8,14 @@ import java.util.Comparator;
  */
 public class HoursComparator implements Comparator<Employee> {
 
-    private int mSortMode = 1;//sort mode
+    private int sortMode = 1;//sort mode
 
     public HoursComparator(boolean isDesc) {
-        if (isDesc) mSortMode =-1;
+        if (isDesc) sortMode =-1;
     }
 
     @Override
     public int compare(Employee employee1, Employee employee2) {
-        return mSortMode * Long.compare(employee1.getHours(), employee2.getHours());
+        return sortMode * Long.compare(employee1.getHours(), employee2.getHours());
     }
 }

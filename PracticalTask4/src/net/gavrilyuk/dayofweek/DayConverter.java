@@ -9,8 +9,8 @@ import java.util.Locale;
  */
 public class DayConverter {
 
-    private Locale mLocale;
-    private String mDayOfWeek;
+    private Locale locale;
+    private String dayOfWeek;
 
     public DayConverter() {
         this(new Locale("en"), 1);//default lang - english day of week - Sunday
@@ -26,19 +26,19 @@ public class DayConverter {
 
     public DayConverter(Locale locale, int day) {
         DateFormatSymbols symbols = new DateFormatSymbols(locale);
-        mLocale = locale;
-        mDayOfWeek = symbols.getWeekdays()[day];
+        this.locale = locale;
+        dayOfWeek = symbols.getWeekdays()[day];
     }
 
     public String getDayOfWeek() {
-        return mDayOfWeek;
+        return dayOfWeek;
     }
 
     public Locale getLocale() {
-        return mLocale;
+        return locale;
     }
 
     public void setLocale(Locale locale) {
-        mLocale = locale;
+        this.locale = locale;
     }
 }

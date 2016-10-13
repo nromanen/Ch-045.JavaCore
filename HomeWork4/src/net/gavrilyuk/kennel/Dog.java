@@ -9,10 +9,10 @@ import java.util.UUID;
 
 public class Dog {
 
-    private UUID mId;
-    private String mName;
-    private Breed mBreed;
-    private int mAge;
+    private UUID id;
+    private String name;
+    private Breed breed;
+    private int age;
 
     public Dog() {
         this("unknown",  Breed.WITH_OUT_BREED, -1);
@@ -31,38 +31,38 @@ public class Dog {
     }
 
     public Dog(String name, Breed breed, int age) {
-        mId = UUID.randomUUID();
-        mName = name;
-        mBreed = breed;
-        mAge = age;
+        id = UUID.randomUUID();
+        this.name = name;
+        this.breed = breed;
+        this.age = age;
     }
 
     public UUID getId() {
-        return mId;
+        return id;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public Breed getBreed() {
-        return mBreed;
+        return breed;
     }
 
     public void setBreed(Breed breed) {
-        mBreed = breed;
+        this.breed = breed;
     }
 
     public int getAge() {
-        return mAge;
+        return age;
     }
 
     public void setAge(int age) {
-        mAge = age;
+        this.age = age;
     }
 
     @Override
@@ -78,10 +78,10 @@ public class Dog {
     @Override
     public String toString() {
         return "Dog{" +
-                "Id=" + mId.toString() +
-                ", Name='" + mName + '\'' +
-                ", Breed=" + mBreed +
-                ", Age=" + ((mAge != -1)? mAge : "unknown") +
+                "Id=" + id.toString() +
+                ", Name='" + name + '\'' +
+                ", Breed=" + breed +
+                ", Age=" + ((age != -1)? age : "unknown") +
                 '}';
     }
 }

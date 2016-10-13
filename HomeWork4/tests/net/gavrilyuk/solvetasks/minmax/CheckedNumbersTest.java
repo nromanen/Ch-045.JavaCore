@@ -11,42 +11,42 @@ import static org.junit.Assert.*;
  */
 public class CheckedNumbersTest {
 
-    CheckedNumbers mCheckedNumbers;
+    CheckedNumbers checkedNumbers;
 
     @Before
     public void initArrayList() {
-        mCheckedNumbers = new CheckedNumbers();
+        checkedNumbers = new CheckedNumbers();
     }
     @Test
     public void testConstructor() throws Exception {
-        assertNotNull(mCheckedNumbers.getNumbers());
-        assertEquals(0, mCheckedNumbers.getNumbers().size());
+        assertNotNull(checkedNumbers.getNumbers());
+        assertEquals(0, checkedNumbers.getNumbers().size());
     }
 
     @Test
     public void testAddNumber() throws Exception {
-        mCheckedNumbers.addNumber(2);
-        assertEquals(1, mCheckedNumbers.getNumbers().size());
-        mCheckedNumbers.addNumber(-5);
-        assertEquals(2, mCheckedNumbers.getNumbers().size());
-        mCheckedNumbers.addNumber(0);
-        assertEquals(3, mCheckedNumbers.getNumbers().size());
+        checkedNumbers.addNumber(2);
+        assertEquals(1, checkedNumbers.getNumbers().size());
+        checkedNumbers.addNumber(-5);
+        assertEquals(2, checkedNumbers.getNumbers().size());
+        checkedNumbers.addNumber(0);
+        assertEquals(3, checkedNumbers.getNumbers().size());
     }
 
     private void initData() {
-        mCheckedNumbers.addNumber(2);
-        mCheckedNumbers.addNumber(-5);
-        mCheckedNumbers.addNumber(0);
+        checkedNumbers.addNumber(2);
+        checkedNumbers.addNumber(-5);
+        checkedNumbers.addNumber(0);
     }
     @Test
     public void testGetMin() throws Exception {
         initData();
-        assertEquals(-5, mCheckedNumbers.getMin());
+        assertEquals(-5, checkedNumbers.getMin());
     }
 
     @Test
     public void testGetMax() throws Exception {
         initData();
-        assertEquals(2, mCheckedNumbers.getMax());
+        assertEquals(2, checkedNumbers.getMax());
     }
 }

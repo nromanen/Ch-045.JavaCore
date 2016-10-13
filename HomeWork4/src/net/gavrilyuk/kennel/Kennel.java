@@ -3,6 +3,7 @@ package net.gavrilyuk.kennel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  *
@@ -10,30 +11,32 @@ import java.util.Comparator;
  */
 public class Kennel {
 
-    private ArrayList<Dog> mDogs;
+    private List<Dog> dogs;
 
     public Kennel() {
-        mDogs = new ArrayList<>();
+        dogs = new ArrayList<>();
     }
 
-    public void setDogs(ArrayList<Dog> dogs) {
-        mDogs = dogs;
+    public void setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
     }
 
     public void addDog(Dog dog) {
-        mDogs.add(dog);
+        dogs.add(dog);
     }
 
-    public ArrayList<Dog> getDogs() {
-        return mDogs;
+    public List<Dog> getDogs() {
+        return dogs;
     }
     //check two dogs with the same name
     public boolean checkDogsSameName() {
-        for (int i = 0; i < mDogs.size(); i++) {
-            Dog checked = mDogs.get(i);
-            for (int j = i + 1; j < mDogs.size(); j++) {
-                if (mDogs.get(j).equals(checked)) {
-                    return true;
+        if (dogs != null) {
+            for (int i = 0; i < dogs.size(); i++) {
+                Dog checked = dogs.get(i);
+                for (int j = i + 1; j < dogs.size(); j++) {
+                    if (dogs.get(j).equals(checked)) {
+                        return true;
+                    }
                 }
             }
         }
@@ -42,7 +45,7 @@ public class Kennel {
 
     //find oldest dog
     public Dog getOldestDog() {
-        return Collections.max(mDogs, new Comparator<Dog>() {
+        return Collections.max(dogs, new Comparator<Dog>() {
             @Override
             public int compare(Dog d1, Dog d2) {
                 if (d1.getAge() < d2.getAge())

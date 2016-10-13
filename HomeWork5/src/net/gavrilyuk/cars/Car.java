@@ -6,34 +6,34 @@ package net.gavrilyuk.cars;
  */
 public class Car {
 
-    private int mYear;
-    private float mCapacity;
+    private int year;
+    private float capacity;
 
     public Car(int year, float capacity) {
-        mYear = year;
-        mCapacity = capacity;
+        this.year = year;
+        this.capacity = capacity;
     }
 
     public int getYear() {
-        return mYear;
+        return year;
     }
 
     public void setYear(int year) {
-        mYear = year;
+        this.year = year;
     }
 
     public float getCapacity() {
-        return mCapacity;
+        return capacity;
     }
 
     public void setCapacity(float capacity) {
-        mCapacity = capacity;
+        this.capacity = capacity;
     }
 
     @Override
     public String toString() {
         return "Car{" +
-                "Year of production =" + mYear +
-                ",Engine capacity=" + mCapacity + '}';
+                "Year of production =" + year +
+                ",Engine capacity=" + capacity + '}';
     }
 }

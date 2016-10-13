@@ -13,50 +13,50 @@ import java.util.regex.PatternSyntaxException;
 public class StudentWindow extends JFrame {
 
 
-    private JLabel mRatingLabel;
-    private JButton mAddButton;
-    private JTable mStudentsTable;
-    private StudentAdapter mStudentAdapter;
+    private JLabel ratingLabel;
+    private JButton addButton;
+    private JTable studentsTable;
+    private StudentAdapter studentAdapter;
     //fields
-    private final JTextField mNameField;
-    private final JTextField mRatingField;
+    private final JTextField nameField;
+    private final JTextField ratingField;
 
     public StudentWindow(String title) throws HeadlessException {
         super(title);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mStudentAdapter = new StudentAdapter();//adapter
-        mStudentsTable = new JTable(mStudentAdapter);//table
-        mStudentsTable.setPreferredScrollableViewportSize(new Dimension(600, 150));
-        mStudentsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        mStudentAdapter.setData(StudentsDbUtil.readFromDb(StudentsDbUtil.DB_NAME));
-        initTablePopupMenu(mStudentsTable);//popup menu from delete item
+        studentAdapter = new StudentAdapter();//adapter
+        studentsTable = new JTable(studentAdapter);//table
+        studentsTable.setPreferredScrollableViewportSize(new Dimension(600, 150));
+        studentsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        studentAdapter.setData(StudentsDbUtil.readFromDb(StudentsDbUtil.DB_NAME));
+        initTablePopupMenu(studentsTable);//popup menu from delete item
         JPanel editPanel = new JPanel();
         Box box1 = Box.createHorizontalBox();
         JLabel nameLabel = new JLabel("Name:");
-        mNameField = new JTextField(15);
+        nameField = new JTextField(15);
         box1.add(nameLabel);
         box1.add(Box.createHorizontalStrut(6));
-        box1.add(mNameField);
+        box1.add(nameField);
         editPanel.add(box1);
         Box box2 = Box.createHorizontalBox();
         JLabel rateLabel = new JLabel("Rating:");
-        mRatingField = new JTextField(6);
+        ratingField = new JTextField(6);
         box2.add(rateLabel);
         box2.add(Box.createHorizontalStrut(6));
-        box2.add(mRatingField);
+        box2.add(ratingField);
         editPanel.add(box2);
-        mAddButton = new JButton("Add");//add button
-        editPanel.add(mAddButton);
+        addButton = new JButton("Add");//add button
+        editPanel.add(addButton);
 
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new FlowLayout());
-        JScrollPane jscrlp = new JScrollPane(mStudentsTable);
+        JScrollPane jscrlp = new JScrollPane(studentsTable);
         contentPanel.add(jscrlp);
-        mRatingLabel = new JLabel("Average rating:"  );
+        ratingLabel = new JLabel("Average rating:"  );
 
         initListener();
 
-        contentPanel.add(mRatingLabel, BorderLayout.SOUTH);
+        contentPanel.add(ratingLabel, BorderLayout.SOUTH);
         //setContentPane(contentPanel);
         getContentPane().add(editPanel, BorderLayout.NORTH);
         getContentPane().add(contentPanel);// add to center
@@ -65,12 +65,12 @@ public class StudentWindow extends JFrame {
     }
 
     private void initListener() {
-        if (mAddButton != null) {
-            mAddButton.addActionListener(new ActionListener() {
+        if (addButton != null) {
+            addButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(java.awt.event.ActionEvent e) {
                     try { //magic
-                        String name = mNameField.getText().trim();
+                        String name = nameField.getText().trim();
                         if (name.isEmpty()) { //first - check name
                             throw new IllegalArgumentException("The name must not be empty!");
                         } else {
@@ -78,13 +78,13 @@ public class StudentWindow extends JFrame {
                                 name = toCapsWord(name);
                             } else throw new IllegalArgumentException("The name can not contain numbers!");
                         }
-                        int rating = Integer.parseInt(mRatingField.getText().trim());
+                        int rating = Integer.parseInt(ratingField.getText().trim());
                         //if valid name and rating - create student object
                         Student student = new Student();
                         student.setName(name);
                         student.setRating(rating);
-                        mStudentAdapter.addStudent(student);
-                        mStudentAdapter.fireTableDataChanged();
+                        studentAdapter.addStudent(student);
+                        studentAdapter.fireTableDataChanged();
                         updateViews();
                     } catch (IllegalArgumentException eArg) {
                         JOptionPane.showMessageDialog(null, eArg.getMessage(), "Invalid value", JOptionPane.WARNING_MESSAGE);
@@ -102,11 +102,11 @@ public class StudentWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (JOptionPane.showConfirmDialog(StudentWindow.this, "Delete this record?") == JOptionPane.YES_OPTION) {
-                int row = mStudentsTable.getSelectedRow();//selected table row
+                int row = studentsTable.getSelectedRow();//selected table row
                 if (row != -1) {
-                    mStudentAdapter.removeStudent(row);
+                    studentAdapter.removeStudent(row);
                     //todo release update total and average rating after delete record
-                    mStudentAdapter.fireTableDataChanged();
+                    studentAdapter.fireTableDataChanged();
                     updateViews();
                     // JOptionPane.showMessageDialog(StudentWindow.this, " selected row=" + row);
                 } else JOptionPane.showMessageDialog(StudentWindow.this, "no row is selected");
@@ -118,12 +118,12 @@ public class StudentWindow extends JFrame {
     }
 
     private void updateViews() {
-        if (mRatingLabel != null) {
-            mRatingLabel.setText( String.format("%s%,.2f%s%,.2f", "Average rating: ", mStudentAdapter.getAvgRating(),
-                           " Total rating: ", mStudentAdapter.getTotalRating()));
+        if (ratingLabel != null) {
+            ratingLabel.setText(String.format("%s%,.2f%s%,.2f", "Average rating: ", studentAdapter.getAvgRating(),
+                    " Total rating: ", studentAdapter.getTotalRating()));
         }
-        if (mNameField!=null) mNameField.setText("");
-        if (mRatingField !=null) mRatingField.setText("");
+        if (nameField !=null) nameField.setText("");
+        if (ratingField !=null) ratingField.setText("");
     }
 
     // util method

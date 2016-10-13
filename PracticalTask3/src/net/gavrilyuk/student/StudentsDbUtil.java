@@ -2,6 +2,7 @@ package net.gavrilyuk.student;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The class to read and write information in the text file
@@ -15,8 +16,8 @@ public class StudentsDbUtil {
     public static final int DB_TRANSACTION_ERROR = 0;
 
 
-    public static ArrayList<Student> readFromDb(String dbName) {
-        ArrayList<Student> studentsList = null;
+    public static List<Student> readFromDb(String dbName) {
+        List<Student> studentsList = null;
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(dbName) );

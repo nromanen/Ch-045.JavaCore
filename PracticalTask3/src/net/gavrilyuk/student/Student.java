@@ -11,8 +11,8 @@ public class Student {
     private static int sCount = 0;
     private static int sSumRating = 0;
 
-    private String mName;
-    private int mRating;
+    private String name;
+    private int rating;
 
 
     public Student() {
@@ -20,31 +20,31 @@ public class Student {
     }
 
     public Student(String name) {
-        this.mName = name;
+        this.name = name;
         sCount++;
     }
 
     public Student(String name, int rating) {
         sCount++;
         sSumRating += rating;
-        mName = name;
-        mRating = rating;
+        this.name = name;
+        this.rating = rating;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        this.mName = name;
+        this.name = name;
     }
 
     public int getRating() {
-        return mRating;
+        return rating;
     }
 
     public void setRating(int rating) {
-        this.mRating = rating;
+        this.rating = rating;
         sSumRating += rating;
     }
 
@@ -57,8 +57,8 @@ public class Student {
     }
 
     public void changeRating(int newRating) {
-        sSumRating = (sSumRating - mRating) + newRating;
-        this.mRating = newRating;
+        sSumRating = (sSumRating - rating) + newRating;
+        this.rating = newRating;
     }
 
     public static int getTotalRating() {
@@ -67,7 +67,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student [Name=" + mName + ", Rating=" + mRating + "]";
+        return "Student [Name=" + name + ", Rating=" + rating + "]";
     }
 }
 

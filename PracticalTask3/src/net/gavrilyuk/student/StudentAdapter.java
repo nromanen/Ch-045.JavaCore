@@ -3,6 +3,7 @@ package net.gavrilyuk.student;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Student Adapter from JTable
@@ -14,37 +15,37 @@ public class StudentAdapter extends AbstractTableModel {
     private final static String COLUMN_NAME = "Name";
     private final static String COLUMN_RATING = "Rating";
 
-    private ArrayList<Student> mStudents;
+    private List<Student> students;
 
     public StudentAdapter() {
-        mStudents = new ArrayList<>();//create empty
+        students = new ArrayList<>();//create empty
     }
 
-    public ArrayList<Student> getData() {
-        return mStudents;
+    public List<Student> getData() {
+        return students;
     }
 
-    public void setData(ArrayList<Student> students) {
+    public void setData(List<Student> students) {
         if (students != null) {
-            mStudents = students;
+            this.students = students;
             fireTableDataChanged();
         }
 
     }
 
     public void addStudent(Student student) {
-        if (mStudents != null) {
+        if (students != null) {
             if (StudentsDbUtil.addToDb(student) == StudentsDbUtil.DB_TRANSACTION_OK) {
-                mStudents.add(student);
+                students.add(student);
                 fireTableDataChanged();
             }
         }
     }
 
     public void removeStudent(int index) {
-        if (mStudents != null) {
+        if (students != null) {
             if (StudentsDbUtil.removeOfDb(index) == StudentsDbUtil.DB_TRANSACTION_OK) {
-                mStudents.remove(index);
+                students.remove(index);
                 fireTableDataChanged();
             }
         }
@@ -52,7 +53,7 @@ public class StudentAdapter extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return mStudents != null ? mStudents.size() : 0;
+        return students != null ? students.size() : 0;
     }
 
     @Override
@@ -64,9 +65,9 @@ public class StudentAdapter extends AbstractTableModel {
     public Object getValueAt(int r, int c) {
         switch (c) {
             case 0:
-                return mStudents.get(r).getName();
+                return students.get(r).getName();
             case 1:
-                return mStudents.get(r).getRating();
+                return students.get(r).getRating();
             default:
                 return "";
         }

@@ -2,6 +2,7 @@ package net.gavrilyuk.untilpositive;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -9,27 +10,27 @@ import java.util.ArrayList;
  */
 public class PositiveValues {
 
-    private AbstractList<Integer> mList;
+    private List<Integer> list;
 
     public PositiveValues() {
-        mList = new ArrayList<>();
+        list = new ArrayList<>();
     }
 
-    public AbstractList<Integer> getList() {
-        return mList;
+    public List<Integer> getList() {
+        return list;
     }
 
     public void setList(AbstractList<Integer> list) {
-        mList = list;
+        this.list = list;
     }
     public void checkValue(int value) {
-        if (mList!=null && value>0) mList.add(value);
+        if (list !=null && value>0) list.add(value);
     }
     public long getProductions() {
         long res=1;
-        if (mList.size() > 0) {
-            for (Integer value : mList) {
-                if (value%2==0) res *= value;//todo fix issue #7
+        if (list != null && list.size() > 0) {
+            for (Integer value : list) {
+                if (value % 2 == 0) res *= value;//todo fix issue #7
             }
             return res == 1 ? 0 : res;
         } else return 0;

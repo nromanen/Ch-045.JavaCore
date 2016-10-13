@@ -3,6 +3,7 @@ package net.gavrilyuk.teninteger;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 /**
@@ -12,8 +13,8 @@ import static org.junit.Assert.assertEquals;
 public class IntScopeTest {
 
 
-    private ArrayList<Integer> fillData(int val) {
-        ArrayList<Integer> res = new ArrayList<>();
+    private List<Integer> fillData(int val) {
+        List<Integer> res = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             res.add(val);
         }

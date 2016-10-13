@@ -1,6 +1,7 @@
 package net.gavrilyuk.solvetasks.checkrange;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -8,28 +9,30 @@ import java.util.ArrayList;
  */
 public class FloatNumbers {
 
-    private ArrayList<Float> mNumbers;
+    private List<Float> numbers;
 
     public FloatNumbers() {
-        mNumbers = new ArrayList<>();
+        numbers = new ArrayList<>();
     }
 
-    public ArrayList<Float> getNumbers() {
-        return mNumbers;
+    public List<Float> getNumbers() {
+        return numbers;
     }
 
-    public void setNumbers(ArrayList<Float> numbers) {
-        mNumbers = numbers;
+    public void setNumbers(List<Float> numbers) {
+        this.numbers = numbers;
     }
 
     public void addNumber(float number) {
-        mNumbers.add(number);
+        numbers.add(number);
     }
 
     public boolean isRange(int start, int end) {
-        for (Float number : mNumbers) {
-            if (number < start || number > end) {
-                return false;
+        if (numbers != null) {
+            for (Float number : numbers) {
+                if (number < start || number > end) {
+                    return false;
+                }
             }
         }
         return true;
@@ -37,7 +40,7 @@ public class FloatNumbers {
 
     @Override
     public String toString() {
-        return "Entered numbers=" + mNumbers;
+        return "Entered numbers=" + numbers;
 
     }
 }

@@ -2,6 +2,7 @@ package net.gavrilyuk.solvetasks.minmax;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Checked Numbers Class
@@ -9,34 +10,35 @@ import java.util.Collections;
  */
 public class CheckedNumbers {
 
-    private ArrayList<Integer> mNumbers;
+    private List<Integer> numbers;
 
     public CheckedNumbers() {
-        mNumbers = new ArrayList<>();
+        numbers = new ArrayList<>();
     }
 
-    public ArrayList<Integer> getNumbers() {
-        return mNumbers;
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
-    public void setNumbers(ArrayList<Integer> numbers) {
-        mNumbers = numbers;
+    public void setNumbers(List<Integer> numbers) {
+       this.numbers = numbers;
     }
+
     public void addNumber(int number) {
-        mNumbers.add(number);
+        numbers.add(number);
     }
 
     public int getMin() {
-        return Collections.min(mNumbers);
+        return Collections.min(numbers);
     }
 
     public int getMax() {
-        return Collections.max(mNumbers);
+        return Collections.max(numbers);
     }
 
     @Override
     public String toString() {
-        return "Entered numbers=" + mNumbers;
+        return "Entered numbers=" + numbers;
 
     }
 }

@@ -55,7 +55,7 @@ public class AppPerson {
 
 
     public static void main(String[] args) {
-        Person person = new Person();
+        Person1 person = new Person1();
         Scanner scanner = new Scanner(System.in);
         String name = readString(scanner, "What is your name?");
         person.setName(TxtUtil.toCapsFirstLetter(name));

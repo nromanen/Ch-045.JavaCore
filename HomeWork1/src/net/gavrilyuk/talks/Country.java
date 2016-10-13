@@ -6,42 +6,42 @@ package net.gavrilyuk.talks;
  */
 public class Country {
 
-    private String mISOCode;
-    private String mName;
-    private double mCostOfMinute;// standard units per minute
+    private String isoCode;
+    private String name;
+    private double costOfMinute;// standard units per minute
 
     public Country() {
     }
 
     public Country(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public Country(double cost) {
-        mCostOfMinute = cost;
+        costOfMinute = cost;
     }
 
-    public String getISOCode() {
-        return mISOCode;
+    public String getIsoCode() {
+        return isoCode;
     }
 
-    public void setISOCode(String ISOCode) {
-        mISOCode = ISOCode;
+    public void setIsoCode(String isoCode) {
+        this.isoCode = isoCode;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public double getCostOfMinute() {
-        return mCostOfMinute;
+        return costOfMinute;
     }
 
     public void setCostOfMinute(double costOfMinute) {
-        mCostOfMinute = costOfMinute;
+        this.costOfMinute = costOfMinute;
     }
 }

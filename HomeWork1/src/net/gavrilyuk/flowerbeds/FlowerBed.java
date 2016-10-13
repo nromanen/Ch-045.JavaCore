@@ -6,41 +6,41 @@ package net.gavrilyuk.flowerbeds;
  */
 public class FlowerBed {
 
-    private double mRadius;
-    private double mArea;
-    private double mPerimeter;
+    private double radius;
+    private double area;
+    private double perimeter;
 
     public FlowerBed() {
     }
 
     public FlowerBed(float mRadius) {
-        this.mRadius = mRadius;
+        this.radius = mRadius;
         calculate();
     }
 
     public double getArea() {
-        return mArea;
+        return area;
     }
 
     public double getPerimeter() {
-        return mPerimeter;
+        return perimeter;
     }
 
     public double getRadius() {
-        return mRadius;
+        return radius;
     }
 
     public void setRadius(double radius) {
-        mRadius = radius;
+        this.radius = radius;
     }
 
     public void calculate() {
-        mArea = Math.PI * Math.pow(mRadius, 2);
-        mPerimeter = 2 * Math.PI * mRadius;
+        area = Math.PI * Math.pow(radius, 2);
+        perimeter = 2 * Math.PI * radius;
     }
 
     public String getData() {
-        return String.format("Bed Radius=%,.2f  Area=%,.2f  Perimeter=%,.2f", mRadius, mArea, mPerimeter);
+        return String.format("Bed Radius=%,.2f  Area=%,.2f  Perimeter=%,.2f", radius, area, perimeter);
     }
 
 }

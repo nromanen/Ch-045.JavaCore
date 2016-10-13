@@ -2,6 +2,7 @@ package net.gavrilyuk.flowerbeds;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple class for writing data to a text file
@@ -15,8 +16,8 @@ public class DbUtil {
     public static final int WRITE_STATUS_ERROR = 0;
 
 
-    public static ArrayList<FlowerBed> readDb(String dbName) {
-        ArrayList<FlowerBed> flowerBedsList = null;
+    public static List<FlowerBed> readDb(String dbName) {
+        List<FlowerBed> flowerBedsList = null;
         BufferedReader input;
         try {
             input = new BufferedReader(new FileReader(dbName) );
@@ -65,7 +66,7 @@ public class DbUtil {
     }
 
     public static String printDbData() {
-        ArrayList<FlowerBed> flowerBeds = readDb(DB_NAME);
+        List<FlowerBed> flowerBeds = readDb(DB_NAME);
         StringBuilder builder = new StringBuilder();
         if (flowerBeds != null ) {
             if (flowerBeds.size() > 0) {

@@ -7,44 +7,44 @@ package net.gavrilyuk.talks;
  */
 public class Talk {
 
-    private double mDuration; // the duration of a call in minutes, may be 1.98
-    private Country mToCountry;
+    private double duration; // the duration of a call in minutes, may be 1.98
+    private Country toCountry;
 
     public Talk() {
     }
 
 
     public String getPriceString() {
-       return String.format("%,.2f",  mToCountry.getCostOfMinute() * mDuration);
+       return String.format("%,.2f",  toCountry.getCostOfMinute() * duration);
     }
 
     public double getPrice() {
-        return  mToCountry.getCostOfMinute() * mDuration;
+        return  toCountry.getCostOfMinute() * duration;
     }
 
     public Talk(int duration) {
-        mDuration = duration;
+        this.duration = duration;
     }
 
     public double getDuration() {
-        return mDuration;
+        return duration;
     }
 
     public void setDuration(double duration) {
-        mDuration = duration;
+        this.duration = duration;
     }
 
     public Country getCountry() {
-        return mToCountry;
+        return toCountry;
     }
 
     public void setToCountry(Country toCountry) {
-        mToCountry = toCountry;
+        this.toCountry = toCountry;
     }
 
     public String getTalkString() {
         return "Call to " + getCountry().getName() + ": Coast of minute="+String.format("%,.2f", getCountry().getCostOfMinute()) + "  Duration = " +
-                TalkUtil.getDurationToString(mDuration) + " Price=" + String.format("%,.2f", getPrice()) + " unit";
+                TalkUtil.getDurationToString(duration) + " Price=" + String.format("%,.2f", getPrice()) + " unit";
     }
 }
 

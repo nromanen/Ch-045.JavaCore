@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="357.0" y="405.0">net.gavrilyuk.bird.Penguin</node>
+    <node x="452.75" y="280.0">net.gavrilyuk.bird.NonFlyingBird</node>
+    <node x="225.62499999999997" y="0.0">net.gavrilyuk.bird.Bird</node>
+    <node x="202.99999999999997" y="405.0">net.gavrilyuk.bird.Eagle</node>
+    <node x="94.24999999999994" y="280.0">net.gavrilyuk.bird.FlyingBird</node>
+    <node x="0.0" y="405.0">net.gavrilyuk.bird.Swallow</node>
+    <node x="561.0" y="405.0">net.gavrilyuk.bird.Chicken</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="net.gavrilyuk.bird.Chicken" target="net.gavrilyuk.bird.NonFlyingBird">
+      <point x="0.0" y="-48.5" />
+      <point x="652.5" y="380.0" />
+      <point x="599.75" y="380.0" />
+      <point x="49.0" y="37.5" />
+    </edge>
+    <edge source="net.gavrilyuk.bird.Swallow" target="net.gavrilyuk.bird.FlyingBird">
+      <point x="0.0" y="-48.5" />
+      <point x="91.5" y="380.0" />
+      <point x="137.49999999999994" y="380.0" />
+      <point x="-43.25" y="37.5" />
+    </edge>
+    <edge source="net.gavrilyuk.bird.NonFlyingBird" target="net.gavrilyuk.bird.Bird">
+      <point x="0.0" y="-37.5" />
+      <point x="550.75" y="255.0" />
+      <point x="440.875" y="255.0" />
+      <point x="71.75" y="115.0" />
+    </edge>
+    <edge source="net.gavrilyuk.bird.Penguin" target="net.gavrilyuk.bird.NonFlyingBird">
+      <point x="0.0" y="-48.5" />
+      <point x="449.0" y="380.0" />
+      <point x="501.75" y="380.0" />
+      <point x="-49.0" y="37.5" />
+    </edge>
+    <edge source="net.gavrilyuk.bird.Eagle" target="net.gavrilyuk.bird.FlyingBird">
+      <point x="0.0" y="-48.5" />
+      <point x="270.0" y="380.0" />
+      <point x="223.99999999999994" y="380.0" />
+      <point x="43.25" y="37.5" />
+    </edge>
+    <edge source="net.gavrilyuk.bird.FlyingBird" target="net.gavrilyuk.bird.Bird">
+      <point x="0.0" y="-37.5" />
+      <point x="180.74999999999994" y="255.0" />
+      <point x="297.375" y="255.0" />
+      <point x="-71.75" y="115.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="372.0" y="251.0" />
+  <SelectedNodes>
+    <node>net.gavrilyuk.bird.Eagle</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

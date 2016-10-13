@@ -2,42 +2,43 @@ package net.gavrilyuk.tenintegers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
- * IntegersSource Class
+ * Integers Source Class
  * Created by Igor Gavrilyuk on 08.10.2016.
  */
 public class IntegersSource {
 
-    private ArrayList<Integer> mList;
+    private List<Integer> list;
 
     public IntegersSource() {
-        mList = new ArrayList<>();
+        list = new ArrayList<>();
     }
 
-    public ArrayList<Integer> getList() {
-        return mList;
+    public List<Integer> getList() {
+        return list;
     }
 
-    public void setList(ArrayList<Integer> list) {
+    public void setList(List<Integer> list) {
         if (list != null) {
-            mList = list;
+            this.list = list;
         }
 
     }
 
     public void addValue(int i) {
-        if (mList != null) mList.add(i);
+        if (list != null) list.add(i);
     }
 
     public int getMax() {
-        return Collections.max(mList);
+        return Collections.max(list);
     }
 
     public long getSumPositive() {
         long result = 0;
-        if (mList != null) {
-            for (Integer value : mList) {
+        if (list != null) {
+            for (Integer value : list) {
                 if (value > 0) result += value;
             }
         }
@@ -46,8 +47,8 @@ public class IntegersSource {
 
     public int getNegativeCounts() {
         int result = 0;
-        if (mList != null) {
-            for (Integer value : mList) {
+        if (list != null) {
+            for (Integer value : list) {
                 if (value < 0) result++;
             }
         }
@@ -55,10 +56,10 @@ public class IntegersSource {
     }
 
     public String positiveVSNegative() {
-        if (mList != null) {
-            if (getNegativeCounts() > (mList.size()-getNegativeCounts())) {
+        if (list != null) {
+            if (getNegativeCounts() > (list.size()-getNegativeCounts())) {
                 return  "more negative";
-            } else if (getNegativeCounts() < (mList.size() - getNegativeCounts())) {
+            } else if (getNegativeCounts() < (list.size() - getNegativeCounts())) {
                 return  "more positive";
             } else return "equally";
         }
@@ -67,6 +68,6 @@ public class IntegersSource {
 
     @Override
     public String toString() {
-        return "Values list:" +mList;
+        return "Values list:" + list;
     }
 }

@@ -28,11 +28,11 @@ public class Employees {
     public void addEmployee(NewEmployee employee) {
         if (employees !=null) employees.add(employee);
     }
+
     public void orderBySalary(boolean isDesc) {
         if (employees != null && employees.size() > 0) {
             Collections.sort(employees, new SalaryComparator(isDesc));
         }
-
     }
 
     //todo fix issue #8

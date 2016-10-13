@@ -3,6 +3,7 @@ package net.gavrilyuk.products;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * ProductsStore Class
@@ -10,31 +11,31 @@ import java.util.Comparator;
  */
 public class ProductsStore {
 
-      private ArrayList<Product> mProducts;
+      private List<Product> products;
 
     public ProductsStore() {
-        mProducts = new ArrayList<>();
+        products = new ArrayList<>();
     }
 
-    public ArrayList<Product> getProducts() {
-        return mProducts;
+    public List<Product> getProducts() {
+        return products;
     }
 
     public void setProducts(ArrayList<Product> products) {
-        mProducts = products;
+        this.products = products;
     }
 
     public void addProduct(Product product) {
-        mProducts.add(product);
+        products.add(product);
     }
 
     public void removeProduct(int index) {
-        mProducts.remove(index);
+        products.remove(index);
     }
 
     //find product of the most expensive item
     public Product getMostExpensive() {
-        return Collections.max(mProducts, new Comparator<Product>() {
+        return Collections.max(products, new Comparator<Product>() {
             @Override
             public int compare(Product p1, Product p2) {
                 if (p1.getPrice() < p2.getPrice())
@@ -48,10 +49,10 @@ public class ProductsStore {
     }
 
    //find one or more product(s) which has the biggest quantity
-    public ArrayList<Product> getBiggestQuantity() {
+    public List<Product> getBiggestQuantity() {
 
         ArrayList<Product> result = new ArrayList<>();
-        Product max = Collections.max(mProducts, new Comparator<Product>() {
+        Product max = Collections.max(products, new Comparator<Product>() {
             @Override
             public int compare(Product p1, Product p2) {
                 if (p1.getQuantity() < p2.getQuantity())
@@ -62,7 +63,7 @@ public class ProductsStore {
 
             }
         });
-        for (Product product : mProducts) {
+        for (Product product : products) {
             if (product.equals(max)) {
                 result.add(product);
             }

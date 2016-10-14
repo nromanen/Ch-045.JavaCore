@@ -6,12 +6,15 @@ package net.gavrilyuk.bird;
  */
 public class Chicken extends NonFlyingBird {
 
-    public Chicken(int feathers, int layEggs) {
+    public Chicken(int feathers, boolean layEggs) {
         super(feathers, layEggs);
     }
 
+    public Chicken( boolean layEggs) {
+        this(5, layEggs);
+    }
     public Chicken() {
-        super(5,10);
+        this(5,false);
     }
 
     @Override

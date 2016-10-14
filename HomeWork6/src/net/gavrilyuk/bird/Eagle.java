@@ -7,10 +7,14 @@ package net.gavrilyuk.bird;
 public class Eagle extends FlyingBird {
 
     public Eagle() {
-        super(10,4);
+        this(10, false);
     }
 
-    public Eagle(int feathers, int layEggs) {
+    public Eagle( boolean layEggs) {
+        this(10, layEggs);
+    }
+
+    public Eagle(int feathers, boolean layEggs) {
         super(feathers, layEggs);
     }
 

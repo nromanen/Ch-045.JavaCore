@@ -6,12 +6,16 @@ package net.gavrilyuk.bird;
  */
 public class Swallow extends FlyingBird {
 
-    public Swallow(int feathers, int layEggs) {
+    public Swallow(int feathers, boolean layEggs) {
         super(feathers, layEggs);
     }
 
+    public Swallow( boolean layEggs) {
+        this(3, layEggs);
+    }
+
     public Swallow() {
-        super(3, 5);
+        this(3, false);
     }
 
     @Override

@@ -6,12 +6,17 @@ package net.gavrilyuk.bird;
  */
 public class Penguin extends NonFlyingBird {
 
-    public Penguin(int feathers, int layEggs) {
+    public Penguin(int feathers, boolean layEggs) {
         super(feathers, layEggs);
     }
 
+    public Penguin(boolean layEggs) {
+        this(1, layEggs);
+    }
+
+
     public Penguin() {
-        super(1,1);
+        this(1, false);
     }
 
     @Override

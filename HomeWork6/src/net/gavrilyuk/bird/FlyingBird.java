@@ -6,7 +6,7 @@ package net.gavrilyuk.bird;
  */
 public class FlyingBird extends Bird {
 
-    public FlyingBird(int feathers, int layEggs) {
+    public FlyingBird(int feathers, boolean layEggs) {
         super(feathers, layEggs);
     }
 

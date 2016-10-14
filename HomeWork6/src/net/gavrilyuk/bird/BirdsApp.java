@@ -1,5 +1,8 @@
 package net.gavrilyuk.bird;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *  BirdsApp Class
  * Created by Igor Gavryliuk on 10.10.2016.
@@ -13,25 +16,30 @@ package net.gavrilyuk.bird;
 
 public class BirdsApp {
 
+    private static final int NUMBER_OF_BIRDS = 10;
+
     public static void main(String[] args) {
-        Bird [] birds = new Bird[10];
-        //fill array
-        for (int i = 0; i < 10; i++) {
+        List<Bird> birds = new ArrayList<>();
+        //fill birds list
+        for (int i = 0; i < NUMBER_OF_BIRDS; i++) {
             switch (i) {
                case 0:
+                   birds.add(new Eagle());
                case 5:
-                   birds[i] = new Eagle();
+                   birds.add(new Eagle(true));
                    break;
                 case 1:
+                    birds.add(new Swallow());
                 case 6:
-                    birds[i] = new Swallow();
+                    birds.add(new Swallow(true));
                     break;
                 case 2:
+                    birds.add(new Penguin());
                 case 7:
-                    birds[i] = new Penguin();
+                    birds.add(new Penguin(true));
                     break;
                default:
-                   birds[i] = new Chicken();
+                   birds.add(new Chicken());
             }
         }
         //and show

@@ -7,9 +7,9 @@ package net.gavrilyuk.bird;
 public abstract class Bird {
 
     private int feathers;//feathers length
-    private int layEggs;//the number of eggs carried by a bird
+    private boolean layEggs;//bird lays eggs
 
-    public Bird(int feathers, int layEggs) {
+    public Bird(int feathers, boolean layEggs) {
         this.feathers = feathers;
         this.layEggs = layEggs;
     }
@@ -24,11 +24,11 @@ public abstract class Bird {
         this.feathers = feathers;
     }
 
-    public int getLayEggs() {
+    public boolean getLayEggs() {
         return layEggs;
     }
 
-    public void setLayEggs(int layEggs) {
+    public void setLayEggs(boolean layEggs) {
         this.layEggs = layEggs;
     }
 

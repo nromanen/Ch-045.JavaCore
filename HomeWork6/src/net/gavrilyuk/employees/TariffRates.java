@@ -1,7 +1,7 @@
 package net.gavrilyuk.employees;
 
 /**
- *  Tariff Rates Enum from salaried employee
+ *  Tariff Rates Enum from salaried and contract employees
  *  Created by Igor Gavryliuk on 12.10.2016.
  */
 public enum TariffRates {

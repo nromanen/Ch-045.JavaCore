@@ -3,58 +3,49 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="245.87500000000006" y="279.0">net.gavrilyuk.employees.ContractEmployee</node>
-    <node x="519.0" y="33.0">net.gavrilyuk.employees.BaseEmployee</node>
-    <node x="797.75" y="334.0">net.gavrilyuk.employees.SalariedEmployee</node>
-    <node x="1065.0" y="0.0">net.gavrilyuk.employees.TariffRates</node>
-    <node x="0.0" y="11.0">net.gavrilyuk.employees.Department</node>
-    <node x="239.00000000000006" y="0.0">net.gavrilyuk.employees.HourlyRate</node>
-    <node x="786.0" y="55.0">net.gavrilyuk.employees.PaidWorker</node>
+    <node x="385.0" y="213.0">net.gavrilyuk.employees.ContractEmployee</node>
+    <node x="29.5" y="0.0">net.gavrilyuk.employees.BaseEmployee</node>
+    <node x="0.0" y="268.0">net.gavrilyuk.employees.SalariedEmployee</node>
+    <node x="0.0" y="597.0">net.gavrilyuk.employees.TariffRates</node>
+    <node x="352.0" y="597.0">net.gavrilyuk.employees.Department</node>
+    <node x="534.25" y="22.0">net.gavrilyuk.employees.PaidWorker</node>
   </nodes>
   <notes />
   <edges>
     <edge source="net.gavrilyuk.employees.ContractEmployee" target="net.gavrilyuk.employees.BaseEmployee">
-      <point x="57.25" y="-169.5" />
-      <point x="532.125" y="259.0" />
-      <point x="580.75" y="259.0" />
-      <point x="-61.75" y="81.5" />
-    </edge>
-    <edge source="net.gavrilyuk.employees.SalariedEmployee" target="net.gavrilyuk.employees.TariffRates">
-      <point x="121.66666666666669" y="-114.5" />
-      <point x="1101.9166666666667" y="259.0" />
-      <point x="1188.5" y="259.0" />
-      <point x="0.0" y="114.5" />
-    </edge>
-    <edge source="net.gavrilyuk.employees.ContractEmployee" target="net.gavrilyuk.employees.PaidWorker">
-      <point x="171.75" y="-169.5" />
-      <point x="646.625" y="259.0" />
-      <point x="850.75" y="259.0" />
-      <point x="-64.75" y="59.5" />
-    </edge>
-    <edge source="net.gavrilyuk.employees.SalariedEmployee" target="net.gavrilyuk.employees.PaidWorker">
-      <point x="0.0" y="-114.5" />
-      <point x="64.75" y="59.5" />
-    </edge>
-    <edge source="net.gavrilyuk.employees.ContractEmployee" target="net.gavrilyuk.employees.Department">
-      <point x="-171.75" y="-169.5" />
-      <point x="303.12500000000006" y="259.0" />
-      <point x="109.5" y="259.0" />
-      <point x="0.0" y="103.5" />
-    </edge>
-    <edge source="net.gavrilyuk.employees.ContractEmployee" target="net.gavrilyuk.employees.HourlyRate">
-      <point x="-57.25" y="-169.5" />
-      <point x="417.62500000000006" y="259.0" />
-      <point x="369.00000000000006" y="259.0" />
-      <point x="0.0" y="114.5" />
-    </edge>
-    <edge source="net.gavrilyuk.employees.SalariedEmployee" target="net.gavrilyuk.employees.BaseEmployee">
-      <point x="-121.66666666666669" y="-114.5" />
-      <point x="858.5833333333334" y="249.0" />
-      <point x="704.25" y="249.0" />
+      <point x="-114.50000000000006" y="-169.5" />
+      <point x="499.49999999999994" y="183.0" />
+      <point x="214.75" y="183.0" />
       <point x="61.75" y="81.5" />
     </edge>
+    <edge source="net.gavrilyuk.employees.ContractEmployee" target="net.gavrilyuk.employees.TariffRates">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="net.gavrilyuk.employees.ContractEmployee" target="net.gavrilyuk.employees.PaidWorker">
+      <point x="114.49999999999994" y="-169.5" />
+      <point x="64.75" y="59.5" />
+    </edge>
+    <edge source="net.gavrilyuk.employees.SalariedEmployee" target="net.gavrilyuk.employees.PaidWorker">
+      <point x="91.25" y="-114.5" />
+      <point x="273.75" y="193.0" />
+      <point x="599.0" y="193.0" />
+      <point x="-64.75" y="59.5" />
+    </edge>
+    <edge source="net.gavrilyuk.employees.SalariedEmployee" target="net.gavrilyuk.employees.TariffRates">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="net.gavrilyuk.employees.ContractEmployee" target="net.gavrilyuk.employees.Department">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="net.gavrilyuk.employees.SalariedEmployee" target="net.gavrilyuk.employees.BaseEmployee">
+      <point x="-91.25" y="-114.5" />
+      <point x="-61.75" y="81.5" />
+    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.7635135135135135" x="656.0" y="309.0" />
+  <settings layout="Hierarchic Group" zoom="0.6074561403508771" x="422.274368231047" y="466.00000000000006" />
   <SelectedNodes>
     <node>net.gavrilyuk.employees.SalariedEmployee</node>
   </SelectedNodes>

@@ -7,11 +7,11 @@ package net.gavrilyuk.employees;
 public class ContractEmployee extends BaseEmployee implements PaidWorker {
 
     private String federalTaxIdMember;
-    private HourlyRate hourlyRate;
+    private TariffRates hourlyRate;
     private int hoursWorked;
     private Department department;
 
-    public ContractEmployee(String name, Department department, String federalTaxIdMember, HourlyRate hourlyRate, int hoursWorked ) {
+    public ContractEmployee(String name, Department department, String federalTaxIdMember, TariffRates hourlyRate, int hoursWorked ) {
         super(name);
         this.federalTaxIdMember = federalTaxIdMember;
         this.hourlyRate = hourlyRate;
@@ -19,20 +19,20 @@ public class ContractEmployee extends BaseEmployee implements PaidWorker {
         this.department = department;
     }
 
-    public ContractEmployee(String name, Department department,  HourlyRate hourlyRate, int hoursWorked) {
+    public ContractEmployee(String name, Department department,  TariffRates hourlyRate, int hoursWorked) {
         this(name, department, NO_TAX_OR_SOCIAL, hourlyRate, hoursWorked);
     }
 
-    public ContractEmployee(String name, Department department, HourlyRate hourlyRate) {
+    public ContractEmployee(String name, Department department, TariffRates hourlyRate) {
         this(name, department, NO_TAX_OR_SOCIAL, hourlyRate, WORK_HOURLY_PER_MONTH);
     }
     public ContractEmployee(String name, Department department) {
-        this(name, department, NO_TAX_OR_SOCIAL, HourlyRate.FIRST_RATE, WORK_HOURLY_PER_MONTH);
+        this(name, department, NO_TAX_OR_SOCIAL, TariffRates.FIRST_RATE, WORK_HOURLY_PER_MONTH);
     }
 
 
     public ContractEmployee(String name) {
-        this(name, Department.MANAGE, NO_TAX_OR_SOCIAL, HourlyRate.FIRST_RATE, WORK_HOURLY_PER_MONTH);
+        this(name, Department.MANAGE, NO_TAX_OR_SOCIAL, TariffRates.FIRST_RATE, WORK_HOURLY_PER_MONTH);
     }
 
 
@@ -44,11 +44,11 @@ public class ContractEmployee extends BaseEmployee implements PaidWorker {
         this.federalTaxIdMember = federalTaxIdMember;
     }
 
-    public HourlyRate getHourlyRate() {
+    public TariffRates getHourlyRate() {
         return hourlyRate;
     }
 
-    public void setHourlyRate(HourlyRate hourlyRate) {
+    public void setHourlyRate(TariffRates hourlyRate) {
         this.hourlyRate = hourlyRate;
     }
 
@@ -66,7 +66,7 @@ public class ContractEmployee extends BaseEmployee implements PaidWorker {
 
     @Override
     public float calculatePay() {
-        return hourlyRate.getRateValue() * hoursWorked;
+        return hourlyRate.getTariffRateValue() * hoursWorked;
     }
 
     @Override

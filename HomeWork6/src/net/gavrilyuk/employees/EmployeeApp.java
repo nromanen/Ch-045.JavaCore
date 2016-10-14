@@ -32,11 +32,11 @@ public class EmployeeApp {
             } else {
                 ContractEmployee employee;
                 if (i % 3 == 0) {
-                    employee = new ContractEmployee("ContractEmployee" + i, Department.SALES, HourlyRate.THIRD_RATE);
+                    employee = new ContractEmployee("ContractEmployee" + i, Department.SALES, TariffRates.THIRD_RATE);
                     employee.setHoursWorked((i + 1) * 8);
                 } else {
                     if (i % 11 == 0) {
-                        employee = new ContractEmployee("ContractEmployee" + i, Department.ADMIN, HourlyRate.FIRST_RATE);
+                        employee = new ContractEmployee("ContractEmployee" + i, Department.ADMIN, TariffRates.FIRST_RATE);
                     } else {
                         employee = new ContractEmployee("ContractEmployee" + i);
                         employee.setHoursWorked((i + 1) * 8);

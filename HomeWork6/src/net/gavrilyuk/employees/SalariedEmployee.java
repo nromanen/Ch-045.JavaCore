@@ -44,7 +44,7 @@ public class SalariedEmployee extends BaseEmployee implements PaidWorker {
 
     @Override
     public float calculatePay() {
-        return fixedRateId.getTariffValue();
+        return fixedRateId.getTariffRateValue();
     }
 
     @Override

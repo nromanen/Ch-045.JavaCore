@@ -5,38 +5,42 @@ package net.gavrilyuk.employees;
  *  Created by Igor Gavryliuk on 12.10.2016.
  */
 public enum TariffRates {
+
     TARIFF_1( "Tariff 1", 5000),
     TARIFF_2( "Tariff 2", 7000),
-    TARIFF_3( "Tariff 3", 9000);
+    TARIFF_3( "Tariff 3", 9000),
+    FIRST_RATE("Hourly Rate1", 10),
+    SECOND_RATE("Hourly Rate2", 15),
+    THIRD_RATE("Hourly Rate3", 20);
 
-    private String tariffName;
-    private float tariffValue;
+    private String tariffRateName;
+    private float tariffRateValue;
 
     TariffRates( String tariffName, float tariffValue) {
-        this.tariffName = tariffName;
-        this.tariffValue = tariffValue;
+        this.tariffRateName = tariffName;
+        this.tariffRateValue = tariffValue;
     }
 
 
-    public String getTariffName() {
-        return tariffName;
+    public String getTariffRateName() {
+        return tariffRateName;
     }
 
-    public void setTariffName(String tariffName) throws IllegalArgumentException {
-       if(tariffName == null || tariffName.trim().isEmpty()){
-           throw new IllegalArgumentException("Tariff name should not be empty!");
+    public void setTariffRateName(String tariffRateName) throws IllegalArgumentException {
+       if(tariffRateName == null || tariffRateName.trim().isEmpty()){
+           throw new IllegalArgumentException("Tariff or rate name should not be empty!");
          }
-       this.tariffName = tariffName;
+       this.tariffRateName = tariffRateName;
     }
 
-    public float getTariffValue() {
-        return tariffValue;
+    public float getTariffRateValue() {
+        return tariffRateValue;
     }
 
-    public void setTariffValue(float tariffValue) throws IllegalArgumentException {
-            if (tariffValue < 0) // need?
-                throw new IllegalArgumentException("Tariff cannot be negative.");
-            this.tariffValue = tariffValue;
+    public void setTariffRateValue(float tariffRateValue) throws IllegalArgumentException {
+            if (tariffRateValue < 0) // need?
+                throw new IllegalArgumentException("Tariff or rate cannot be negative.");
+            this.tariffRateValue = tariffRateValue;
 
     }
 }

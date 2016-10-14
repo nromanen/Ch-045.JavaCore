@@ -14,7 +14,7 @@ public abstract class Bird {
         this.layEggs = layEggs;
     }
 
-    abstract void fly();
+    public abstract void fly();
 
     public int getFeathers() {
         return feathers;

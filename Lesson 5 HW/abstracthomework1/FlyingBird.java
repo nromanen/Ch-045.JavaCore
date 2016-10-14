@@ -4,11 +4,11 @@ public class FlyingBird extends Bird {
 
 	@Override
 	public void fly() {
-System.out.println("With love");
+		System.out.println("With love");
 	}
-	public void info()
-	{
-		
+
+	public void info() {
+
 	}
 
 }

@@ -18,7 +18,7 @@ public class Cars {
         return cars;
     }
 
-    public void setCars(AbstractList<Car> cars) {
+    public void setCars(List<Car> cars) {
         this.cars = cars;
     }
 

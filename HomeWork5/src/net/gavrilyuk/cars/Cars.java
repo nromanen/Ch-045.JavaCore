@@ -19,7 +19,9 @@ public class Cars {
     }
 
     public void setCars(List<Car> cars) {
-        this.cars = cars;
+        if (cars != null) {
+            this.cars = cars;
+        }
     }
 
     @Override

@@ -36,7 +36,12 @@ public class CarsApp {
         cars.orderByYears();
         System.out.println(cars.toString());
         int year = readInt(scanner);
-        System.out.println(cars.filterByYear(year));
+        try {
+            System.out.println(cars.filterByYear(year));
+        } catch (CarException e) {
+            System.out.println( e.toString());
+            //e.printStackTrace();
+        }
         scanner.close();
     }
 }

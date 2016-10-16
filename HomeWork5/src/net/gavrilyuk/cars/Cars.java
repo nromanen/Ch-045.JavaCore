@@ -3,7 +3,7 @@ package net.gavrilyuk.cars;
 import java.util.*;
 
 /**
- *
+ * Cars Class
  * Created by Igor Gavrilyuk on 09.10.2016.
  */
 public class Cars {
@@ -28,8 +28,9 @@ public class Cars {
     }
 
     //fix teacher comments
-    public List<Car> filterByYear(int year) {
+    public List<Car> filterByYear(int year) throws CarException {
         List<Car> result = new ArrayList<>();
+        if (!Car.correctYears(year)) throw new CarException(1,year +" is invalid year!");
         if (cars != null) {
             for (Car car : cars) {
                 if (car.getYear() == year) {
@@ -39,6 +40,7 @@ public class Cars {
         }
         return result;
     }
+
     //fix teacher comments
     public List<Car> orderByYears() {
         List<Car> result;
@@ -58,11 +60,13 @@ public class Cars {
         } else result = new ArrayList<>();
         return result;
     }
+    // fill list
+    public void fillList(int carCount) throws CarException {
+            if (cars == null) cars = new ArrayList<>();
+            if (carCount < 0) throw new CarException(3, "Count must be >0");
+            for (int j = 0; j < carCount; j++) {
+                cars.add(new Car(1990 + (j * 6), 0.95f * (j + 1)));
+            }
 
-    public void fillList(int carCount) {
-        if (cars == null) cars = new ArrayList<>();
-        for (int j = 0; j < carCount; j++) {
-            cars.add(new Car(1990 + (j * 6), 0.95f * (j + 1)));
-        }
     }
 }

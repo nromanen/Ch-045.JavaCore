@@ -29,7 +29,7 @@ public class CollectionApp {
         myCollection.addValueToIndex(2, 1);
         myCollection.addValueToIndex(5, 4);
         myCollection.addValueToIndex(8, -3);
-        System.out.println("after add tasksList=" + myCollection.toString());
+        System.out.println( myCollection.printList());
         Collections.sort(myCollection.getList());
         System.out.println("after sort tasksList=" + myCollection.toString());
         /*

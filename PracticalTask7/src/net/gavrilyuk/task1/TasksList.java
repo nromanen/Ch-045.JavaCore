@@ -27,7 +27,7 @@ public class TasksList  {
     }
 
     public int size( ) {
-        return list.size( );
+        return list.size();
     }
 
    // return list of all positions of element more than value=5 in the collection
@@ -68,6 +68,17 @@ public class TasksList  {
                 list.add(r.nextInt());
             }
         }
+    }
+
+    public String printList() {
+        StringBuilder builder = new StringBuilder();
+        if (!list.isEmpty()) {
+            for (ListIterator<Integer> it = list.listIterator(); it.hasNext(); ) {
+                builder.append("position - ").append(it.nextIndex()).append(", value of element - ").append(it.next()).append("\n");
+            }
+
+        } else builder.append("Empty list!").append("\n");
+        return builder.toString();
     }
 
     @Override

@@ -23,7 +23,7 @@ public class CollectionApp {
         System.out.println("myCollection=" + myCollection.toString());
         List<Integer> newCollection = myCollection.findPositionsThanValue(5);
         System.out.println("newCollection=" + newCollection.toString());
-        myCollection.removeWhichValue(20);
+        myCollection.removeGreatThan(20);
         System.out.println("after deleted myCollection=" + myCollection.toString());
         //insert value 1, -3, -4 in positions 2, 8, 5.
         try {

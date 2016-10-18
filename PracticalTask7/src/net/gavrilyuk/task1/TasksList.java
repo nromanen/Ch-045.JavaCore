@@ -43,7 +43,7 @@ public class TasksList  {
         return result;
     }
     //remove item which are greater then value=20
-    public void removeWhichValue(int value) {
+    public void removeGreatThan(int value) {
         if (list != null) {
             for (ListIterator<Integer> it = list.listIterator(); it.hasNext(); ) {
                 if (it.next() > value)   it.remove();
@@ -76,10 +76,5 @@ public class TasksList  {
         return builder.toString();
     }
 
-    @Override
-    public String toString() {
-        return "TasksList{" +
-                "list=" + list +
-                '}';
-    }
+
 }

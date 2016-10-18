@@ -25,10 +25,15 @@ public class CollectionApp {
         System.out.println("newCollection=" + newCollection.toString());
         myCollection.removeByValue(20);
         System.out.println("after deleted myCollection=" + myCollection.toString());
-        //add 1, -3, -4 in positions 2, 8, 5.
-        myCollection.addValueToIndex(2, 1);
-        myCollection.addValueToIndex(5, 4);
-        myCollection.addValueToIndex(8, -3);
+        //insert value 1, -3, -4 in positions 2, 8, 5.
+        try {
+            myCollection.insertValueInPosition(2, 1);
+            myCollection.insertValueInPosition(5, 4);
+            myCollection.insertValueInPosition(8, -3);
+        } catch (IndexOutOfBoundsException e) {
+            //ignore it
+        }
+
         System.out.println( myCollection.printList());
         Collections.sort(myCollection.getList());
         System.out.println("after sort tasksList=" + myCollection.toString());

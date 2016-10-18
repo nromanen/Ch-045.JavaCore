@@ -18,8 +18,10 @@ public class TasksList  {
          list.add(element);
     }
 
-    public void add(int index, Integer element) {
-        if (index < size()) list.add(index, element);
+    public void add(int index, Integer element) throws IndexOutOfBoundsException {
+        if (index < size()) {
+            list.add(index, element) ;
+        } else throw new IndexOutOfBoundsException("Index "+index+" is greater than the length of the list");
     }
 
     public Integer get(int index) {
@@ -48,18 +50,11 @@ public class TasksList  {
             }
         }
     }
-    // add value from index
-    // if index out of list size throw exception
-    public void addValueToIndex(int index, Integer value ) {
-        try {
-            if (list.size() < index) {
-                throw new  IndexOutOfBoundsException("Index "+index+" is greater than the length of the list");
-            }
+    // insert the element(value) in position (index)
+    public void insertValueInPosition(int index, Integer value ) {
             list.add(index, value);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
-        }
     }
+
     //fill list random integer values
     public void fillList(int count) {
         Random r = new Random();

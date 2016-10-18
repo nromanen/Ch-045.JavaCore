@@ -7,7 +7,24 @@ package conditional.practice.product;
   * Display the name of the items, which has the biggest quantity.
   */
 
-public class Main {
+import static conditional.practice.product.Order.*;
+import static util.Print.println;
 
-    // TODO
+public class Main {
+ public static void main(String[] args) {
+  addProduct(new Product("Milk", 12.45, 4));
+  addProduct(new Product("Bread", 8.45, 2));
+  addProduct(new Product("Beer", 15.0, 5));
+  addProduct(new Product("Milk", 12.45, 3));
+
+  println("Order list: ");
+
+  for (Product product : gerProducts()) {
+   println(product);
+  }
+  println();
+  println("The most expensive product is ", mostExpensive().getName(), ", quantity is ", mostExpensive().getQuantity(), "." );
+  println("The biggest quantity has ", biggestQuantity().getName(), ", price is ", biggestQuantity().getPrice(), ".");
+
+ }
 }

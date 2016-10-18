@@ -26,7 +26,8 @@ public class Students {
         this.students = students;
     }
 
-    public List<Student> sortByCourse(boolean isDesc) {
+    // ordered by course
+    public List<Student> orderByCourse(boolean isDesc) {
         List<Student> result=  new ArrayList<>(students);
         if (!result.isEmpty()) {
             Collections.sort(result, new CourseComparator(isDesc));
@@ -34,8 +35,8 @@ public class Students {
         return result;
 
     }
-
-    public List<Student> sortByName(boolean isDesc) {
+   // ordered by name
+    public List<Student> orderByName(boolean isDesc) {
         List<Student> result=  new ArrayList<>(students);
         if (!result.isEmpty()) {
             Collections.sort(result,new NameComparator(isDesc) );
@@ -43,7 +44,7 @@ public class Students {
         return result;
 
     }
-
+    //which receives a list of students and the course number
     public List<String> printStudents(List studentsCourse, Integer course) {
         List<String> result = new ArrayList<>();
         if (studentsCourse != null && !studentsCourse.isEmpty()) {
@@ -67,14 +68,17 @@ public class Students {
         final int[] COURSES = new int[]{1, 2, 1, 2, 3, 4, 5, 3, 5, 2};
         if (students == null) students=new ArrayList<>();
         for (int i = 0; i < studentCount; i++) {
-            students.add(new Student(NAMES[i],COURSES[i]));
+            students.add(new Student(NAMES[i], COURSES[i]));
         }
     }
 
     @Override
     public String toString() {
-        return "Students{" +
-                "students=" + students +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        if (students.isEmpty()) return builder.append("Empty list!").toString();
+        for (Student student : students) {
+            builder.append(student.toString());
+        }
+        return  builder.toString() ;
     }
 }

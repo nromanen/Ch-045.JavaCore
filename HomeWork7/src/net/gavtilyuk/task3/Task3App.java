@@ -26,8 +26,8 @@ public class Task3App {
         System.out.println(students);
         int course = 2;
         System.out.println("Students names of course "+course+":"+students.printStudents(students.getStudents(),course));
-        System.out.println(students.sortByName(false));
-        System.out.println(students.sortByCourse(false));
+        System.out.println("Order by name:\n"+students.orderByName(false));
+        System.out.println("Order by course:\n"+students.orderByCourse(false));
         //students.getStudents().get(0).setName("");
         //students.getStudents().get(0).setCourse(-8);
     }

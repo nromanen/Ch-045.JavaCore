@@ -28,22 +28,22 @@ public class MapApp {
         EmployeeMap<Integer, String> employeeMap = new EmployeeMap<>();
         //fill map
         for (int i = 0; i < EMPLOYEE_COUNT; i++) {
-            employeeMap.putEmployee(i + 1, "employee" + (i + 1));
+            employeeMap.addEmployee(i + 1, "employee" + (i + 1));
         }
-        employeeMap.putEmployee(7, "employee2");//add value some name(employee2) from test set from return getKeysByValue
-        //employeeMap.putEmployee(8, null);
+        employeeMap.addEmployee(7, "employee2");//add value some name(employee2) from test set from return getKeysByValue
+        //employeeMap.addEmployee(8, null);
 
         System.out.println(employeeMap.printMap()); //System.out.println(employeeMap);
 
         // read key and find value
         int key = EmployeeMapUtil.readInt(scanner);
-        if (employeeMap.getValuesByKey(key) != null) {
-            System.out.println("value="+employeeMap.getValuesByKey(key));
+        if (employeeMap.getValueByKey(key) != null) {
+            System.out.println("value="+employeeMap.getValueByKey(key));
         } else System.out.println("Key (" + key + ") doesn't exist");
 
         // read value and find key(s)
         String name = EmployeeMapUtil.readString(scanner);
-        Set<Integer> keys = employeeMap.getKeysByValue(name);
+        Set<Integer> keys = employeeMap.getKeysThanValue(name);
         if (!keys.isEmpty()) {
             System.out.println(keys);
         } else System.out.println("No key from value (" + name + ") found!");
@@ -53,10 +53,10 @@ public class MapApp {
        /* EmployeeMap<String, String> employeeMap = new EmployeeMap<>();
         //fill map
         for (int i = 0; i < EMPLOYEE_COUNT; i++) {
-            employeeMap.putEmployee("employee" + (i + 1),String.valueOf(i + 1) );
+            employeeMap.addEmployee("employee" + (i + 1),String.valueOf(i + 1) );
         }
-        employeeMap.putEmployee("employee2",String.valueOf(7));//add value some name(employee2) from test set from return getKeysByValue
-        //employeeMap.putEmployee(8, null);
+        employeeMap.addEmployee("employee2",String.valueOf(7));//add value some name(employee2) from test set from return getKeysByValue
+        //employeeMap.addEmployee(8, null);
 
         System.out.println(employeeMap.printMap()); //System.out.println(employeeMap);
 

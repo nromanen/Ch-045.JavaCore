@@ -21,9 +21,9 @@ public class CollectionApp {
         TasksList myCollection = new TasksList();
         myCollection.fillList(INTEGERS_COUNT);
         System.out.println("myCollection=" + myCollection.toString());
-        List<Integer> newCollection = myCollection.findIndexFromValue(5);
+        List<Integer> newCollection = myCollection.findPositionsThanValue(5);
         System.out.println("newCollection=" + newCollection.toString());
-        myCollection.removeByValue(20);
+        myCollection.removeWhichValue(20);
         System.out.println("after deleted myCollection=" + myCollection.toString());
         //insert value 1, -3, -4 in positions 2, 8, 5.
         try {

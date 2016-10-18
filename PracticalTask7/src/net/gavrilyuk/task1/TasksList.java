@@ -33,7 +33,7 @@ public class TasksList  {
     }
 
    // return list of all positions of element more than value=5 in the collection
-    public List<Integer> findIndexFromValue(int value) {
+    public List<Integer> findPositionsThanValue(int value) {
         List<Integer> result = new ArrayList<>();
         for(ListIterator<Integer> it = list.listIterator(); it.hasNext() ;)
         {
@@ -43,7 +43,7 @@ public class TasksList  {
         return result;
     }
     //remove item which are greater then value=20
-    public void removeByValue(int value) {
+    public void removeWhichValue(int value) {
         if (list != null) {
             for (ListIterator<Integer> it = list.listIterator(); it.hasNext(); ) {
                 if (it.next() > value)   it.remove();

@@ -24,15 +24,19 @@ public class AppEmployee {
 
     public static void main(String[] args){
 
-        ContractEmployee contEmp1 = new ContractEmployee("Qvadra", "xzz1098760", HourlyRate.RATE_20.hourlyRate, HoursNumber.HOURS_100.hours );
-        ContractEmployee contEmp2 = new ContractEmployee("Topass", "cty2088459",HourlyRate.RATE_30.hourlyRate, HoursNumber.HOURS_130.hours);
-        ContractEmployee contEmp3 = new ContractEmployee("Sertio", "suz3038568",HourlyRate.RATE_40.hourlyRate, HoursNumber.HOURS_160.hours);
+        ContractEmployee contEmp1,contEmp2,contEmp3;
 
-        SalariedEmployee salEmp1 = new SalariedEmployee("Ertops", "werwr164353", SalaryType.JUNIOR.salary);
-        SalariedEmployee salEmp2 = new SalariedEmployee("Doryes", "poiu1089567", SalaryType.JUNIOR.salary);
-        SalariedEmployee salEmp3 = new SalariedEmployee("Nestor", "opwr1096865", SalaryType.JUNIOR.salary);
+        contEmp1 = new ContractEmployee("Qvadra", "xzz1098760", Rate.RATE_20.rate, Hours.HOURS_100.hours,Department.ADMINISTRATOR.department );
+        contEmp2 = new ContractEmployee("Topass", "cty2088459", Rate.RATE_30.rate, Hours.HOURS_130.hours, Department.TEACHER.department);
+        contEmp3 = new ContractEmployee("Sertio", "suz3038568", Rate.RATE_40.rate, Hours.HOURS_160.hours, Department.DRIVER.department);
 
-        List<EmployeeCalculate> employees = new ArrayList<EmployeeCalculate>();
+        SalariedEmployee salEmp1,salEmp2,salEmp3;
+
+        salEmp1 = new SalariedEmployee("Ertops", "werwr164353", SalaryType.JUNIOR.salary, Department.TEACHER.department);
+        salEmp2 = new SalariedEmployee("Doryes", "poiu1089567", SalaryType.MIDDLE.salary, Department.DRIVER.department);
+        salEmp3 = new SalariedEmployee("Nestor", "opwr1096865", SalaryType.SENIOR.salary, Department.ADMINISTRATOR.department);
+
+        List<Employee> employees = new ArrayList<Employee>();
 
         employees.add(contEmp1);
         employees.add(contEmp2);
@@ -42,14 +46,22 @@ public class AppEmployee {
         employees.add(salEmp3);
 
         System.out.println("List employees:");
-        for (EmployeeCalculate employee: employees){
+        for (Employee employee: employees){
             System.out.println(employee);
         }
         Collections.sort(employees, OrderEmployee.orderBySalary);
 
         System.out.println("\nList employees average by monthly wage:");
-        for (EmployeeCalculate employee: employees){
+        for (Employee employee: employees){
             System.out.println(employee);
         }
+
+        //Select employees by department
+        String department = Department.DRIVER.department;
+        System.out.println("List of department("+department+") employees: ");
+        OrderEmployee.getEmployeesDepartment(employees,department );
+
+
     }
+    //todo departments add!!!
 }

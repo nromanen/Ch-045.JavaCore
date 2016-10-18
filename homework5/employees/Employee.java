@@ -19,9 +19,11 @@ package homework5.employees;
  * Arrange the entire sequence of workers descending the average monthly wage.
  * Output the employee ID, name, and the average monthly wage for all elements of the list.
  */
-public class Employee{
+public abstract class Employee  implements EmployeeCalculate{
 
     public String name;
+
+    public String department;
 
     public String employeeId;
 
@@ -40,6 +42,14 @@ public class Employee{
         return name;
     }
 
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
     public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
@@ -47,4 +57,5 @@ public class Employee{
     public String getEmployeeId() {
         return employeeId;
     }
+
 }

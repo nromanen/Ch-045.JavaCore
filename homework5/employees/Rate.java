@@ -3,14 +3,14 @@ package homework5.employees;
 /**
  * Created by roma on 13.10.2016.
  */
-public enum HourlyRate {
+public enum Rate {
     RATE_20(20),
     RATE_30(30),
     RATE_40(40);
 
-    public int hourlyRate;
+    public int rate;
 
-    HourlyRate(int hourlyRate) {
-         this.hourlyRate = hourlyRate;
+    Rate(int rate) {
+         this.rate = rate;
     }
 }

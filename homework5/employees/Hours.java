@@ -3,14 +3,14 @@ package homework5.employees;
 /**
  * Created by roma on 13.10.2016.
  */
-public enum HoursNumber {
+public enum Hours {
     HOURS_100(100),
     HOURS_130(130),
     HOURS_160(160);
 
     public int hours;
 
-    HoursNumber(int hours){
+    Hours(int hours){
         this.hours = hours;
     }
 }

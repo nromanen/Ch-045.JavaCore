@@ -4,13 +4,17 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * OperateSet example Class from set operations: union, intersection,
+ *  OperateSet example Class from set operations: union, intersection,
  *  difference, symmetric difference, is subset, is superset
  * Created by Igor Gavryliuk on 18.10.2016.
  */
-public class OperateSet<T> extends TreeSet<T> {
+public class OperateSet<T>  {
 
     Set<T> set = new TreeSet<>(); //?
+
+    public boolean add(T t) {
+        return  set.add(t);
+    }
 
     public Set<T> getSet() {
         return set;
@@ -20,21 +24,16 @@ public class OperateSet<T> extends TreeSet<T> {
         this.set = set;
     }
 
-    @Override
-    public int size() {
-        return set.size();
-    }
-
     //union (обєднання) SetA SetB
     public static  <T> Set<T> union(Set<T> set1, Set<T> set2) {
-        Set<T> result = new TreeSet<T>(set1);
+        Set<T> result = new TreeSet<>(set1);
         result.addAll(set2);
         return result;
 
     }
     //intersection (перетин) SetA SetB
     public static  <T> Set<T> intersection(Set<T> set1, Set<T> set2) {
-        Set<T> result = new TreeSet<T>();
+        Set<T> result = new TreeSet<>();
         for (T x : set1)
             if (set2.contains(x))
                 result.add(x);
@@ -43,7 +42,7 @@ public class OperateSet<T> extends TreeSet<T> {
 
     //difference (різниця) SetA SetB
     public static <T> Set<T> difference(Set<T> set1, Set<T> set2) {
-        Set<T> result = new TreeSet<T>(set1);
+        Set<T> result = new TreeSet<>(set1);
         result.removeAll(set2);
         return result;
     }

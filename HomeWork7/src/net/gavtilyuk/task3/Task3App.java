@@ -21,14 +21,21 @@ package net.gavtilyuk.task3;
 public class Task3App {
 
     public static void main(String[] args) {
-        Students students = new Students();
-        students.fillList(10);
-        System.out.println(students);
-        int course = 2;
-        System.out.println("Students names of course "+course+":"+students.printStudents(students.getStudents(),course));
-        System.out.println("Order by name:\n"+students.orderByName(false));
-        System.out.println("Order by course:\n"+students.orderByCourse(false));
-        //students.getStudents().get(0).setName("");
-        //students.getStudents().get(0).setCourse(-8);
+        StudentsService students = new StudentsService();
+        try {
+            students.fillList(10);
+            //students.getStudents().get(0).setName("");
+            //students.getStudents().get(0).setCourse(-8);
+            System.out.println(students);
+            int course = 2;
+            System.out.println("Students names of course "+course+":"+students.printStudents(students.getStudents(),course));
+            System.out.println("Ordered by name:\n"+students.orderByName(false));
+            System.out.println("Ordered by course:\n"+students.orderByCourse(false));
+        } catch (StudentException se) {
+            System.out.println(se.getMessage());
+            //ignore it
+        }
+
+
     }
 }

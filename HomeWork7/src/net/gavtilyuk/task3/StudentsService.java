@@ -3,18 +3,18 @@ package net.gavtilyuk.task3;
 import java.util.*;
 
 /**
- *
+ * Students Service Class
  * Created by Igor Gavryliuk on 18.10.2016.
  */
-public class Students {
+public class StudentsService {
 
     private List<Student> students;
 
-    public Students(List<Student> students) {
+    public StudentsService(List<Student> students) {
         this.students = students;
     }
 
-    public Students() {
+    public StudentsService() {
         students = new ArrayList<>();
     }
 
@@ -45,8 +45,9 @@ public class Students {
 
     }
     //which receives a list of students and the course number
-    public List<String> printStudents(List studentsCourse, Integer course) {
+    public List<String> printStudents(List studentsCourse, Integer course) throws StudentException {
         List<String> result = new ArrayList<>();
+        if (course<0)  throw new StudentException(2, "course must be positive!");
         if (studentsCourse != null && !studentsCourse.isEmpty()) {
             for(ListIterator it = studentsCourse.listIterator(); it.hasNext() ;)
             {
@@ -62,8 +63,9 @@ public class Students {
 
         return result;
     }
+
     //fill sample data students list
-    public void fillList(int studentCount) {
+    public void fillList(int studentCount) throws StudentException {
         final String[] NAMES = new String[]{"Ihor","Jacob","Emily","Michael","David","Anna","Robert","Ihor","Thomas","Megan"};
         final int[] COURSES = new int[]{1, 2, 1, 2, 3, 4, 5, 3, 5, 2};
         if (students == null) students=new ArrayList<>();

@@ -15,17 +15,13 @@ public class EmployeeMap<K, V>  {
     }
 
 
-    public void addEmployee(K key, V value) {
-        try {
+    public void addEmployee(K key, V value) throws NullPointerException {
             if (value == null)
                 throw new NullPointerException(EmployeeMap.class.getSimpleName() + " does not allow for null values.");
             if (key == null)
                 throw new NullPointerException(EmployeeMap.class.getSimpleName() + " does not allow for null keys.");
             map.put(key, value);
             // map.putIfAbsent(key, value);//will not replace an existing value
-        } catch (NullPointerException npe) {
-            System.out.println(npe.getMessage());
-        }
 
     }
 

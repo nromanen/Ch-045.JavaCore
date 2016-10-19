@@ -29,7 +29,7 @@ public class EmployeeMapUtil {
         }
         return result;
     }
-
+    // returns the value entered from the console
     public static String readString(Scanner scanner) {
         String line = null;
         System.out.print("Enter name value:");
@@ -46,22 +46,5 @@ public class EmployeeMapUtil {
         }
         return line;
     }
-
-
-    /**
-     * Checks whether a character is a number
-     * @param   name   an {@code String}.
-     * @return  a {@code Boolean} false  - if in name contains the number
-     */
-    public static boolean isAlpha(String name) {
-        char[] chars = name.toCharArray();
-        for (char c : chars) {
-            if(!Character.isLetter(c) && !Character.isSpaceChar(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
 
 }

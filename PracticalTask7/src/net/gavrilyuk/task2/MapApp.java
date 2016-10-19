@@ -24,14 +24,19 @@ public class MapApp {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         EmployeeMap<Integer, String> employeeMap = new EmployeeMap<>();
-        //fill map
-        for (int i = 0; i < EMPLOYEE_COUNT; i++) {
-            employeeMap.addEmployee(i + 1, "employee" + (i + 1));
+        try {
+            //fill map
+            for (int i = 0; i < EMPLOYEE_COUNT; i++) {
+                employeeMap.addEmployee(i + 1, "employee" + (i + 1));
+            }
+           // employeeMap.addEmployee(7, "employee2");//add value some name(employee2) from test set from return getKeysByValue
+           // employeeMap.addEmployee(8, null); //exception
+          //  employeeMap.addEmployee(null,"dfsdf"); //exception
+        } catch (NullPointerException npe) {
+            System.out.println(npe.getMessage()); //ignore it
         }
-        employeeMap.addEmployee(7, "employee2");//add value some name(employee2) from test set from return getKeysByValue
-        //employeeMap.addEmployee(8, null);
+
 
         System.out.println(employeeMap.printMap()); //System.out.println(employeeMap);
 
@@ -72,7 +77,8 @@ public class MapApp {
         if (!keys.isEmpty()) {
             System.out.println(keys);
         } else System.out.println("No key from value (" + name + ") found!");
-        scanner.close();*/
+       */
+        scanner.close();
     }
 
 }

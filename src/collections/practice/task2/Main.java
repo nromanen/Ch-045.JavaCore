@@ -16,7 +16,7 @@ import static util.Print.println;
  */
 public class Main {
 
-    public static int n = 1000;
+    public static int n = 100;
 
     public static void main(String[] args) {
 
@@ -38,7 +38,9 @@ public class Main {
 
         println("-----------------------------------------------------------");
 
-        println(employeeMap);
+        printMap(employeeMap);
+
+        println("-----------------------------------------------------------");
 
         printValueById(employeeMap);
 

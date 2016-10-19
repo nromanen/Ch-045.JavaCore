@@ -7,7 +7,6 @@ import java.util.Map;
 import static util.Print.print;
 import static util.Print.println;
 
-
 public class Util {
 
     // Method return random integer from 0 to int n
@@ -81,6 +80,13 @@ public class Util {
                 }
             }
 
+        }
+        return true;
+    }
+
+    public static <T, U> boolean printMap(Map<T, U> map){
+        for (Map.Entry<T, U> item : map.entrySet()) {
+            println("{ ", item.getKey(), " : ", item.getValue(), " }");
         }
         return true;
     }

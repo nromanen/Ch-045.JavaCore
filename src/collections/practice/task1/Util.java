@@ -12,13 +12,14 @@ import static util.Print.println;
 public class Util {
 
 
-    public static List<Integer> getMoreThan5(List<Integer> list){
+    public static List<Integer> getMoreThanN(int n, List<Integer> list){
         List<Integer> result = new LinkedList<>();
 
-        for (Integer item : list) {
-            if(item > 5){
-                result.add(item);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) > n){
+                result.add(i);
             }
+            
         }
         return result;
     }

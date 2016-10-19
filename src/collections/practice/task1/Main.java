@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import static collections.practice.task1.Util.getMoreThan5;
+import static collections.practice.task1.Util.getMoreThanN;
 import static collections.practice.task1.Util.insertElement;
 import static collections.practice.task1.Util.removeGreatThanN;
 import static util.Print.println;
@@ -25,7 +25,7 @@ public class Main {
         println(myCollection);
         println();
 
-        List<Integer> newCollection = getMoreThan5(myCollection);
+        List<Integer> newCollection = getMoreThanN(5, myCollection);
         println(newCollection);
 
         removeGreatThanN(20, myCollection);

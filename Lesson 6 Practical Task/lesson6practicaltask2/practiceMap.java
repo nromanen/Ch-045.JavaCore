@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class practiceMap {
+public class PracticeMap {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		Map<Integer, String> employeeMap = new HashMap<>();
 		employeeMap.put(1, "Zavadskii Ivan");

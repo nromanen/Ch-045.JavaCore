@@ -2,8 +2,6 @@ package homework6.practical.task1;
 
 import java.util.List;
 
-import static sun.misc.Version.println;
-
 /**
  * Created by roma on 16.10.2016.
  * Declare collection myCollection of 10 integers and fill it (from the console or random).
@@ -18,14 +16,17 @@ public class CollectionApp {
     public static void main(String [] args){
 
         UtilList myCollection = new UtilList();
-        myCollection.fillRandomVal(10);
-        println();
+
+        int count = 10;
+        myCollection.fillRandomVal(count);
         System.out.println(myCollection);
 
-        List<Integer> newCollection = myCollection.findSavePosMore(5);
+        int findMore = 5;
+        List<Integer> newCollection = myCollection.findSavePosMore(findMore);
         System.out.println("New list " + newCollection);
 
-        myCollection.remoteFromCollection(20);
+        int elementGreater = 20;
+        myCollection.remoteFromCollection(elementGreater);
         System.out.println("\nRemove elements, which are greater then 20:");
         System.out.println(myCollection);
 

@@ -7,21 +7,21 @@ import java.util.Map;
 import static util.Print.print;
 import static util.Print.println;
 
-/**
- * Created by Admin on 19.10.16.
- */
+
 public class Util {
 
-    public static int getRandId(){
-        return (int)(Math.random()* 666666);
+    // Method return random integer from 0 to int n
+    public static int getRandId(int n){
+        return (int)(Math.random()* n);
     }
 
+    // Method add key and value to map. If same key is in the map, key will be changed to another random key
     public static boolean addToMap(int key, String value, Map<Integer, String> map){
 
         boolean isCorrectKey = false;
         while (!isCorrectKey) {
             if (map.containsKey(key)) {
-                int newKey = getRandId();
+                int newKey = getRandId(Main.n);
                 println("The key: ", key, " is in the map. Key was changed: ", newKey);
                 key = newKey;
             } else{
@@ -33,6 +33,7 @@ public class Util {
         return true;
     }
 
+    // Method read key from console and write value of this key(if same key is in map)
     public static boolean printValueById(Map<Integer, String> map){
         int id;
         boolean isEnd = false;
@@ -55,6 +56,7 @@ public class Util {
         return true;
     }
 
+    // Method read value from console and write key and value(if same value or values are in map)
     public static boolean printIdByValue(Map<Integer, String> map){
         String name;
         boolean isEnd = false;

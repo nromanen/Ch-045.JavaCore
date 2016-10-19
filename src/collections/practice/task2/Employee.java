@@ -1,8 +1,6 @@
 package collections.practice.task2;
 
-/**
- * Created by Admin on 19.10.16.
- */
+// class of employees
 public class Employee {
 
     private String firstName;

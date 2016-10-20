@@ -14,14 +14,14 @@ import java.util.*;
 
 public class Main {
 	public static void main(String[] args) {
-		Map<String, Integer> listOfStudents = new HashMap<>();
-		 ArrayList<Student> Studentslist = new ArrayList<>();
+		
+		ArrayList<Student> Studentslist = new ArrayList<>();
 		Student stud1 = new Student("Kaskin Stas", 1);
 		Student stud2 = new Student("Kakaskin Vlad", 2);
 		Student stud3 = new Student("Izumin Stas", 2);
 		Student stud4 = new Student("Kaskin Andrey", 3);
 		Student stud5 = new Student("Zigmund Ilona", 3);
-		
+
 		Studentslist.add(stud1);
 		Studentslist.add(stud2);
 		Studentslist.add(stud3);
@@ -32,18 +32,12 @@ public class Main {
 		Studentslist.add(new Student("Kizimov Anton", 2));
 		Studentslist.add(new Student("Krov Anton", 4));
 		Studentslist.add(new Student("Kirov Anton", 5));
-		
-		
-		listOfStudents.put(stud1.getFullName(), stud1.getCourse());
-		listOfStudents.put(stud2.getFullName(), stud2.getCourse());
-		listOfStudents.put(stud3.getFullName(), stud3.getCourse());
-		listOfStudents.put(stud4.getFullName(), stud4.getCourse());
-		listOfStudents.put(stud5.getFullName(), stud5.getCourse());
 
-	StudentMethods.printStudentsbyCourse(listOfStudents, 3);
-	Collections.sort(Studentslist, StudentMethods.compareByName);
-   System.out.println(Studentslist);
-   Collections.sort(Studentslist, StudentMethods.compareByCourse);
-   System.out.println(Studentslist);
+		StudentMethods.printStudentsbyCourse(Studentslist, 1);
+		Collections.sort(Studentslist);
+		System.out.println(Studentslist);
+		
+		Collections.sort(Studentslist, StudentMethods.compareByName);
+		System.out.println(Studentslist);
 	}
 }

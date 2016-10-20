@@ -3,16 +3,16 @@ package homework6task3students;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.Map;
+
 
 public class StudentMethods {
-	public static void printStudentsbyCourse(Map<String, Integer> list, int course) {
-		Iterator<Map.Entry<String, Integer>> iterator = list.entrySet().iterator();
+	public static void printStudentsbyCourse(ArrayList<Student> list, int course) {
+		Iterator<Student> iterator = list.iterator();
 		while (iterator.hasNext()) {
-			Map.Entry<String, Integer> pair = iterator.next();
-			int studcourse = pair.getValue();
-			String nameD = pair.getKey();
-			if (studcourse == course) {
+			Student o = iterator.next();
+			int courseStud = o.getCourse();
+			String nameD = o.getFullName();
+			if (courseStud == course) {
 				System.out.println("Student from the course " + course + " is - " + nameD);
 			}
 		}

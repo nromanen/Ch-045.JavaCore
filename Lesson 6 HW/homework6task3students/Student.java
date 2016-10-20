@@ -1,7 +1,7 @@
 package homework6task3students;
 
-import java.util.*;
-public class Student {
+
+public class Student implements Comparable<Student>{
 	private String name;
 	private String lastName;
 	private  String fullName;
@@ -40,6 +40,18 @@ public class Student {
 	}
 	 @Override
 	    public String toString() {
-	        return  fullName +" "+ course;
+	        return  fullName +" course: "+ course;
 	    }
+
+	@Override
+	public int compareTo(Student o) {
+		
+		if (this.getCourse() > o.getCourse()) {
+			return 1;
+		} else if (this.getCourse() == o.getCourse()) {
+			return 0;
+		} else
+			return -1;
+	
+	}
 }

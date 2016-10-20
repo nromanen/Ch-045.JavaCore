@@ -52,6 +52,6 @@ public class Student {
 
     @Override
     public String toString(){
-        return String.format("name - %-8s course - %-3d\n",name,course);
+        return String.format("%-10s %-10d\n",name,course);
     }
 }

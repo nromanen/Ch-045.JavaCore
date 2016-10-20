@@ -27,12 +27,15 @@ public class StudentUtil {
     public void addStudent(Student student){
         this.student.add(student);
     }
-    public void printStudents(List<Student> listStudent, Integer course){
+    public String printStudents(List<Student> listStudent, Integer course){
+        StringBuilder sb = new StringBuilder();
+        sb.append(headList());
         for(Student student: listStudent ){
             if(student.getCourse() == course){
-                System.out.println(student);
+                sb.append(student);
             }
         }
+        return sb.toString();
     }
     public void insertFields(int countFields){
         student = new LinkedList<>();
@@ -42,9 +45,16 @@ public class StudentUtil {
             student.add(new Student(name[i],course[i]));
         }
     }
-    public void printList(){
+    public String printList(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(headList());
         for (Student st: student ){
-            System.out.print(st);
+            sb.append(st);
         }
+        return sb.toString();
+    }
+    public String headList(){
+        String head = String.format("%-10s%-10s\n","name","course");
+        return head;
     }
 }

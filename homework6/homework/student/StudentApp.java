@@ -27,18 +27,18 @@ public class StudentApp {
 
         student.insertFields(5);
         //Out students list
-        student.printList();
+        System.out.println(student.printList());
 
         int course = 3;
         System.out.println("Select student by course:");
-        student.printStudents(student.getStudent(),course);
+        System.out.println(student.printStudents(student.getStudent(),course));
 
         System.out.println("Sorted student by name:");
-        Collections.sort(student.getStudent(),new NameComparator());
-        student.printList();
+        Collections.sort(student.getStudent(), new NameComparator());
+        System.out.println(student.printList());
 
         System.out.println("Sorted student by course:");
         Collections.sort(student.getStudent(), new CourseComparator());
-        student.printList();
+        System.out.println(student.printList());
     }
 }

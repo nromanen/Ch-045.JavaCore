@@ -9,7 +9,7 @@ import java.util.regex.PatternSyntaxException;
  *
  * Created by GipSoft on 18.10.2016.
  */
-public class PrStringsUtil {
+public class StringsUtils {
 
 
     //Task 1

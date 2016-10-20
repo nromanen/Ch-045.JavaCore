@@ -19,8 +19,8 @@ public class PrTask3App {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        String name = PrStringsUtil.readString(scanner, "Enter username:");
-        System.out.println("User name \'" + name + "\' is " + (PrStringsUtil.checkUserName(name) ? "valid" : "invalid"));
+        String name = StringsUtils.readString(scanner, "Enter username:");
+        System.out.println("User name \'" + name + "\' is " + (StringsUtils.checkUserName(name) ? "valid" : "invalid"));
         scanner.close();
     }
 }

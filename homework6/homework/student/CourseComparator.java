@@ -10,6 +10,12 @@ public class CourseComparator implements Comparator<Student> {
     public int compare(Student s1, Student s2) {
         Integer course1 = s1.getCourse();
         Integer course2 = s2.getCourse();
-        return course1.compareTo(course2);
+        if(course1 > course2){
+            return 1;
+        } else if (course1 == course2){
+            return 0;
+        } else {
+            return -1;
+        }
     }
 }

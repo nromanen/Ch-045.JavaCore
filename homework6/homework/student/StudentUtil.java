@@ -54,7 +54,6 @@ public class StudentUtil {
         return sb.toString();
     }
     public String headList(){
-        String head = String.format("%-10s%-10s\n","name","course");
-        return head;
+        return String.format("%-10s%-10s\n","name","course");
     }
 }

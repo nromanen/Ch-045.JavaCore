@@ -7,6 +7,7 @@ import java.util.Map;
  * Created by roma on 19.10.2016.
  */
 public class PersonMap {
+
     private Map<String,String> personMap;
 
     public PersonMap(){
@@ -33,9 +34,12 @@ public class PersonMap {
             personMap.remove(name);
         }
     }
-    public void printPersonMap(){
+    public String printPersonMap(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-10s%-10s\n", "name", "course")) ;
         for (Map.Entry entry: personMap.entrySet()){
-            System.out.println(entry);
+            sb.append(String.format("%-10s%-10s\n", entry.getKey(),entry.getValue()));
         }
+        return sb.toString();
     }
 }

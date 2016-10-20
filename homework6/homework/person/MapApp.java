@@ -25,12 +25,12 @@ public class MapApp {
         personMap.putPersonToMap(person4);
         personMap.putPersonToMap(person5);
 
-        personMap.printPersonMap();
+        System.out.println(personMap.printPersonMap());
 
         personMap.removePerson("sudo");
 
         System.out.println("After remote user");
-        personMap.printPersonMap();
+        System.out.println(personMap.printPersonMap());
     }
 
 }

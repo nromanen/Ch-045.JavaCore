@@ -32,6 +32,6 @@ public class Person {
 
     @Override
     public String toString(){
-        return "Name - "+firstName+" lastName - "+lastName;
+        return String.format("%-10s %-15s\n",firstName,lastName);
     }
 }

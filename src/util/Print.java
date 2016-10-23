@@ -6,22 +6,25 @@ package util;
 public class Print {
 
     public static void print( Object... data){
-        String result = "";
+        StringBuilder sb = new StringBuilder("");
+
         for (Object item : data){
-            result += item;
+            sb.append(item);
         }
 
-        System.out.print(result);
+        System.out.print(sb.toString());
 
     }
 
     public static void println( Object... data){
-        String result = "";
+
+        StringBuilder sb = new StringBuilder("");
+
         for (Object item : data){
-            result += item;
+            sb.append(item);
         }
 
-        System.out.println(result);
+        System.out.println(sb.toString());
 
     }
 }

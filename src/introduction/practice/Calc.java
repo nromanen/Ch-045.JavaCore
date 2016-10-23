@@ -28,7 +28,7 @@ public class Calc {
             println("Cannot divide by zero");
         }
 
-        Scan.scanner.close();
+        Scan.close();
     }
 
     // Method return sum of two integer

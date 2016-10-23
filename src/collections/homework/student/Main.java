@@ -1,6 +1,8 @@
 package collections.homework.student;
 
 import java.util.Collections;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static collections.homework.student.Facultet.printStudents;
 import static util.Print.println;
@@ -49,6 +51,9 @@ public class Main {
         println();
 
         printStudents(3);
+
+        println();
+
     }
 
 }

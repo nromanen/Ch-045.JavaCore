@@ -17,7 +17,7 @@ public class HowAreYou {
         String answer = getString(1);
         println("You are ", answer, "!");
 
-        Scan.scanner.close();
+        Scan.close();
     }
 
 

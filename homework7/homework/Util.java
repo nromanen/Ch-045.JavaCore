@@ -12,6 +12,10 @@ import java.util.regex.Pattern;
  */
 public class Util {
 
+    public static final String PATTERN_SENTENCES = "[\\w\\s]+(\\w)?";
+    public static final String PATTERN_US_CURRENCY = "(\\$\\d+\\.\\d{2})|(\\$\\d*)";
+    //public static final String PATTERN_US_CURRENCY = "(\\$[1-9]+\\.[0-9]{2})|(\\$[0-9]+)";
+
     //return reverse of word
     public static String wordReverse(List<String> listWorld, int numberWorld){
         int searchWorld = numberWorld - 1;
@@ -26,7 +30,7 @@ public class Util {
     public static List<String> listWords(String sentences){
         String result = sentences.trim();
         List<String> listWorlds = null;
-        if (!result.isEmpty()&isValidSentence(result) ){
+        if (!result.isEmpty()&isSentenceMatches(result, PATTERN_SENTENCES) ){
             listWorlds = Arrays.asList(result.split(" "));
         }
         return listWorlds;
@@ -40,14 +44,15 @@ public class Util {
                 return o1.length() - o2.length();
             }
         });
-        sBuilder.append("Longest world - ").append(longestWord)
+       sBuilder.append("Longest world - ").append(longestWord)
                 .append(" number of letters - ").append(longestWord.length());
         return sBuilder.toString();
     }
 
+    //isSentenceMatches(String sentence, String pattern)
 
-    public static boolean isValidSentence(String sentence){
-        String pattern = "[\\w\\s]+(\\w)?";
+    public static boolean isSentenceMatches(String sentence, String pattern){
+        //String pattern = "[\\w\\s]+(\\w)?";
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(sentence);
         return m.matches();
@@ -61,9 +66,7 @@ public class Util {
     }
     //Display all occurrences of US currency
     public static String displayAllOccurrenceUS(String text){
-        String pattern = "(\\$\\d+\\.\\d{2})|(\\$\\d*)";
-        //String pattern = "(\\$[1-9]+\\.[0-9]{2})|(\\$[0-9]+)";
-        Pattern p = Pattern.compile(pattern);
+        Pattern p = Pattern.compile(PATTERN_US_CURRENCY);
         Matcher m = p.matcher(text);
         StringBuilder sb = new StringBuilder();
         while(m.find()){

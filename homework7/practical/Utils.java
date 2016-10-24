@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
  * Created by roma on 23.10.2016.
  */
 public class Utils {
+
+    public static final String PATTERN = "[A-Z]{1}[a-z]{2,15}\\s[A-Z]{1}[a-z]{2,15}\\s[A-Z]{1}[a-z]{2,15}";
     //return arrays names
     public static String[] arrayNames(String names) {
         String[] arrayName = null;
@@ -23,8 +25,7 @@ public class Utils {
     }
     //check the validity of the name, surname and patronymic
     public static boolean isValidUserSNP(String userName){
-        String pattern = "[A-Z]{1}[a-z]{2,15}\\s[A-Z]{1}[a-z]{2,15}\\s[A-Z]{1}[a-z]{2,15}";
-        Pattern p = Pattern.compile(pattern);
+        Pattern p = Pattern.compile(PATTERN);
         Matcher m = p.matcher(userName);
         if(m.matches()){
             return true;

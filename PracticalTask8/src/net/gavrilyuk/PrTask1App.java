@@ -10,6 +10,7 @@ import java.util.Scanner;
         /*Enter the two variables of type String.
         Determine whether the first variable substring second.
         For example, if you typed «IT» and «IT Academy» you must receive true*/
+
 public class PrTask1App {
 
 

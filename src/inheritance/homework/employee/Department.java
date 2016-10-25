@@ -3,7 +3,7 @@ package inheritance.homework.employee;
 import java.util.ArrayList;
 import java.util.List;
 
-// department of company than contains emplouees
+// department of company than contains employees
 public class Department {
 
     private static int count = 1;

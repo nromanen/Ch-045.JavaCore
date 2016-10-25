@@ -13,7 +13,7 @@ public class Task1 {
     public static void main(String[] args){
 
         String str = "last implementations quantifier in homework7 expressions corresponds to the maximum";
-        List<String> sentences = Util.listWords(str);
+        String[] sentences = Util.listWords(str);
 
         //Display longest world and its number letters
         System.out.println(Util.displayLongestWord(sentences));

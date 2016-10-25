@@ -17,40 +17,40 @@ public class Util {
     //public static final String PATTERN_US_CURRENCY = "(\\$[1-9]+\\.[0-9]{2})|(\\$[0-9]+)";
 
     //return reverse of word
-    public static String wordReverse(List<String> listWorld, int numberWorld){
+    public static String wordReverse(String [] listWorld, int numberWorld){
         int searchWorld = numberWorld - 1;
-        if( (searchWorld <= listWorld.size()) & (searchWorld >= 0) ){
-            StringBuilder sBuilder = new StringBuilder(listWorld.get(searchWorld));
+        if( (searchWorld <= listWorld.length) & (searchWorld >= 0) ){
+            StringBuilder sBuilder = new StringBuilder(listWorld[searchWorld]);
             sBuilder.reverse();
             return "Reverse world "+(numberWorld)+" - "+sBuilder.toString();
         }
         return "World at its number does not exists! ";
     }
     //forming List<String> of words from a given sentence
-    public static List<String> listWords(String sentences){
+    public static String [] listWords(String sentences){
         String result = sentences.trim();
-        List<String> listWorlds = null;
+        String[] listWorlds = null;
         if (!result.isEmpty()&isSentenceMatches(result, PATTERN_SENTENCES) ){
-            listWorlds = Arrays.asList(result.split(" "));
+            listWorlds = result.split(" ");
         }
         return listWorlds;
     }
     //return longest word from List and its length
-    public static String displayLongestWord(List<String> listSentences){
+    public static String displayLongestWord(String[] listSentences){
         StringBuilder sBuilder = new StringBuilder();
-        String longestWord = Collections.max(listSentences, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.length() - o2.length();
+        String longestWord = listSentences[0];
+
+        for (int i=1; i<listSentences.length; i++){
+            if (listSentences[i].length()>longestWord.length()){
+                longestWord = listSentences[i];
             }
-        });
+        }
        sBuilder.append("Longest world - ").append(longestWord)
                 .append(" number of letters - ").append(longestWord.length());
         return sBuilder.toString();
     }
 
     //isSentenceMatches(String sentence, String pattern)
-
     public static boolean isSentenceMatches(String sentence, String pattern){
         //String pattern = "[\\w\\s]+(\\w)?";
         Pattern p = Pattern.compile(pattern);

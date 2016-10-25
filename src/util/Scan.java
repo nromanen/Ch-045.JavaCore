@@ -26,6 +26,7 @@ public class Scan {
             try{
                 //line  = scanner.nextLine();
                 line  = br.readLine();
+                line = line.trim();
                 result = Integer.parseInt(line);
                 isInt = true;
             } catch (Exception e){
@@ -54,6 +55,7 @@ public class Scan {
                 //line  = scanner.nextLine();
                 line = br.readLine();
 
+
                 if (line.length() < min[0])
                     System.out.println("To short. Try again.");
                 else
@@ -77,6 +79,7 @@ public class Scan {
             try{
                 //line  = scanner.nextLine();
                 line  = br.readLine();
+                line = line.trim();
                 result = Double.parseDouble(line);
                 isDouble = true;
             } catch (Exception e){
@@ -97,6 +100,7 @@ public class Scan {
             try{
                 //line  = scanner.nextLine();
                 line  = br.readLine();
+                line = line.trim();
                 result = Float.parseFloat(line);
                 isFloat = true;
             } catch (Exception e){

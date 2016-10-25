@@ -1,6 +1,10 @@
 package loopsandarrays.homework.car;
 
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 public class Car {
 
     private CarType type;
@@ -13,7 +17,7 @@ public class Car {
         if (CarService.correctYear(year)) {
             this.year = year;
         } else {
-            this.year = 2016;
+            this.year = (new GregorianCalendar()).get(Calendar.YEAR);
         }
     }
 
@@ -41,7 +45,7 @@ public class Car {
         if (CarService.correctYear(year)) {
             this.year = year;
         } else {
-            this.year = 2016;
+            this.year = (new GregorianCalendar()).get(Calendar.YEAR);
         }
     }
 

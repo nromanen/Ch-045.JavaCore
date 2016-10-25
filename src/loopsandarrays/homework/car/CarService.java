@@ -1,7 +1,6 @@
 package loopsandarrays.homework.car;
 
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.*;
 
 import static util.Print.println;
 
@@ -10,7 +9,8 @@ public class CarService {
 
     // check is year correct
     public static boolean correctYear(int year){
-        if (year >= 1920 && year <= 2016) {
+        if (year >= 1885 && year <= (new GregorianCalendar()).get(Calendar.YEAR)) {
+            println((new GregorianCalendar()).get(Calendar.YEAR));
             return true;
         } else {
             return false;
@@ -24,8 +24,8 @@ public class CarService {
         }
     };
 
-    // display all cars with carent year
-    public static void printCars(int year, ArrayList<Car> cars){
+    // display all cars with carrent year
+    public static void printCarsByYear(int year, ArrayList<Car> cars){
         for (Car car : cars){
             if (car.getYear() == year){
                 println(car);

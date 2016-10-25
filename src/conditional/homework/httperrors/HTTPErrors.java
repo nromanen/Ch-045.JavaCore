@@ -1,8 +1,5 @@
 package conditional.homework.httperrors;
 
-/**
- * Created by Admin on 11.10.16.
- */
 public enum HTTPErrors {
     BAD_REQUEST, UNAUTHORIZED, PAYMENT_REQUIRED, FORBIDDEN, NOT_FOUND, METHOD_NOT_ALLOWED, NOT_ACCEPTABLE,
     PROXY_AUTHENTICATION_REQUIRED, REQUEST_TIMEOUT, CONFLICT, GONE, LENGTH_REQUIRED, PRECONDITION_FAILED,
@@ -10,8 +7,8 @@ public enum HTTPErrors {
     I_AM_A_TEAPOT, MISDIRECTED_REQUEST, UNPROCESSABLE_ENTITY, LOCKED, FAILED_DEPENDENCY, UPGRADE_REQUIRED,
     PRECONDITION_REQUIRED, TOO_MANY_REQUESTS, REQUEST_HEADER_FIELDS_TOO_LARGE, UNAVAILABLE_FOR_LEGAL_REASONS;
 
-    // Method return name of HTTP Errors be it code
-    public static HTTPErrors getHTTPErrors (int code){
+    // Method return name of HTTP Errors by the code of error
+    public static HTTPErrors getHTTPErrors (int code) throws NoSuchHTTPErrorException {
         switch (code){
             case 400:
                 return HTTPErrors.BAD_REQUEST;
@@ -69,8 +66,9 @@ public enum HTTPErrors {
                 return HTTPErrors.REQUEST_HEADER_FIELDS_TOO_LARGE;
             case 451:
                 return HTTPErrors.UNAVAILABLE_FOR_LEGAL_REASONS;
-            default:
-                return null;
+            default: {
+                throw new NoSuchHTTPErrorException();
+            }
         }
     }
 }

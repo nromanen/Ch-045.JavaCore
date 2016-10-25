@@ -19,12 +19,14 @@ public class Main {
             print("Enter the number of the HTTP error: ");
             int errNumb = Scan.getInt();
 
-            if (HTTPErrors.getHTTPErrors(errNumb) == null) {
-                println("The invalid number of the HTTP error! Please try again!");
-            } else {
-                println("Name of the " + errNumb + " error is " + HTTPErrors.getHTTPErrors(errNumb));
-                isCorrect = true;
-            }
+                try {
+                    println("Name of the " + errNumb + " error is " + HTTPErrors.getHTTPErrors(errNumb));
+                    isCorrect = true;
+                } catch (NoSuchHTTPErrorException e){
+                    println(e.toString());
+                    println("The invalid number of the HTTP error! Please try again!");
+                }
+
         } while (!isCorrect);
 
         Scan.close();

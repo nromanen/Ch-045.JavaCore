@@ -18,10 +18,10 @@ public class Main {
 
     public static void main (String ... args){
         ArrayList<Car> cars = new ArrayList<>();
-        cars.add(new Car(CarType.MICROCAR, 1996, 2000));
+        cars.add(new Car(CarType.MICROCAR, 1896, 2000));
         cars.add(new Car(CarType.ECONOMY_CAR, 2015, 1312));
         cars.add(new Car(CarType.CONVERTIBLE, 2015, 1500));
-        cars.add(new Car(CarType.FULL_SIZE_CAR, 2014, 2500));
+        cars.add(new Car(CarType.FULL_SIZE_CAR, 2024, 2500));
         cars.add(new Car(CarType.CARGO_VAN, 2005, 3000));
 
 
@@ -30,7 +30,7 @@ public class Main {
 
         println("Cars production in ",  year,  " year:");
 
-        CarService.printCars(year, cars);
+        CarService.printCarsByYear(year, cars);
 
         Collections.sort(cars, CarService.compareByYear);
 

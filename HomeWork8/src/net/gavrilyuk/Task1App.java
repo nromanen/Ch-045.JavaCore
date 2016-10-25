@@ -12,7 +12,7 @@ import java.util.regex.PatternSyntaxException;
         1.display the longest word in the sentence
         2.determine the number of its letters
         3.bring the second word in reverse order*/
-
+        // add count unique letters
 public class Task1App {
 
     public static void main(String[] args) {

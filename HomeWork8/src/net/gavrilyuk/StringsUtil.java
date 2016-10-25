@@ -45,7 +45,20 @@ public class StringsUtil {
         }
         return builder.length();
     }
-
+    // return count unique letters of the array of words
+    public static Map<Character,Integer> countUniqueLetters(String[] source) {
+        Map<Character,Integer> result = new HashMap<>();
+        for (String s : source) {
+            for (Character c : s.toCharArray()) {
+                int count =0;
+                if (result.containsKey(c)) {
+                    count++;
+                } else count =1;
+                result.put(c, count);
+            }
+        }
+        return result;
+    }
 
     //return longest word
     public static String longestWord(String[] words) throws NullPointerException{
@@ -67,7 +80,7 @@ public class StringsUtil {
     //Convert all spaces, consecutive, one
     public static String removeSpaces(String source) throws NullPointerException {
         if (source != null) {
-            return source.replaceAll("\\s{2,}", " ").trim();
+            return source.replaceAll("\\s{2,}", "\\s").trim();
         } else throw new NullPointerException("String can not be null!");
 
     }
@@ -76,7 +89,7 @@ public class StringsUtil {
 
     //return strings of occurrences of source matches regex
     public static String checkRegExp(String source) {
-        Pattern p = Pattern.compile("\\$(\\d*)(\\.\\d{2})");//variant1
+        Pattern p = Pattern.compile("\\$(\\d*)(\\.\\d{2,2})");//variant1
        // Pattern p = Pattern.compile("[$](([1-9]+\\.?\\d*)|([0]\\.\\d*)|[0])");////variant2
         Matcher m = p.matcher(source);
         StringBuilder result = new StringBuilder();

@@ -22,6 +22,7 @@ public class EmployeeService {
     public boolean isDuplicateFirstName() {
         if (person != null && person.size() > 0) {
             List<String> values = new ArrayList<>();
+
             Set<String> uniqueValues = new HashSet<>();
             for (Employee employee : person.values()) {
                 values.add(employee.getFirstName());

@@ -16,11 +16,11 @@ public class PrTask2App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String name = StringsUtils.readString(scanner, "Enter surname, name and patronymic:");
+        //String name = StringsUtils.readString(scanner, "Enter surname, name and patronymic:");
         try {
-           // String name = "  Гаврилюк     ігор    петрович                        ";
+            String name = "  Гаврилюк     ігор    петрович                        ";
             if (!StringsUtils.isAlpha(name)) throw new IllegalArgumentException("Invalid surname, name or patronymic");
-            name = StringsUtils.toCapsWord(name);//deleted spaces
+            //name = StringsUtils.toCapsWord(name);//deleted spaces
             String[] names = name.split("\\s");
             System.out.println(names[0] + " " + names[1].charAt(0) + "." + names[2].charAt(0)+  ".");
             System.out.println(names[1]);

@@ -17,14 +17,14 @@ public class Rectangle extends Shape{
 	
 	@Override
 	public int perimeter() throws Exception{
-		if(width<=0|length<=0) throw new Exception();
+		if(width<=0|length<=0) {throw new Exception("Side of the rectangle can not be negative");}
 		return (width + length) * 2;
 		
 	}
 
 	@Override
 	public int area() throws Exception {
-		if(width<=0|length<=0) throw new Exception();
+		if(width<=0|length<=0) {throw new Exception("Side of the rectangle can not be negative");}
 		return width * length;
 	}
 

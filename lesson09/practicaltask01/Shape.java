@@ -1,7 +1,7 @@
 package lesson09.practicaltask01;
 
 
-public abstract class Shape implements CalculationPerimetr, CalculationArea {
+public abstract class Shape implements CalculationPerimeter, CalculationArea {
 	
 	private String name;
 

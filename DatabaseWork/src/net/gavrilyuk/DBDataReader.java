@@ -78,6 +78,7 @@ public class DBDataReader {
         return connection;
     }
 
+
     public ArrayList<AcademicGroup> loadGroups() throws SQLException {
         String sql = "SELECT * FROM academic_group " +
                 "INNER JOIN mentor ON academic_group.mentor_id=mentor.id " +

@@ -12,7 +12,7 @@ import java.util.regex.PatternSyntaxException;
         1.display the longest word in the sentence
         2.determine the number of its letters
         3.bring the second word in reverse order*/
-        // add count unique letters
+
 public class Task1App {
 
     public static void main(String[] args) {
@@ -26,9 +26,11 @@ public class Task1App {
             System.out.println("Longest word=" + StringsUtil.longestWord(words));
             System.out.println("Total letter count=" + StringsUtil.countLetters(words));
             System.out.println("Second word in reverse order=" + StringsUtil.reverseString(words[1]));
+            System.out.println("The frequency of the use of symbols:" + StringsUtil.frequencyUseSymbols(sentence));
         } catch (IndexOutOfBoundsException | PatternSyntaxException | NullPointerException e) {
             System.out.println(e);
         }
         scanner.close();
     }
+
 }

@@ -15,6 +15,7 @@ import java.util.regex.PatternSyntaxException;
 
 public class Task1App {
 
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String sentence = StringsUtil.readString(scanner, "Enter sentence of five words:");

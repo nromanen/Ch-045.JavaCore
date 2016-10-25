@@ -2,6 +2,7 @@ package net.gavrilyuk.task1;
 
 /**
  * Rectangle Class
+ *
  * Created by Igor Gavryliuk on 24.10.2016.
  */
 public class Rectangle {

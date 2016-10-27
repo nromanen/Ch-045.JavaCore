@@ -1,6 +1,5 @@
 package net.gavrilyuk.model;
 
-import net.gavrilyuk.Utils;
 import net.gavrilyuk.exceptions.MentorException;
 
 /**

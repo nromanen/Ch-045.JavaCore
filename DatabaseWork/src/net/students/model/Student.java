@@ -10,7 +10,6 @@ public class Student extends Person {
 
     private DateTime dateOfBirthdy;
     private int testBookNumber;
-    private int groupId;
 
     public Student() {
         super();

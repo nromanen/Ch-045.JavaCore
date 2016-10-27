@@ -11,7 +11,7 @@ CREATE TABLE mentor (
 CREATE TABLE academic_group (
     id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(255),
-	mentor_id INT NOT NULL,
+	  mentor_id INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (mentor_id)
     REFERENCES mentor(id)
@@ -22,7 +22,7 @@ CREATE TABLE student(
     first_name VARCHAR(50), 
     last_name VARCHAR(200),
     birth_day DATE,
-	book_number INT NOT NULL DEFAULT 0,
+  	book_number INT NOT NULL DEFAULT 0,
     group_id INT NOT NULL,
    
     PRIMARY KEY(id),

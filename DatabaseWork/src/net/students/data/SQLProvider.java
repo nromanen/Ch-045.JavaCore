@@ -150,6 +150,7 @@ public class SQLProvider {
         return result;
     }
 
+
     public int insertStudent(Student student) throws SQLException {
         ContentValues cv = studentToContentValues(student);
         int rowsInserted = sqlOpenHelper.insert(StudentsEntry.TABLE_NAME, null, cv);
@@ -168,6 +169,25 @@ public class SQLProvider {
                 StudentsEntry.ID + " =? ", new String[]{String.valueOf(student.getId())});
     }
 
+    public ArrayList<AcademicGroup> getGroups() throws SQLException {
+        ResultSet resultSet = sqlOpenHelper.query("SELECT  * FROM " + AcademicGroupEntry.TABLE_NAME +
+                " INNER JOIN "+MentorsEntry.TABLE_NAME+" ON academic_group.mentor_id = mentor.id");
+        ArrayList<AcademicGroup> result = new ArrayList<>();
+        while (resultSet.next()) {
+            //Retrieve by column name
+            Mentor mentor = new Mentor();
+            mentor.setId(resultSet.getInt(MentorsEntry.ID));
+            mentor.setFirstName(resultSet.getString(MentorsEntry.COL_FIRST_NAME));
+            mentor.setLastName(resultSet.getString(MentorsEntry.COL_LAST_NAME));
+            AcademicGroup group = new AcademicGroup(
+                    resultSet.getInt(AcademicGroupEntry.ID),
+                    resultSet.getString(AcademicGroupEntry.COL_TITLE),
+                    mentor);
+            result.add(group);
+        }
+        resultSet.close();
+        return result;
+    }
     private ContentValues  studentToContentValues(Student student) {
         ContentValues cv = new ContentValues();
         cv.put(StudentsEntry.COL_FIRST_NAME,student.getFirstName());

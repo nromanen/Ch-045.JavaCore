@@ -1,5 +1,6 @@
 package net.students.ui;
 
+import javafx.scene.control.ComboBox;
 import net.students.adapter.StudentsAdapter;
 import net.students.data.SQLProvider;
 import net.students.model.Student;
@@ -26,14 +27,17 @@ public class StudentsWindow extends JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(StudentsWindow.class.getName());
 
+
     private JButton insertButton;
     private JTable contentTable;
     private StudentsAdapter contentAdapter;
     //input fields
     private final JTextField firstNameField;
     private final JTextField lastNameField;
-    private SQLProvider contentProvider = null;
+    private final JTextField testNumberField;
     private JDatePickerImpl datePicker;
+    private SQLProvider contentProvider = null;
+
 
 
     public StudentsWindow(String title) throws HeadlessException {
@@ -47,31 +51,50 @@ public class StudentsWindow extends JFrame {
 
         initSQLDatabase();
 
-
         initTablePopupMenu(contentTable);//popup menu from delete item
         JPanel editPanel = new JPanel();
         Box box1 = Box.createHorizontalBox();
         JLabel firstNameLabel = new JLabel("First Name:");
-        firstNameField = new JTextField(15);
+        firstNameField = new JTextField(10);
         box1.add(firstNameLabel);
         box1.add(Box.createHorizontalStrut(6));
         box1.add(firstNameField);
         editPanel.add(box1);
         Box box3 = Box.createHorizontalBox();
         JLabel lastNameLabel = new JLabel("Last Name:");
-        lastNameField = new JTextField(15);
+        lastNameField = new JTextField(12);
         box3.add(lastNameLabel);
         box3.add(Box.createHorizontalStrut(6));
         box3.add(lastNameField);
         editPanel.add(box3);
+
+        Box box4 = Box.createHorizontalBox();
+        JLabel testNumberLabel = new JLabel("Test Number:");
+        testNumberField = new JTextField(8);
+        box4.add(testNumberLabel);
+        box4.add(Box.createHorizontalStrut(6));
+        box4.add(testNumberField);
+        editPanel.add(box4);
+
+        Box box5 = Box.createHorizontalBox();
+        JLabel selectGroupLabel = new JLabel("Groups:");
+        box5.add(selectGroupLabel);
+        box5.add(Box.createHorizontalStrut(6));
+        final JComboBox groupsComboBox = new JComboBox();
+        groupsComboBox.addItem("group1");
+        groupsComboBox.addItem("group2");
+        groupsComboBox.addItem("group3");
+        groupsComboBox.addItem("group4");
+        groupsComboBox.addItem("group5");
+        box5.add(groupsComboBox);
+        editPanel.add(box5);
         Box box2 = Box.createHorizontalBox();
         JLabel birthDayLabel = new JLabel("Birth Day:");
         UtilDateModel model = new UtilDateModel();
-        model.setDate(2016, 10, 6);
+        model.setDate(1996, 10, 6);
         model.setSelected(true);
         JDatePanelImpl datePanel = new JDatePanelImpl(model, new Properties());
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-        //mDateField = new JTextField(6);
         box2.add(birthDayLabel);
         box2.add(Box.createHorizontalStrut(6));
         box2.add(datePicker);
@@ -100,6 +123,7 @@ public class StudentsWindow extends JFrame {
                     try {
                         String firstName = firstNameField.getText().trim();
                         String lastName = lastNameField.getText().trim();
+                        int  testNumber = Integer.parseInt(testNumberField.getText().trim());
                         if (firstName.isEmpty()|| lastName.isEmpty()) { //first - check name
                             throw new IllegalArgumentException("The name must not be empty!");
                         } else {
@@ -114,16 +138,15 @@ public class StudentsWindow extends JFrame {
                         student.setFirstName(firstName);
                         student.setLastName(lastName);
                         student.setDateOfBirthdy(date);
-                        student.setTestBookNumber(1234);
+                        student.setTestBookNumber(testNumber);
                         student.setGroupId(2);
-                        try {
-                            contentAdapter.insert(student);
-                        } catch (SQLException e1) {
-                            JOptionPane.showMessageDialog(null, e1.getMessage(), "SQLException", JOptionPane.WARNING_MESSAGE);
-                        }
+                        contentAdapter.insert(student);
                         contentAdapter.fireTableDataChanged();
                         updateViews();
-                    } catch (IllegalArgumentException ea) {
+                    }catch (SQLException e1) {
+                        JOptionPane.showMessageDialog(null, e1.getMessage(), "SQLException", JOptionPane.WARNING_MESSAGE);
+                    }
+                    catch (IllegalArgumentException ea) {
                         JOptionPane.showMessageDialog(null, ea.getMessage(), "Invalid value", JOptionPane.WARNING_MESSAGE);
                     } /*catch (ParseException ep) {
                         JOptionPane.showMessageDialog(null, ep.getMessage(), "Invalid date format", JOptionPane.WARNING_MESSAGE);

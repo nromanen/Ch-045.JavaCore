@@ -9,10 +9,10 @@ import java.util.Scanner;
 public class RectangleApp {
 
 
-    /*Create a method for calculating the area of a rectangle int squareRectangle (int a, int b),
+    /*Create a method for calculating the area of a rectangle int square (int a, int b),
     which should throw an exception if the user enters negative value.
     Input values a and b from console.
-    Check the squareRectangle method in the method main.
+    Check the square method in the method main.
     Check to input nonnumeric value.*/
 
 
@@ -26,8 +26,8 @@ public class RectangleApp {
             rectangle.setA(-2);
             rectangle.setB(-2);*/
             Rectangle rectangle = new Rectangle(a, b);
-            System.out.println("Rectangle square=" + rectangle.squareRectangle());
-            System.out.println("Rectangle perimeter=" + rectangle.perimeterRectangle());
+            System.out.println("Rectangle square=" + rectangle.square());
+            System.out.println("Rectangle perimeter=" + rectangle.perimeter());
         } catch (RectangleSideException e) {
             System.out.println(e.getMessage());//ignore it
         }

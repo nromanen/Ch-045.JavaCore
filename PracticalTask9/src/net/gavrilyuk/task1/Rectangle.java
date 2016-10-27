@@ -22,11 +22,11 @@ public class Rectangle {
         this.b = b;
     }
 
-    public long squareRectangle ()  {
+    public long square()  {
         return this.a * this.b;
     }
 
-    public long perimeterRectangle () {
+    public long perimeter() {
         return (this.a + this.b) * 2;
     }
 

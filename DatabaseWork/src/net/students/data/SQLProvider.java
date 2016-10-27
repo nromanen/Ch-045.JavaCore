@@ -152,7 +152,10 @@ public class SQLProvider {
 
     public int insertStudent(Student student) throws SQLException {
         ContentValues cv = studentToContentValues(student);
-        return sqlOpenHelper.insert(StudentsEntry.TABLE_NAME, null, cv);
+        int rowsInserted = sqlOpenHelper.insert(StudentsEntry.TABLE_NAME, null, cv);
+        if ( rowsInserted< 0 )
+            throw new SQLException("Failed to insert row into " + StudentsEntry.TABLE_NAME);
+        return rowsInserted;
     }
 
     public int removeStudent(int id) throws SQLException {

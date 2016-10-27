@@ -1,7 +1,9 @@
 package net.students.data;
 
 import net.students.model.Student;
+import net.students.util.SqlUtils;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -34,22 +36,10 @@ public class SQLContentProvider {
     }
 
 
-
-
-
-
     public SQLOpenHelper getDateHelper() {
         return dateHelper;
     }
 
-
-    public void removeStudent(int index) {
-        //
-    }
-
-    public void insertStudent( Student student) {
-        //
-    }
 
     private int uriMatcher(String uri) {
         if (uri.equalsIgnoreCase(SQLContract.StudentsEntry.TABLE_NAME)) {
@@ -63,10 +53,11 @@ public class SQLContentProvider {
         }
         return -1;
     }
-    public ArrayList<Student> query(String uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
+
+    public ResultSet query(String uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
         switch (uriMatcher(uri)) {
             case STUDENT:
-                return null;//dateHelper.loadStudents(projection,selection,selectionArgs,sortOrder);
+                return dateHelper.query(SqlUtils.buildQuerySql(SQLContract.StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder));
             case MENTOR:
                 return null;//dateHelper.loadMentors(projection,selection,selectionArgs,sortOrder);
             case GROUP:
@@ -122,8 +113,23 @@ public class SQLContentProvider {
     }
 
 
-    public int update(String uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
+    public int update(String uri, ContentValues cv , String selection, String[] selectionArgs) throws SQLException {
+        int rowsUpdated;
+        switch (uriMatcher(uri)) {
+            case STUDENT:
+                rowsUpdated = dateHelper.update(SQLContract.StudentsEntry.TABLE_NAME, cv, selection, selectionArgs);
+                break;
+            case MENTOR:
+                rowsUpdated = dateHelper.update(SQLContract.MentorsEntry.TABLE_NAME, cv, selection, selectionArgs);
+                break;
+            case GROUP:
+                rowsUpdated = dateHelper.update(SQLContract.AcademicGroupEntry.TABLE_NAME, cv, selection, selectionArgs);
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+
+        }
+        return rowsUpdated;
     }
 
 

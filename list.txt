@@ -3,7 +3,7 @@ Ihor,Havryliuk
 Maksym,Maksymenko 
 Serhii,Starovoit 
 Volodymyr,Novokhats'kyi
-Kostiantyn,Pavlunenko  +
+Kostiantyn,Pavlunenko 
 Oleksandr,Bushyn
 Roman,Penteleichuk
 Roman,Mocherniuk 

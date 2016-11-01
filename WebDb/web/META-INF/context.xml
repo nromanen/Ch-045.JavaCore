@@ -7,7 +7,7 @@
         maxWaitMillis="5000"
         name="jdbc/StudentsDS" 
         username="root" 
-        password="15375900zZ"
+        password=""
         type="javax.sql.DataSource" 
         url="jdbc:mysql://127.0.0.1:3306/students"
         validationQuery="SELECT 1">

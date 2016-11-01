@@ -18,7 +18,7 @@ public class SQLConnection  {
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "15375900zZ";
+    static final String PASS = "";
 
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
 

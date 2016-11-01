@@ -1,4 +1,12 @@
-﻿Yura,Matiushyn 
+﻿http://o7planning.org/en/10285/create-a-simple-java-web-application-using-servlet-jsp-and-jdbc#a812029 - все дуже добре розписано, але однакова обробка на get та post
+
+http://www.codejava.net/coding/upload-files-to-database-servlet-jsp-mysql -  окремо get та post, але безпосередньо звертаємося в БД
+
+https://programmingenthusiast.wordpress.com/2015/05/02/a-simple-crud-tutorial-using-java-servletjsp-and-mysql/ - теж непогана реалізація, але використовується web.xml
+
+Можна починати з першого ресурса дял розуміння, що саме і як відбувається
+
+Yura,Matiushyn 
 Ihor,Havryliuk 
 Maksym,Maksymenko 
 Serhii,Starovoit 

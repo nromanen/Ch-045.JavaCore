@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <welcome-file-list>
+        <welcome-file>WEB-INF/jsps/main.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <servlet>
+        <servlet-name>Simple</servlet-name>
+        <servlet-class>com.mysite.web.SimpleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Simple</servlet-name>
+        <url-pattern>/simple</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <servlet-class>com.ariezz.controller.IndexController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Department</servlet-name>
+        <servlet-class>com.ariezz.controller.DepartmentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Department</servlet-name>
+        <url-pattern>/dep</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Employee</servlet-name>
+        <servlet-class>com.ariezz.controller.EmployeeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Employee</servlet-name>
+        <url-pattern>/employee</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EmployeeUp</servlet-name>
+        <servlet-class>com.ariezz.controller.EmployeeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeeUp</servlet-name>
+        <url-pattern>/employeeUp</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>com.ariezz.controller.SearchController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="PostgreSQL - testdb@localhost">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.6">
+    <database id="1" name="testdb">
+      <object-id>65536</object-id>
+      <visible>1</visible>
+    </database>
+    <database id="2" name="postgres">
+      <object-id>12029</object-id>
+    </database>
+    <database id="3" name="website">
+      <object-id>57344</object-id>
+    </database>
+    <schema id="4" parent="1" name="public">
+      <object-id>2200</object-id>
+      <visible>1</visible>
+      <introspection-state-number>2003</introspection-state-number>
+      <introspection-timestamp>2016-10-31.18:33:24.359</introspection-timestamp>
+    </schema>
+    <schema id="5" parent="1" name="pg_catalog">
+      <object-id>11</object-id>
+    </schema>
+    <schema id="6" parent="1" name="pg_toast">
+      <object-id>99</object-id>
+    </schema>
+    <schema id="7" parent="1" name="pg_temp_1">
+      <object-id>11215</object-id>
+    </schema>
+    <schema id="8" parent="1" name="pg_toast_temp_1">
+      <object-id>11216</object-id>
+    </schema>
+    <schema id="9" parent="1" name="information_schema">
+      <object-id>11480</object-id>
+    </schema>
+    <sequence id="10" parent="4" name="employee_id_seq">
+      <object-id>65559</object-id>
+      <state-number>1992</state-number>
+    </sequence>
+    <sequence id="11" parent="4" name="users_id_seq">
+      <object-id>65638</object-id>
+      <state-number>2002</state-number>
+    </sequence>
+    <table id="12" parent="4" name="employee">
+      <object-id>65561</object-id>
+      <state-number>1992</state-number>
+    </table>
+    <table id="13" parent="4" name="users">
+      <object-id>65640</object-id>
+      <state-number>2003</state-number>
+    </table>
+    <column id="14" parent="12" name="id">
+      <state-number>1992</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;employee_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="15" parent="12" name="firstName">
+      <state-number>1992</state-number>
+      <data-type>char(45)|0</data-type>
+    </column>
+    <column id="16" parent="12" name="lastName">
+      <state-number>1992</state-number>
+      <data-type>char(45)|0</data-type>
+    </column>
+    <column id="17" parent="12" name="birthDay">
+      <state-number>1992</state-number>
+      <data-type>date|0</data-type>
+    </column>
+    <column id="18" parent="12" name="SSN">
+      <state-number>1992</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <index id="19" parent="12" name="id">
+      <object-id>65565</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="20" parent="12" name="id">
+      <object-id>65566</object-id>
+      <columns>id</columns>
+      <underlying-index>id</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="21" parent="13" name="id">
+      <state-number>2002</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;users_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="22" parent="13" name="name">
+      <state-number>2002</state-number>
+      <data-type>char(45)|0</data-type>
+    </column>
+    <column id="23" parent="13" name="email">
+      <state-number>2002</state-number>
+      <data-type>char(45)|0</data-type>
+    </column>
+    <column id="24" parent="13" name="age">
+      <state-number>2003</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <index id="25" parent="13" name="pk">
+      <object-id>65644</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="26" parent="13" name="pk">
+      <object-id>65645</object-id>
+      <columns>id</columns>
+      <underlying-index>pk</underlying-index>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>

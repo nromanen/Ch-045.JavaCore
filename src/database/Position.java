@@ -1,9 +1,0 @@
-package database;
-
-
-public enum Position {
-
-    TRAINEE, BEGINNER, MIDDLE_DEVELOPER, SENIOR_DEVELOPER, ARCHITECT_DEVELOPER, TEAM_LEAD
-
-
-    }

@@ -36,7 +36,6 @@ public class SQLDBProvider {
         return provider;
     }
 
-
     public  List<Student> queryStudents(String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
         List<Student> result = new ArrayList<>();
         String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
@@ -301,7 +300,6 @@ public class SQLDBProvider {
         }
         return result;
     }
-
 
   public void close() {
       if (conn != null) {

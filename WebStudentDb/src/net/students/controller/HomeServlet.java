@@ -37,7 +37,6 @@ public class HomeServlet extends HttpServlet {
 
     }
 
-
     @Override
     public void destroy() {
         provider.close();

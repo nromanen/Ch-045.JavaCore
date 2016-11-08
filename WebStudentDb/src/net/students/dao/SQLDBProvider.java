@@ -37,7 +37,7 @@ public class SQLDBProvider {
     }
 
 
-    public  List<Student> queryStudent( String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
+    public  List<Student> queryStudents(String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
         List<Student> result = new ArrayList<>();
         String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
         PreparedStatement  stmt = conn.prepareStatement(sql);
@@ -57,9 +57,9 @@ public class SQLDBProvider {
        return  result;
     }
 
-    public  List<Mentor> queryMentor( String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
+    public  List<Mentor> queryMentors(String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
         List<Mentor> result = new ArrayList<>();
-        String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
+        String sql = SQLUtils.buildSqlQuery(MentorsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
         PreparedStatement  stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
         while( rs.next() ) {
@@ -74,9 +74,9 @@ public class SQLDBProvider {
         return  result;
     }
 
-    public  List<AcademicGroup> queryAcademicGroup( String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
+    public  List<AcademicGroup> queryAcademicGroups(String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
         List<AcademicGroup> result = new ArrayList<>();
-        String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
+        String sql = SQLUtils.buildSqlQuery(AcademicGroupEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
         PreparedStatement  stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
         while( rs.next() ) {
@@ -91,9 +91,9 @@ public class SQLDBProvider {
         return  result;
     }
 
-    public  List<UserAccount> queryUserAccount( String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
+    public  List<UserAccount> queryUserAccounts(String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
         List<UserAccount> result = new ArrayList<>();
-        String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
+        String sql = SQLUtils.buildSqlQuery(UsersEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
         PreparedStatement  stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
         while( rs.next() ) {
@@ -254,7 +254,7 @@ public class SQLDBProvider {
         return rowsUpdated;
     }
 
-    public  int updateAcademicGroup(UserAccount account) throws SQLException {
+    public  int updateUser(UserAccount account) throws SQLException {
         int rowsUpdated;
         String query = "UPDATE " + UsersEntry.TABLE_NAME + " SET " + UsersEntry.COL_USER_NAME +
                 "=?, " + UsersEntry.COL_USER_PASS + "=? WHERE " + UsersEntry.ID + "=?";
@@ -271,7 +271,10 @@ public class SQLDBProvider {
         int result = 0;
 
         int count = 0;
-        String  query = "INSERT INTO student (first_name, last_name,  book_number, birth_day, group_id) VALUES (?,?,?,?,?)";
+        String query = "INSERT INTO " + StudentsEntry.TABLE_NAME +
+                " (" + StudentsEntry.COL_FIRST_NAME + ", " + StudentsEntry.COL_LAST_NAME +
+                ", " + StudentsEntry.COL_BOOK_NUM + ", " + StudentsEntry.COL_BIRTH_DAY + ", "
+                + StudentsEntry.COL_GROUP_ID + ") VALUES (?,?,?,?,?)";
         PreparedStatement ps = conn.prepareStatement(query);
         if (students != null && students.size() > 0) {
             for (Student student : students) {

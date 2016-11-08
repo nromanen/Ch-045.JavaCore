@@ -56,9 +56,8 @@ public class DoLoginServlet extends HttpServlet {
             errorString = "Required username and password!";
         } else {
             try {
-                List users = provider.query(UsersEntry.TABLE_NAME, null,
-                        UsersEntry.COL_USER_NAME+" =? AND " + UsersEntry.COL_USER_PASS+" =?",
-                        new String[]{"'"+userName+"'", "'"+password+"'"}, null);
+                List users = provider.queryUserAccounts(null, UsersEntry.COL_USER_NAME + " =? AND " +
+                        UsersEntry.COL_USER_PASS + " =?", new String[]{"'" + userName + "'", "'" + password + "'"}, null);
                 //user = provider.findUser(userName, password);
                 if (users!=null && users.size()>0){
                     user = (UserAccount) users.get(0);

@@ -2,7 +2,6 @@ package net.students.controller;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import net.students.dao.SQLContract.AcademicGroupEntry;
-import net.students.dao.SQLContract.MentorsEntry;
 import net.students.dao.SQLContract.StudentsEntry;
 import net.students.dao.SQLDBProvider;
 import net.students.model.AcademicGroup;
@@ -48,7 +47,7 @@ public class AcademicGroupsServlet extends HttpServlet {
         String groupId = request.getParameter("groupId");
         Validator validator = new Validator();
         try {
-            request.setAttribute("mentors", provider.query(MentorsEntry.TABLE_NAME, null, null, null, null));
+            request.setAttribute("mentors", provider.queryMentors(null, null, null, null));
             switch (userPath) {
                 case "/editGroup": {
                     userPath = "/editAcademicGroup";//show error on edit form
@@ -58,7 +57,6 @@ public class AcademicGroupsServlet extends HttpServlet {
                         System.out.println("mentorId=" + mentorId);
                         boolean validationErrorFlag = validator.validateFormGroup(title, mentorId, request);
                         if (validationErrorFlag) {
-                            //todo implement recovery data entered by the user
                             userPath = "/editAcademicGroup";//show error on edit form
                         } else {
                             userPath = "/groupsListView";//back to list students
@@ -66,16 +64,15 @@ public class AcademicGroupsServlet extends HttpServlet {
                             academicGroup.setTitle(title);
                             academicGroup.setMentorId(Integer.parseInt(mentorId));
                             if (groupId == null || groupId.isEmpty()) { //new mentor
-                                int rowInsert = provider.insert(AcademicGroupEntry.TABLE_NAME, academicGroup);
-                                //  System.out.println("insetred count="+rowInsert);
+                                int rowInsert = provider.insertAcademicGroup(academicGroup);
                             } else { //update
                                 academicGroup.setGroupId(Integer.parseInt(groupId));
-                                provider.update(AcademicGroupEntry.TABLE_NAME, academicGroup);
+                                provider.updateAcademicGroup(academicGroup);
                             }
-                            request.setAttribute("groups", provider.query(AcademicGroupEntry.TABLE_NAME, null, null, null, null));
+                            request.setAttribute("groups", provider.queryAcademicGroups(null, null, null, null));
                         }
                     } else if (request.getParameter("Cancel") != null) { //user press cancel
-                        request.setAttribute("groups", provider.query(AcademicGroupEntry.TABLE_NAME, null, null, null, null));
+                        request.setAttribute("groups", provider.queryAcademicGroups(null, null, null, null));
                         userPath = "/groupsListView";//back to
                     }
                     break;
@@ -83,10 +80,10 @@ public class AcademicGroupsServlet extends HttpServlet {
                 case "/deleteGroup": {
                     userPath = "/groupsListView";
                     if (groupId != null) {
-                            int deletedCount = provider.delete(AcademicGroupEntry.TABLE_NAME, Integer.parseInt(groupId));
+                            int deletedCount = provider.deleteAcademicGroup(Integer.parseInt(groupId));
                             request.setAttribute("infoString","successfully removed "+deletedCount+" record(s)");
                     }
-                    request.setAttribute("groups", provider.query(AcademicGroupEntry.TABLE_NAME, null, null, null, null));
+                    request.setAttribute("groups", provider.queryAcademicGroups(null, null, null, null));
                     break;
                 }
 
@@ -118,26 +115,26 @@ public class AcademicGroupsServlet extends HttpServlet {
             userPath = "/loginView";
         }
         try{
-            request.setAttribute("mentors", provider.query(MentorsEntry.TABLE_NAME, null, null, null, null));
+            request.setAttribute("mentors", provider.queryMentors(null, null, null, null));
             switch (userPath) {
                 case "/listGroup"://
                     userPath = "/groupsListView";
-                    request.setAttribute("groups", provider.query(AcademicGroupEntry.TABLE_NAME, null, null, null, null));
+                    request.setAttribute("groups", provider.queryAcademicGroups(null, null, null, null));
                     break;
                 case "/editGroup": //lo
                     System.out.println(" do get editGroup");
                     userPath = "/editAcademicGroup";
                     String groupId = request.getParameter("groupId");
                     if (groupId != null) {
-                        List groups = provider.query(AcademicGroupEntry.TABLE_NAME, null,
-                                AcademicGroupEntry.ID + " = ? ", new String[]{String.valueOf(groupId)}, null);
+                        List groups = provider.queryAcademicGroups(null, AcademicGroupEntry.ID + " = ? ",
+                                new String[]{String.valueOf(groupId)}, null);
                         if (groups != null && groups.size() > 0) {
                             AcademicGroup group = (AcademicGroup) groups.get(0);
                             request.setAttribute("group", group);
                         }
                         request.setAttribute("students",
-                                provider.query(StudentsEntry.TABLE_NAME, null,
-                                               StudentsEntry.COL_GROUP_ID + " = ? ", new String[]{groupId}, null));
+                                provider.queryStudents(null, StudentsEntry.COL_GROUP_ID + " = ? ",
+                                        new String[]{groupId}, null));
                     }
                     break;
             }

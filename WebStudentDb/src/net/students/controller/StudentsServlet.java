@@ -1,6 +1,5 @@
 package net.students.controller;
 
-import net.students.dao.SQLContract.AcademicGroupEntry;
 import net.students.dao.SQLContract.StudentsEntry;
 import net.students.dao.SQLDBProvider;
 import net.students.dao.SQLUtils;
@@ -50,7 +49,7 @@ public class StudentsServlet extends HttpServlet {
             userPath = "/loginView";
         }
         try{
-            request.setAttribute("groups", provider.query(AcademicGroupEntry.TABLE_NAME, null, null, null, null));
+            request.setAttribute("groups", provider.queryAcademicGroups(null, null, null, null));
             switch (userPath) {
                 case "/listStudent":// load data
                     userPath = "/studentListView";
@@ -60,7 +59,7 @@ public class StudentsServlet extends HttpServlet {
                     String  groupId = request.getParameter("groupId");
                     String selection = SQLUtils.buildSelectionFormFilter(firstName, lastName, testBookNum, groupId);
                     String[] selectionArgs =  SQLUtils.buildSelectionArgsFilter(firstName, lastName, testBookNum, groupId);
-                    request.setAttribute("students", provider.query(StudentsEntry.TABLE_NAME, null, selection, selectionArgs, null));
+                    request.setAttribute("students", provider.queryStudents(null, selection, selectionArgs, null));
                     StudentFilterForm filterForm = new StudentFilterForm();// restore filter values
                     filterForm.setFirstName(firstName);
                     filterForm.setLastName(lastName);
@@ -70,10 +69,9 @@ public class StudentsServlet extends HttpServlet {
                     break;
                 case "/editStudent": //load data
                     String studentId = request.getParameter("studentId");
-                    System.out.println("Call DoGet() studentId="+ studentId);
                     if (studentId != null) {
-                        List students = provider.query(StudentsEntry.TABLE_NAME, null,
-                                StudentsEntry.ID + " = ? ", new String[]{String.valueOf(studentId)}, null);
+                        List students = provider.queryStudents(null, StudentsEntry.ID + " = ? ",
+                                new String[]{String.valueOf(studentId)}, null);
                         if (students != null && students.size() > 0) {
                             Student s = (Student) students.get(0);
                             request.setAttribute("student", s);
@@ -99,7 +97,7 @@ public class StudentsServlet extends HttpServlet {
         String studentId = request.getParameter("studentId");
         Validator validator = new Validator();
         try {
-            request.setAttribute("groups", provider.query(AcademicGroupEntry.TABLE_NAME, null, null, null, null));
+            request.setAttribute("groups", provider.queryAcademicGroups(null, null, null, null));
             switch (userPath) {
                 case "/editStudent":
                     if (request.getParameter("OK") != null) {
@@ -121,27 +119,27 @@ public class StudentsServlet extends HttpServlet {
                             student.setTestBookNumber(Integer.parseInt(testBookNumber));
                             student.setDateOfBirth(DateTime.parse(dateOfBirth));
                             if (studentId == null || studentId.isEmpty()) { //new student
-                                int rowInsert = provider.insert(StudentsEntry.TABLE_NAME, student);
+                                int rowInsert = provider.insertStudent(student);
                                 //  System.out.println("insetred count="+rowInsert);
                             } else { //update
                                 student.setStudentId(Integer.parseInt(studentId));
-                                provider.update(StudentsEntry.TABLE_NAME, student);
+                                provider.updateStudent(student);
                             }
-                            request.setAttribute("students", provider.query(StudentsEntry.TABLE_NAME, null, null, null, null));
+                            request.setAttribute("students", provider.queryStudents(null, null, null, null));
                             userPath = "/studentListView";//back to list students
                         }
                     } else if (request.getParameter("Cancel") != null) { //user press cancel on editMentor.jsp form
-                        request.setAttribute("students", provider.query(StudentsEntry.TABLE_NAME, null, null, null, null));
+                        request.setAttribute("students", provider.queryStudents(null, null, null, null));
                         userPath = "/studentListView";//back to list students
                     }
                     break;
                 case "/deleteStudent":
                     userPath = "/studentListView";//back to list students
                     if (studentId != null) {
-                        int deletedCount = provider.delete(StudentsEntry.TABLE_NAME, Integer.parseInt(studentId));
+                        int deletedCount = provider.deleteStudent(Integer.parseInt(studentId));
                         request.setAttribute("infoString","Successfully removed "+deletedCount+" record(s)");
                     }
-                    request.setAttribute("students", provider.query(StudentsEntry.TABLE_NAME, null, null, null, null));
+                    request.setAttribute("students", provider.queryStudents(null, null, null, null));
 
                     break;
             }

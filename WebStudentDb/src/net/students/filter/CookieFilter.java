@@ -53,8 +53,8 @@ public class CookieFilter implements Filter{
         if (checked == null && provider != null) {
             String userName = AppUtils.getUserNameInCookie(req);
             try {
-                List users = provider.query(UsersEntry.TABLE_NAME, null,
-                        UsersEntry.COL_USER_NAME + " =? ", new String[]{"'"+userName+"'"}, null);
+                List users = provider.queryUserAccounts(null, UsersEntry.COL_USER_NAME + " =? ",
+                        new String[]{"'" + userName + "'"}, null);
                 if (users!=null && users.size()>0){
                     //UserAccount user = provider.findUser( userName);
                     UserAccount user = (UserAccount) users.get(0);

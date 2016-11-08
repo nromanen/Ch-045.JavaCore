@@ -3,12 +3,12 @@ package net.students.controller;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import net.students.dao.SQLContract.MentorsEntry;
-import net.students.dao.SQLContract.AcademicGroupEntry;
 import net.students.dao.SQLDBProvider;
 import net.students.model.Mentor;
 import net.students.model.UserAccount;
 import net.students.util.AppUtils;
 import net.students.validate.Validator;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,31 +52,28 @@ public class MentorsServlet extends HttpServlet {
         String mentorId = request.getParameter("mentorId");
         Validator validator = new Validator();
         try {
-            request.setAttribute("groups", provider.query(AcademicGroupEntry.TABLE_NAME, null, null, null, null));
+            request.setAttribute("groups", provider.queryAcademicGroups(null, null, null, null));
             switch (userPath) {
                 case "/editMentor": {
                     if (request.getParameter("OK") != null){ //user press OK on editMentor.jsp form
                         String firstName = request.getParameter("firstName");
                         String lastName = request.getParameter("lastName");
-
                         boolean validationErrorFlag = validator.validateFormMentor(firstName, lastName, request);
                         if (validationErrorFlag) {
-                            //todo implement recovery data entered by the user
                             userPath = "/editMentor";//show error on edit form
                         } else {
                             Mentor mentor = new Mentor(firstName, lastName);
                             if( mentorId == null || mentorId.isEmpty() ){ //new mentor
-                              int rowInsert = provider.insert(MentorsEntry.TABLE_NAME, mentor);
-                              //  System.out.println("insetred count="+rowInsert);
+                              provider.insertMentor( mentor);
                             } else { //update
                                 mentor.setMentorId(Integer.parseInt(mentorId));
-                                provider.update(MentorsEntry.TABLE_NAME, mentor);
+                                provider.updateMentor(mentor);
                             }
-                            request.setAttribute("mentors", provider.query(MentorsEntry.TABLE_NAME, null, null, null, null));
+                            request.setAttribute("mentors", provider.queryMentors(null, null, null, null));
                             userPath = "/mentorsListView";//back to list students
                         }
                     }  else if (request.getParameter("Cancel") != null) { //user press cancel on editMentor.jsp form
-                        request.setAttribute("mentors", provider.query(MentorsEntry.TABLE_NAME, null, null, null, null));
+                        request.setAttribute("mentors", provider.queryMentors(null, null, null, null));
                         userPath = "/mentorsListView";//back to mentors list page
                     }
                     break;
@@ -84,10 +81,10 @@ public class MentorsServlet extends HttpServlet {
                 case "/deleteMentor":{
                     userPath = "/mentorsListView";
                     if (mentorId != null) {
-                        int deletedCount= provider.delete(MentorsEntry.TABLE_NAME, Integer.parseInt(mentorId));
+                        int deletedCount= provider.deleteMentor(Integer.parseInt(mentorId));
                         request.setAttribute("infoString","Successfully removed "+deletedCount+" record(s)");
                     }
-                    request.setAttribute("mentors", provider.query(MentorsEntry.TABLE_NAME, null, null, null, null));
+                    request.setAttribute("mentors", provider.queryMentors(null, null, null, null));
                     break;
                 }
 
@@ -117,17 +114,17 @@ public class MentorsServlet extends HttpServlet {
             userPath = "/loginView";
         }
         try{
-            request.setAttribute("groups", provider.query(AcademicGroupEntry.TABLE_NAME, null, null, null, null));
+            request.setAttribute("groups", provider.queryAcademicGroups(null, null, null, null));
         switch (userPath) {
             case "/listMentors":// load data on mentorsListView.jsp
                 userPath = "/mentorsListView";
-                request.setAttribute("mentors", provider.query(MentorsEntry.TABLE_NAME, null, null, null, null));
+                request.setAttribute("mentors", provider.queryMentors(null, null, null, null));
                 break;
             case "/editMentor": //load data on editMentors.jsp
                 String mentorId = request.getParameter("mentorId");
                 if (mentorId != null) {
-                    List mentors = provider.query(MentorsEntry.TABLE_NAME, null,
-                            MentorsEntry.ID + " = ? ", new String[]{String.valueOf(mentorId)}, null);
+                    List mentors = provider.queryMentors(null, MentorsEntry.ID + " = ? ",
+                            new String[]{String.valueOf(mentorId)}, null);
                     if (mentors != null && mentors.size() > 0) {
                         Mentor m = (Mentor) mentors.get(0);
                         request.setAttribute("mentor", m);

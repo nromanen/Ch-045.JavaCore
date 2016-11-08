@@ -89,7 +89,7 @@ public class SQLUtils {
         }
 
         selection = selectionBuilder.length() > 0 ? selectionBuilder.toString() : null;
-        System.out.println("selection=" + selection);
+
         return selection;
     }
 
@@ -112,10 +112,7 @@ public class SQLUtils {
         }
 
         selectionArgs = selections.values().toArray(new String[selections.size()]);
-        // debug
-        /*for (String selectionArg : selectionArgs) {
-            System.out.println("Selection Arg="+selectionArg);
-        }*/
+
         return selectionArgs;
     }
 
@@ -129,16 +126,16 @@ public class SQLUtils {
             for (int i = 0; i < 25; i++) {
                 AcademicGroup group = new AcademicGroup();
                 group.setTitle("Academic Group " + i);
-                provider.insert(SQLContract.AcademicGroupEntry.TABLE_NAME, group);
+                provider.insertAcademicGroup(group);
             }
             for (int i = 0; i < 25; i++) {
                 Mentor mentor = new Mentor();
                 mentor.setFirstName("MentorFirstName" + i);
                 mentor.setLastName("MentorLastName" + i);
-                provider.insert(SQLContract.MentorsEntry.TABLE_NAME, mentor);
+                provider.insertMentor(mentor);
             }
-            List<AcademicGroup> groups = provider.query(SQLContract.AcademicGroupEntry.TABLE_NAME,null,null,null,null);
-            List<Mentor> mentors = provider.query(SQLContract.MentorsEntry.TABLE_NAME,null,null,null,null);
+            List<AcademicGroup> groups = provider.queryAcademicGroups(null, null, null, null);
+            List<Mentor> mentors = provider.queryMentors(null, null, null, null);
             List<Integer> index = new ArrayList<>();
             for (Mentor mentor : mentors) {
                 index.add(mentor.getMentorId());
@@ -146,7 +143,7 @@ public class SQLUtils {
             for (int i = 0; i < groups.size(); i++) {
                 AcademicGroup g = groups.get(i);
                 g.setMentorId(index.get(i));
-                provider.update(SQLContract.AcademicGroupEntry.TABLE_NAME, g);
+                provider.updateAcademicGroup(g);
             }
             List<Student> students = new ArrayList<>();
             for (int i = 0; i < 800; i++) {
@@ -166,12 +163,12 @@ public class SQLUtils {
                 student.setGroupId(g);
                 students.add(student);
             }
-            int count = provider.bulkInsert(SQLContract.StudentsEntry.TABLE_NAME, students);
+            int count = provider.bulkInsertStudents(students);
             System.out.println("bulk inserted "+count+ " records!");
             UserAccount userAccount = new UserAccount();
             userAccount.setUserName("admin");
             userAccount.setPassword("1234");
-            provider.insert(SQLContract.UsersEntry.TABLE_NAME, userAccount);
+            provider.insertUserAccount(userAccount);
         } catch (SQLException e) {
             e.printStackTrace();
         }

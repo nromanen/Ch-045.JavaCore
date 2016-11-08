@@ -10,6 +10,7 @@
 <%--@elvariable id="mentor" type="net.students.model.Mentor"--%>
 <%--@elvariable id="errorString" type="java.lang.String"--%>
 <%--@elvariable id="groups" type="java.util.List"--%>
+<%--@elvariable id="infoString" type="java.lang.String"--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>

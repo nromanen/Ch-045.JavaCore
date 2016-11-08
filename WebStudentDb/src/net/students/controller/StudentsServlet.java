@@ -54,15 +54,18 @@ public class StudentsServlet extends HttpServlet {
             switch (userPath) {
                 case "/listStudent":// load data
                     userPath = "/studentListView";
-                    String selection =  SQLUtils.buildSelectionFormFilter(request);
-                    String[] selectionArgs =  SQLUtils.buildSelectionArgsFilter(request);
+                    String firstName = request.getParameter("firstName");
+                    String lastName  = request.getParameter("lastName");
+                    String testBookNum = request.getParameter("testBookNumber");
+                    String  groupId = request.getParameter("groupId");
+                    String selection = SQLUtils.buildSelectionFormFilter(firstName, lastName, testBookNum, groupId);
+                    String[] selectionArgs =  SQLUtils.buildSelectionArgsFilter(firstName, lastName, testBookNum, groupId);
                     request.setAttribute("students", provider.query(StudentsEntry.TABLE_NAME, null, selection, selectionArgs, null));
                     StudentFilterForm filterForm = new StudentFilterForm();// restore filter values
-                    filterForm.setFirstName(request.getParameter("firstName"));
-                    filterForm.setLastName(request.getParameter("lastName"));
-                    filterForm.setTestBookNumber(request.getParameter("testBookNumber"));
-                    String groupId = request.getParameter("groupId");
-                    if (!SQLUtils.isEmpty(groupId))  filterForm.setGroupId(Integer.parseInt(groupId));
+                    filterForm.setFirstName(firstName);
+                    filterForm.setLastName(lastName);
+                    filterForm.setTestBookNumber(testBookNum);
+                    if (!AppUtils.isEmpty(groupId))  filterForm.setGroupId(Integer.parseInt(groupId));
                     request.setAttribute("filter_form", filterForm);
                     break;
                 case "/editStudent": //load data

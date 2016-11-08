@@ -1,13 +1,13 @@
 package net.students.dao;
 
+import net.students.dao.SQLContract.StudentsEntry;
 import net.students.model.AcademicGroup;
 import net.students.model.Mentor;
 import net.students.model.Student;
 import net.students.model.UserAccount;
+import net.students.util.AppUtils;
 import org.joda.time.DateTime;
-import net.students.dao.SQLContract.StudentsEntry;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -55,32 +55,22 @@ public class SQLUtils {
         return sql.toString();
     }
 
-    /**
-     * Returns true if the string is null or 0-length.
-     */
-    public static boolean isEmpty(CharSequence str) {
-        return str == null || str.length() == 0;
-    }
+
 
     //fill filter query data
-    public static String  buildSelectionFormFilter(HttpServletRequest request ) {
+    public static String  buildSelectionFormFilter(String firstName, String lastName, String testBookNum,String  groupId ) {
         String selection ;
-        String firstName = request.getParameter("firstName");
-        String lastName  = request.getParameter("lastName");
-        String testBookNum = request.getParameter("testBookNumber");
-        String  groupId = request.getParameter("groupId");
-
         Map<String,String> selections = new LinkedHashMap<>();
-        if (!SQLUtils.isEmpty(testBookNum)) {
+        if (!AppUtils.isEmpty(testBookNum)) {
             selections.put(StudentsEntry.COL_BOOK_NUM, testBookNum);
         }
-        if (!SQLUtils.isEmpty(firstName) ) {
+        if (!AppUtils.isEmpty(firstName) ) {
             selections.put(StudentsEntry.COL_FIRST_NAME,"'" + firstName + "%'");
         }
-        if (!SQLUtils.isEmpty(lastName) ) {
+        if (!AppUtils.isEmpty(lastName) ) {
             selections.put(StudentsEntry.COL_LAST_NAME,"'" + lastName + "%'");
         }
-        if (!SQLUtils.isEmpty(groupId)) {
+        if (!AppUtils.isEmpty(groupId)) {
             selections.put(StudentsEntry.COL_GROUP_ID, groupId);
         }
         int i = 1;
@@ -103,25 +93,21 @@ public class SQLUtils {
         return selection;
     }
 
-    public static String[] buildSelectionArgsFilter(HttpServletRequest request) {
+    public static String[] buildSelectionArgsFilter(String firstName, String lastName, String testBookNum,String  groupId) {
 
         String[] selectionArgs;
-        String firstName = request.getParameter("firstName");
-        String lastName  = request.getParameter("lastName");
-        String testBookNum = request.getParameter("testBookNumber");
-        String  groupId = request.getParameter("groupId");
 
         Map<String,String> selections = new LinkedHashMap<>();
-        if (!SQLUtils.isEmpty(testBookNum)) {
+        if (!AppUtils.isEmpty(testBookNum)) {
             selections.put(SQLContract.StudentsEntry.COL_BOOK_NUM, testBookNum);
         }
-        if (!SQLUtils.isEmpty(firstName) ) {
+        if (!AppUtils.isEmpty(firstName) ) {
             selections.put(SQLContract.StudentsEntry.COL_FIRST_NAME,"'" + firstName + "%'");
         }
-        if (!SQLUtils.isEmpty(lastName) ) {
+        if (!AppUtils.isEmpty(lastName) ) {
             selections.put(SQLContract.StudentsEntry.COL_LAST_NAME,"'" + lastName + "%'");
         }
-        if (!SQLUtils.isEmpty(groupId)) {
+        if (!AppUtils.isEmpty(groupId)) {
             selections.put(SQLContract.StudentsEntry.COL_GROUP_ID, groupId);
         }
 

@@ -20,11 +20,7 @@ import java.util.List;
  */
 public class SQLDBProvider {
 
-    private static final int STUDENT = 100;
-    private static final int MENTOR = 101;
-    private static final int GROUP = 102;
-    private static final int USER = 103;
-
+    public final int batchSize = 1000;
 
     private final Connection conn;
     private static SQLDBProvider provider;
@@ -40,300 +36,269 @@ public class SQLDBProvider {
         return provider;
     }
 
-    // TODO implement
-    //To reduce the number of requests in database
-    /* SELECT * FROM student s
-                INNER JOIN academic_group a ON s.group_id = a.id
-                INNER JOIN mentor m ON a.mentor_id = m.id;
-    */
 
-    @SuppressWarnings("unchecked")
-    public <E> List<E> query(String table, String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
-        List<E> result = new ArrayList<>();
-        PreparedStatement stmt;
-        String sql;
-        ResultSet rs;
-        switch (tableMatcher(table)) {
-            case STUDENT:
-                sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
-                stmt = conn.prepareStatement(sql);
-                rs = stmt.executeQuery();
-                while( rs.next() ) {
-                    Student student = new Student();
-                    student.setStudentId(rs.getInt(StudentsEntry.ID));
-                    student.setFirstName(rs.getString(StudentsEntry.COL_FIRST_NAME));
-                    student.setLastName(rs.getString(StudentsEntry.COL_LAST_NAME));
-                    student.setTestBookNumber(rs.getInt(StudentsEntry.COL_BOOK_NUM));
-                    student.setDateOfBirth(DateTime.parse(rs.getDate(StudentsEntry.COL_BIRTH_DAY).toString()));
-                    student.setGroupId(rs.getInt(StudentsEntry.COL_GROUP_ID));
-                    result.add((E) student);
-                }
-                rs.close();
-                stmt.close();
-                break;
-            case MENTOR:
-                sql = SQLUtils.buildSqlQuery(MentorsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
-                stmt = conn.prepareStatement(sql);
-                rs = stmt.executeQuery();
-                while( rs.next() ) {
-                    Mentor mentor = new Mentor();
-                    mentor.setMentorId(rs.getInt(MentorsEntry.ID));
-                    mentor.setFirstName(rs.getString(MentorsEntry.COL_FIRST_NAME));
-                    mentor.setLastName(rs.getString(MentorsEntry.COL_LAST_NAME));
-                    result.add((E)mentor);
-                }
-                rs.close();
-                stmt.close();
-                break;
-            case GROUP:
-                sql = SQLUtils.buildSqlQuery(AcademicGroupEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
-                stmt = conn.prepareStatement(sql);
-                rs = stmt.executeQuery();
-                while( rs.next() ) {
-                    AcademicGroup group = new AcademicGroup();
-                    group.setGroupId(rs.getInt(AcademicGroupEntry.ID));
-                    group.setTitle(rs.getString(AcademicGroupEntry.COL_TITLE));
-                    group.setMentorId(rs.getInt(AcademicGroupEntry.COL_MENTOR_ID));
-                    result.add((E)group);
-                }
-                rs.close();
-                stmt.close();
-                break;
-            case USER:
-                sql = SQLUtils.buildSqlQuery(UsersEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
-                stmt = conn.prepareStatement(sql);
-                rs = stmt.executeQuery();
-                while( rs.next() ) {
-                    UserAccount account = new UserAccount();
-                    account.setUserId(rs.getInt(UsersEntry.ID));
-                    account.setUserName(rs.getString(UsersEntry.COL_USER_NAME));
-                    account.setPassword(rs.getString(UsersEntry.COL_USER_PASS));
-                    result.add((E)account);
-                }
-                rs.close();
-                stmt.close();
-                break;
-            default:
-                throw new UnsupportedOperationException("Unknown table: " + table);
+    public  List<Student> queryStudent( String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
+        List<Student> result = new ArrayList<>();
+        String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
+        PreparedStatement  stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        while( rs.next() ) {
+            Student student = new Student();
+            student.setStudentId(rs.getInt(StudentsEntry.ID));
+            student.setFirstName(rs.getString(StudentsEntry.COL_FIRST_NAME));
+            student.setLastName(rs.getString(StudentsEntry.COL_LAST_NAME));
+            student.setTestBookNumber(rs.getInt(StudentsEntry.COL_BOOK_NUM));
+            student.setDateOfBirth(DateTime.parse(rs.getDate(StudentsEntry.COL_BIRTH_DAY).toString()));
+            student.setGroupId(rs.getInt(StudentsEntry.COL_GROUP_ID));
+            result.add(student);
         }
+        rs.close();
+        stmt.close();
+       return  result;
+    }
+
+    public  List<Mentor> queryMentor( String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
+        List<Mentor> result = new ArrayList<>();
+        String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
+        PreparedStatement  stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        while( rs.next() ) {
+            Mentor mentor = new Mentor();
+            mentor.setMentorId(rs.getInt(MentorsEntry.ID));
+            mentor.setFirstName(rs.getString(MentorsEntry.COL_FIRST_NAME));
+            mentor.setLastName(rs.getString(MentorsEntry.COL_LAST_NAME));
+            result.add(mentor);
+        }
+        rs.close();
+        stmt.close();
+        return  result;
+    }
+
+    public  List<AcademicGroup> queryAcademicGroup( String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
+        List<AcademicGroup> result = new ArrayList<>();
+        String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
+        PreparedStatement  stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        while( rs.next() ) {
+            AcademicGroup group = new AcademicGroup();
+            group.setGroupId(rs.getInt(AcademicGroupEntry.ID));
+            group.setTitle(rs.getString(AcademicGroupEntry.COL_TITLE));
+            group.setMentorId(rs.getInt(AcademicGroupEntry.COL_MENTOR_ID));
+            result.add(group);
+        }
+        rs.close();
+        stmt.close();
+        return  result;
+    }
+
+    public  List<UserAccount> queryUserAccount( String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
+        List<UserAccount> result = new ArrayList<>();
+        String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
+        PreparedStatement  stmt = conn.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        while( rs.next() ) {
+            UserAccount account = new UserAccount();
+            account.setUserId(rs.getInt(UsersEntry.ID));
+            account.setUserName(rs.getString(UsersEntry.COL_USER_NAME));
+            account.setPassword(rs.getString(UsersEntry.COL_USER_PASS));
+            result.add(account);
+        }
+        rs.close();
+        stmt.close();
+        return  result;
+    }
+
+    public int insertStudent(Student student) throws SQLException {
+        int result;
+        String query = "INSERT INTO " + StudentsEntry.TABLE_NAME +
+                " (" + StudentsEntry.COL_FIRST_NAME + ", " + StudentsEntry.COL_LAST_NAME +
+                ", " + StudentsEntry.COL_BOOK_NUM + ", " + StudentsEntry.COL_BIRTH_DAY + ", "
+                + StudentsEntry.COL_GROUP_ID + ") VALUES (?,?,?,?,?)";
+        PreparedStatement ps = conn.prepareStatement( query );
+        ps.setString(1, student.getFirstName());
+        ps.setString(2, student.getLastName());
+        ps.setInt(3, student.getTestBookNumber());
+        ps.setDate(4, Date.valueOf((student.getDateOfBirth().toString("yyyy-MM-dd"))));
+        ps.setInt(5, student.getGroupId());
+        int inserted = ps.executeUpdate();
+        ps.close();
+        if (inserted > 0 ) result = inserted; else
+            throw new SQLException("Failed to insert row into table "+StudentsEntry.TABLE_NAME);
+        return result;
+       }
+
+    public int insertMentor(Mentor mentor) throws SQLException {
+        int result;
+        String query = "INSERT INTO " + MentorsEntry.TABLE_NAME +
+                " (" + MentorsEntry.COL_FIRST_NAME + ", " + MentorsEntry.COL_LAST_NAME + ") VALUES (?,?)";
+        PreparedStatement ps = conn.prepareStatement( query );
+        ps.setString(1, mentor.getFirstName());
+        ps.setString(2, mentor.getLastName());
+        int inserted = ps.executeUpdate();
+        ps.close();
+        if (inserted > 0 ) result = inserted; else
+            throw new SQLException("Failed to insert row into table "+MentorsEntry.TABLE_NAME);
         return result;
     }
 
-    public <E> int insert(String table,  E entity) throws SQLException {
+    public int insertAcademicGroup(AcademicGroup group) throws SQLException {
         int result;
-        String query;
-        PreparedStatement ps;
-        switch (tableMatcher(table)) {
-            case STUDENT: {
-                Student student = (Student)entity;
-                query = "insert into student (first_name, last_name,  book_number, birth_day, group_id) values (?,?,?,?,?)";
-                ps = conn.prepareStatement( query );
+        String query = "INSERT INTO " + AcademicGroupEntry.TABLE_NAME +
+                " (" + AcademicGroupEntry.COL_TITLE + ", " + AcademicGroupEntry.COL_MENTOR_ID + ") VALUES (?,?)";
+        PreparedStatement ps = conn.prepareStatement( query );
+        ps.setString(1, group.getTitle());
+        ps.setInt(2, group.getMentorId());
+        int inserted = ps.executeUpdate();
+        ps.close();
+        if (inserted > 0 ) result = inserted; else
+            throw new SQLException("Failed to insert row into table "+AcademicGroupEntry.TABLE_NAME);
+        return result;
+    }
+
+    public int insertUserAccount(UserAccount account) throws SQLException {
+        int result;
+        String query = "insert into "+UsersEntry.TABLE_NAME+" ("+UsersEntry.COL_USER_NAME+", "+UsersEntry.COL_USER_PASS+") values (?,?)";
+        PreparedStatement ps = conn.prepareStatement( query );
+        ps.setString(1, account.getUserName());
+        ps.setString(2, account.getPassword());
+        int inserted = ps.executeUpdate();
+        ps.close();
+        if (inserted > 0 ) result = inserted; else
+            throw new SQLException("Failed to insert row into table "+UsersEntry.TABLE_NAME);
+        return result;
+    }
+
+    public  int deleteStudent(int entityId) throws SQLException {
+        int rowsDeleted;
+        String query = "DELETE FROM " + StudentsEntry.TABLE_NAME + " WHERE id=?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, entityId);
+        rowsDeleted = ps.executeUpdate();
+        ps.close();
+        return rowsDeleted;
+    }
+
+    public  int deleteMentor(int entityId) throws SQLException {
+        int rowsDeleted;
+        String query = "DELETE FROM " + MentorsEntry.TABLE_NAME + " WHERE id=?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, entityId);
+        rowsDeleted = ps.executeUpdate();
+        ps.close();
+        return rowsDeleted;
+    }
+
+    public  int deleteAcademicGroup(int entityId) throws SQLException {
+        int rowsDeleted;
+        String query = "DELETE FROM " + AcademicGroupEntry.TABLE_NAME + " WHERE id=?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, entityId);
+        rowsDeleted = ps.executeUpdate();
+        ps.close();
+        return rowsDeleted;
+    }
+
+    public  int deleteUser(int entityId) throws SQLException {
+        int rowsDeleted;
+        String query = "DELETE FROM " + UsersEntry.TABLE_NAME + " WHERE id=?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, entityId);
+        rowsDeleted = ps.executeUpdate();
+        ps.close();
+        return rowsDeleted;
+    }
+
+    public  int updateStudent(Student student) throws SQLException {
+        int rowsUpdated;
+        String query = "UPDATE " + StudentsEntry.TABLE_NAME +
+                " SET " + StudentsEntry.COL_FIRST_NAME + "=?, " + StudentsEntry.COL_LAST_NAME +
+                "=?, " + StudentsEntry.COL_BOOK_NUM + "=?, " + StudentsEntry.COL_BIRTH_DAY +
+                "=? , " + StudentsEntry.COL_GROUP_ID + "=?" + " WHERE " + StudentsEntry.ID + "=?";
+        PreparedStatement ps = conn.prepareStatement( query );
+        ps.setString( 1, student.getFirstName() );
+        ps.setString( 2, student.getLastName() );
+        ps.setInt(3, student.getTestBookNumber());
+        ps.setDate(4, Date.valueOf((student.getDateOfBirth().toString("yyyy-MM-dd"))));
+        ps.setInt(5, student.getGroupId());
+        ps.setInt(6, student.getStudentId());//where id=?
+        rowsUpdated = ps.executeUpdate();
+        ps.close();
+        return rowsUpdated;
+    }
+
+    public  int updateMentor(Mentor mentor) throws SQLException {
+        int rowsUpdated;
+        String query = "UPDATE " + MentorsEntry.TABLE_NAME +
+                " SET " + MentorsEntry.COL_FIRST_NAME + "=?, " + MentorsEntry.COL_LAST_NAME +
+                "=? WHERE " + MentorsEntry.ID + "=?";
+        PreparedStatement ps = conn.prepareStatement( query );
+        ps.setString(1, mentor.getFirstName());
+        ps.setString(2, mentor.getLastName());
+        ps.setInt(3, mentor.getMentorId());//where id=?
+        rowsUpdated = ps.executeUpdate();
+        ps.close();
+        return rowsUpdated;
+    }
+
+    public  int updateAcademicGroup(AcademicGroup group) throws SQLException {
+        int rowsUpdated;
+        String query = "UPDATE " + AcademicGroupEntry.TABLE_NAME +
+                " SET " + AcademicGroupEntry.COL_TITLE + "=? , " + AcademicGroupEntry.COL_MENTOR_ID
+                + "=? WHERE " + AcademicGroupEntry.ID + "=?";
+        PreparedStatement ps = conn.prepareStatement( query );
+        ps.setString(1, group.getTitle());
+        ps.setInt(2, group.getMentorId());
+        ps.setInt(3, group.getGroupId());//where id=?
+        rowsUpdated = ps.executeUpdate();
+        ps.close();
+        return rowsUpdated;
+    }
+
+    public  int updateAcademicGroup(UserAccount account) throws SQLException {
+        int rowsUpdated;
+        String query = "UPDATE " + UsersEntry.TABLE_NAME + " SET " + UsersEntry.COL_USER_NAME +
+                "=?, " + UsersEntry.COL_USER_PASS + "=? WHERE " + UsersEntry.ID + "=?";
+        PreparedStatement ps = conn.prepareStatement( query );
+        ps.setString(1, account.getUserName());
+        ps.setString(2, account.getPassword());
+        ps.setInt(3, account.getUserId());//where id=?
+        rowsUpdated = ps.executeUpdate();
+        ps.close();
+        return rowsUpdated;
+    }
+
+    public  int bulkInsertStudents( List<Student> students) throws SQLException {
+        int result = 0;
+
+        int count = 0;
+        String  query = "INSERT INTO student (first_name, last_name,  book_number, birth_day, group_id) VALUES (?,?,?,?,?)";
+        PreparedStatement ps = conn.prepareStatement(query);
+        if (students != null && students.size() > 0) {
+            for (Student student : students) {
                 ps.setString(1, student.getFirstName());
                 ps.setString(2, student.getLastName());
                 ps.setInt(3, student.getTestBookNumber());
                 ps.setDate(4, Date.valueOf((student.getDateOfBirth().toString("yyyy-MM-dd"))));
                 ps.setInt(5, student.getGroupId());
-                int inserted = ps.executeUpdate();
-                ps.close();
-                if (inserted > 0 ) result = inserted; else
-                    throw new SQLException("Failed to insert row into " + table);
-                break;
-            }
-            case MENTOR:{
-                Mentor mentor = (Mentor)entity;
-                query = "insert into mentor (first_name, last_name) values (?,?)";
-                ps = conn.prepareStatement( query );
-                ps.setString(1, mentor.getFirstName());
-                ps.setString(2, mentor.getLastName());
-                int inserted = ps.executeUpdate();
-                ps.close();
-                if (inserted > 0 ) result = inserted; else
-                    throw new SQLException("Failed to insert row into " + table);
-                break;
-            }
-            case GROUP:{
-                AcademicGroup group = (AcademicGroup)entity;
-                query = "insert into academic_group (title, mentor_id) values (?,?)";
-                ps = conn.prepareStatement( query );
-                ps.setString(1, group.getTitle());
-                ps.setInt(2, group.getMentorId());
-                int inserted = ps.executeUpdate();
-                ps.close();
-                if (inserted > 0 ) result = inserted; else
-                    throw new SQLException("Failed to insert row into " + table);
-                break;
-            }
-            case USER:{
-                UserAccount account = (UserAccount) entity;
-                query = "insert into "+UsersEntry.TABLE_NAME+" ("+UsersEntry.COL_USER_NAME+", "+UsersEntry.COL_USER_PASS+") values (?,?)";
-                ps = conn.prepareStatement( query );
-                ps.setString(1, account.getUserName());
-                ps.setString(2, account.getPassword());
-                int inserted = ps.executeUpdate();
-                ps.close();
-                if (inserted > 0 ) result = inserted; else
-                    throw new SQLException("Failed to insert row into " + table);
-                break;
-            }
-            default:
-                throw new UnsupportedOperationException("Unknown table: " + table);
-        }
-        return result;
-    }
-
-    public  int delete(String table, int entityId) throws SQLException {
-        final int match = tableMatcher(table);
-        PreparedStatement ps;
-        String query;
-        int rowsDeleted;
-        switch (match) {
-            case STUDENT:
-                query = "delete from student where id=?";
-                ps = conn.prepareStatement(query);
-                ps.setInt(1, entityId);
-                rowsDeleted = ps.executeUpdate();
-                ps.close();
-                break;
-            case MENTOR:
-                query = "delete from mentor where id=?";
-                ps = conn.prepareStatement(query);
-                ps.setInt(1, entityId);
-                rowsDeleted = ps.executeUpdate();
-                ps.close();
-                break;
-            case GROUP:
-                query = "delete from academic_group where id=?";
-                ps = conn.prepareStatement(query);
-                ps.setInt(1, entityId);
-                rowsDeleted = ps.executeUpdate();
-                ps.close();
-                break;
-            case USER:
-                query = "delete from user_account where id=?";
-                ps = conn.prepareStatement(query);
-                ps.setInt(1, entityId);
-                rowsDeleted = ps.executeUpdate();
-                ps.close();
-                break;
-            default:
-                throw new UnsupportedOperationException("Unknown table: " + table);
-        }
-        return rowsDeleted;
-    }
-
-    public <E> int update(String table, E entity) throws SQLException {
-        final int match = tableMatcher(table);
-        PreparedStatement ps;
-        String query;
-        int rowsUpdated;
-        switch (match) {
-            case STUDENT:
-                Student student = (Student) entity;
-                query = "update student set first_name=?, last_name=?, book_number=?, birth_day=? ,group_id=? where id=?";
-                ps = conn.prepareStatement( query );
-                ps.setString( 1, student.getFirstName() );
-                ps.setString( 2, student.getLastName() );
-                ps.setInt(3, student.getTestBookNumber());
-                ps.setDate(4, Date.valueOf((student.getDateOfBirth().toString("yyyy-MM-dd"))));
-                ps.setInt(5, student.getGroupId());
-                ps.setInt(6, student.getStudentId());//where id=?
-                rowsUpdated = ps.executeUpdate();
-                ps.close();
-                break;
-            case MENTOR:
-                Mentor mentor = (Mentor) entity;
-                query = "update mentor set first_name=?, last_name=? where id=?";
-                ps = conn.prepareStatement( query );
-                ps.setString(1, mentor.getFirstName());
-                ps.setString(2, mentor.getLastName());
-                ps.setInt(3, mentor.getMentorId());//where id=?
-                rowsUpdated = ps.executeUpdate();
-                ps.close();
-                break;
-            case GROUP:
-                AcademicGroup group = (AcademicGroup) entity;
-                query = "update academic_group set title=?, mentor_id=? where id=?";
-                ps = conn.prepareStatement( query );
-                ps.setString(1, group.getTitle());
-                ps.setInt(2, group.getMentorId());
-                ps.setInt(3, group.getGroupId());//where id=?
-                rowsUpdated = ps.executeUpdate();
-                ps.close();
-                break;
-            case USER:
-                UserAccount account = (UserAccount) entity;
-                query = "update user_account set USER_NAME=?, PASSWORD=? where id=?";
-                ps = conn.prepareStatement( query );
-                ps.setString(1, account.getUserName());
-                ps.setString(2, account.getPassword());
-                ps.setInt(3, account.getUserId());//where id=?
-                rowsUpdated = ps.executeUpdate();
-                ps.close();
-                break;
-            default:
-                throw new UnsupportedOperationException("Unknown table: " + table);
-        }
-        return rowsUpdated;
-    }
-
-
-    public <E> int bulkInsert(String table, List<E> values) throws SQLException {
-        int result;
-        String query;
-        PreparedStatement ps;
-        final int batchSize = 1000;
-        int count = 0;
-        switch (tableMatcher(table)) {
-            case STUDENT: {
-                query = "INSERT INTO student (first_name, last_name,  book_number, birth_day, group_id) VALUES (?,?,?,?,?)";
-                ps = conn.prepareStatement(query);
-                if (values != null && values.size() > 0) {
-                    for (E value : values) {
-                        Student student = (Student) value;
-                        ps.setString(1, student.getFirstName());
-                        ps.setString(2, student.getLastName());
-                        ps.setInt(3, student.getTestBookNumber());
-                        ps.setDate(4, Date.valueOf((student.getDateOfBirth().toString("yyyy-MM-dd"))));
-                        ps.setInt(5, student.getGroupId());
-                        ps.addBatch();
-                        if(++count % batchSize == 0) {//don't OutOfMemoryError
-                            ps.executeBatch();
-                        }
-                    }
-                    int[] insertedRows = ps.executeBatch();
-                    ps.close();
-                    int insertRowCount = 0;
-                    for (int i : insertedRows) {
-                        insertRowCount += i;
-                    }
-                    if (insertRowCount != values.size()) {
-                        System.out.println("Warning "+(values.size()-insertRowCount)+" records not inserted");
-                    }
-                    result =count;
-                    break;
+                ps.addBatch();
+                if (++count % batchSize == 0) {//don't OutOfMemoryError
+                    ps.executeBatch();
                 }
             }
-            default:
-                throw new UnsupportedOperationException("Unknown table: " + table);
+            int[] insertedRows = ps.executeBatch();
+            ps.close();
+            int insertRowCount = 0;
+            for (int i : insertedRows) {
+                insertRowCount += i;
+            }
+            if (insertRowCount != students.size()) {
+                System.out.println("Warning " + (students.size() - insertRowCount) + " records not inserted");
+            }
+            result = count;
         }
         return result;
     }
 
-    private static int  tableMatcher(String table) {
-        if (table.equalsIgnoreCase(StudentsEntry.TABLE_NAME)) {
-            return STUDENT;
-        }
-        if (table.equalsIgnoreCase(MentorsEntry.TABLE_NAME)) {
-            return MENTOR;
-        }
-        if (table.equalsIgnoreCase(AcademicGroupEntry.TABLE_NAME)) {
-            return GROUP;
-        }
-        if (table.equalsIgnoreCase(UsersEntry.TABLE_NAME)) {
-            return USER;
-        }
-        return -1;
-    }
 
   public void close() {
       if (conn != null) {

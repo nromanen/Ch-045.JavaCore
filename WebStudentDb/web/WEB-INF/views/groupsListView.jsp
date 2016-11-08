@@ -23,8 +23,8 @@
 <body>
 
 
-    <jsp:include page="_header.jsp"/>
-    <jsp:include page="_menu.jsp"/>
+    <jsp:include page="header.jsp"/>
+    <jsp:include page="menu.jsp"/>
 
     <h3>Academic Groups</h3>
     <p style="color: red;">${errorString}</p>
@@ -54,7 +54,6 @@
                     </c:if>
                     </c:forEach>
                 </td>
-                <%--<td><a href="listStudent?action=filterList&groupId=<c:out value="${group.groupId }"/>">Students</a></td>--%>
                  <td><a href="editGroup?groupId=<c:out value="${group.groupId }"/>">Students</a></td>
                 <td> <form action="<c:url value="/editGroup"/>"  method="get">
                     <input type="hidden" name="groupId"  value="${group.groupId }">
@@ -71,7 +70,7 @@
         </c:forEach>
         </tbody>
 </table>
-    <jsp:include page="_footer.jsp"/>
+    <jsp:include page="footer.jsp"/>
 
 </body>
 </html>

@@ -15,8 +15,8 @@
     <title>Edit Student</title>
 </head>
 <body>
-<jsp:include page="_header.jsp"/>
-<jsp:include page="_menu.jsp"/>
+<jsp:include page="header.jsp"/>
+<jsp:include page="menu.jsp"/>
 
 <h3>Edit Student</h3>
 <p style="color: red;">${errorString}</p>
@@ -69,7 +69,7 @@
         </tr>
     </table>
 </form>
-<jsp:include page="_footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
 

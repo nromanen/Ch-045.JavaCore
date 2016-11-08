@@ -14,8 +14,8 @@
 </head>
 <body>
 
-<jsp:include page="_header.jsp"/>
-<jsp:include page="_menu.jsp"/>
+<jsp:include page="header.jsp"/>
+<jsp:include page="menu.jsp"/>
 
 <h3>Home Page</h3>
 
@@ -40,7 +40,7 @@ This is demo Simple web application using jsp,servlet &amp; Jdbc. <br><br>
   <li>Delete Mentor</li>
 </ul>
 
-<jsp:include page="_footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

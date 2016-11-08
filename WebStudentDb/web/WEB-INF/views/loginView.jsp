@@ -19,8 +19,8 @@
 </head>
 <body>
 
-<jsp:include page="_header.jsp"/>
-<jsp:include page="_menu.jsp"/>
+<jsp:include page="header.jsp"/>
+<jsp:include page="menu.jsp"/>
 
 <h3>Login Page</h3>
 
@@ -51,7 +51,7 @@
 
 <p style="color:blue;">Tip: User Name: admin, password: 1234 </p>
 
-<jsp:include page="_footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

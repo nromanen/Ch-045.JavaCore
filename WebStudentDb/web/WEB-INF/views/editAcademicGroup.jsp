@@ -18,8 +18,8 @@
     <title>Edit Academic Group</title>
 </head>
 <body>
-<jsp:include page="_header.jsp"/>
-<jsp:include page="_menu.jsp"/>
+<jsp:include page="header.jsp"/>
+<jsp:include page="menu.jsp"/>
 
 <h3>Edit Academic Group</h3>
 <p style="color: red;">${errorString}</p>
@@ -98,7 +98,7 @@
     </c:forEach>
     </tbody>
 </table>
-<jsp:include page="_footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
 

@@ -6,6 +6,7 @@
   Time: 02:46
   
 --%>
+<%--@elvariable id="infoString" type="java.lang.String"--%>
 <%--@elvariable id="students" type="java.util.List"--%>
 <%--@elvariable id="errorString" type="java.lang.String"--%>
 <%--@elvariable id="groups" type="java.util.List"--%>
@@ -22,8 +23,8 @@
 </head>
 <body>
 
-    <jsp:include page="_header.jsp"/>
-    <jsp:include page="_menu.jsp"/>
+    <jsp:include page="header.jsp"/>
+    <jsp:include page="menu.jsp"/>
 
     <h3>List of Students</h3>
     <p style="color: red;">${errorString}</p>
@@ -102,7 +103,7 @@
         </c:forEach>
     </tbody>
   </table>
-    <jsp:include page="_footer.jsp"/>
+    <jsp:include page="footer.jsp"/>
 </body>
 </html>
 

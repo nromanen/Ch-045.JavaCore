@@ -22,8 +22,8 @@
 </head>
 <body>
 
-    <jsp:include page="_header.jsp"/>
-    <jsp:include page="_menu.jsp"/>
+    <jsp:include page="header.jsp"/>
+    <jsp:include page="menu.jsp"/>
 
     <h3>List of Mentors</h3>
     <p style="color: red;">${errorString}</p>
@@ -44,8 +44,6 @@
     </tr>
     </thead>
     <tbody>
-
-
     <c:forEach items="${mentors}" var="mentor">
         <tr>
             <td><label><input type="radio" name="mentorId" value="${mentor.mentorId}"></label></td>
@@ -72,7 +70,7 @@
     </tbody>
 </table>
 
-    <jsp:include page="_footer.jsp"/>
+    <jsp:include page="footer.jsp"/>
 
 </body>
 </html>

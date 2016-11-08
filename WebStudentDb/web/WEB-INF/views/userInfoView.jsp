@@ -17,8 +17,8 @@
 </head>
 <body>
 
-<jsp:include page="_header.jsp"/>
-<jsp:include page="_menu.jsp"/>
+<jsp:include page="header.jsp"/>
+<jsp:include page="menu.jsp"/>
 
 <h3>Hello: ${user.userName}</h3>
 
@@ -26,7 +26,7 @@ User Name: <b>${user.userName}</b>
 <br />
 Last login date: ${user.password } <br />
 
-<jsp:include page="_footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

@@ -17,8 +17,7 @@ public class AppUtils {
 
     // Get the user information stored in the session.
     public static UserAccount getLoginedUser(HttpSession session) {
-        UserAccount loginedUser = (UserAccount) session.getAttribute("loginedUser");
-        return loginedUser;
+        return (UserAccount) session.getAttribute("loginedUser");
     }
     // Store user info in Session.
     public static void storeLoginedUser(HttpSession session, UserAccount loginedUser) {

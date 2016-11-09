@@ -2,6 +2,8 @@
 package net.students.validate;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,78 +13,65 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class Validator {
 
-    public static final String ERROR_KEY = "errorString";
+    public static final int MAX_LAST_NAME = 200;
+    public static final int MAX_FIRST_NAME = 200;
 
-    // performs simple validation on checkout form
+    // performs simple validation on student edit form
     public boolean validateForm(String firstName, String lastName, String dateOfBirth,
-                                String testBookNumber, String groupId, HttpServletRequest request ) {
+                                String testBookNumber,  HttpServletRequest request ) {
         boolean errorFlag = false;
-        if (firstName == null || firstName.isEmpty()||firstName.length()>50 ) {
+
+        if (firstName == null || firstName.isEmpty() || firstName.length() > MAX_FIRST_NAME) {
             errorFlag = true;
-            request.setAttribute(ERROR_KEY, "Invalid First Name!");
+            request.setAttribute("firstNameError", true);
         }
-        if (lastName == null || lastName.isEmpty()||lastName.length()>200 ) {
+        if (lastName == null || lastName.isEmpty() || lastName.length() > MAX_LAST_NAME) {
             errorFlag = true;
-            request.setAttribute(ERROR_KEY, "Invalid Last Name!");
-        }
-        if (groupId == null || groupId.isEmpty() ) {
-            errorFlag = true;
-            request.setAttribute(ERROR_KEY, "Invalid Group iD!");
+            request.setAttribute("lastNameError", true);
         }
         if (testBookNumber == null || testBookNumber.isEmpty() ) {
             errorFlag = true;
-            request.setAttribute(ERROR_KEY, "Invalid test Book Number!");
+            request.setAttribute("testBookNumberError", true);
         }
         if (dateOfBirth == null || dateOfBirth.isEmpty() ) {
             errorFlag = true;
-            request.setAttribute(ERROR_KEY, "Invalid date Of Birth! Use format: yyyy-MM-dd");
+            request.setAttribute("dateOfBirthError", true);
         } else {
             try {
-                DateTime dateTime = DateTime.parse(dateOfBirth);
+                DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd");
+                DateTime dateTime = DateTime.parse(dateOfBirth, fmt);
+                if (dateTime.isAfterNow()) {
+                    throw new IllegalArgumentException("Future date!");
+                }
             } catch (IllegalArgumentException e) {
                 errorFlag = true;
                 System.out.println(e.getMessage());
-                request.setAttribute(ERROR_KEY, e.getMessage());
+                request.setAttribute("dateOfBirthError", true);
             }
         }
         return errorFlag;
     }
-
-    public boolean validateFormMentor(String firstName, String lastName,
-                                 HttpServletRequest request  ) {
+    //mentor edit
+    public boolean validateFormMentor(String firstName, String lastName,  HttpServletRequest request ) {
         boolean errorFlag = false;
-        if (firstName == null || firstName.isEmpty()||firstName.length()>50 ) {
-            errorFlag = true;
-            request.setAttribute(ERROR_KEY, "Invalid First Name!");
-        }
-        if (lastName == null || lastName.isEmpty()||lastName.length()>200 ) {
-            errorFlag = true;
-            request.setAttribute(ERROR_KEY, "Invalid Last Name!");
-        }
 
-        return errorFlag;
-    }
-
-    public boolean validateFormGroup(String title, String mentorId,  HttpServletRequest request  ) {
-        boolean errorFlag = false;
-        if (title == null || title.isEmpty()||title.length()>250 ) {
+        if (firstName == null || firstName.isEmpty() || firstName.length() > MAX_FIRST_NAME) {
             errorFlag = true;
-            request.setAttribute(ERROR_KEY, "Invalid title!");
+            request.setAttribute("firstNameError", true);
         }
-        if (mentorId == null || mentorId.isEmpty()) {
+        if (lastName == null || lastName.isEmpty() || lastName.length() > MAX_LAST_NAME) {
             errorFlag = true;
-            request.setAttribute(ERROR_KEY, "Invalid mentor!");
-        } else {
-            try {
-                int i = Integer.parseInt(mentorId);
-            } catch (NumberFormatException e) {
-                errorFlag = true;
-                System.out.println(e.getMessage());
-                request.setAttribute(ERROR_KEY, e.getMessage());
-            }
+            request.setAttribute("lastNameError", true);
         }
         return errorFlag;
     }
-
-
+    //group edit
+    public boolean validateFormGroup(String title, HttpServletRequest request) {
+        boolean errorFlag = false;
+        if (title == null || title.isEmpty() ) {
+            errorFlag = true;
+            request.setAttribute("titleError", true);
+        }
+        return errorFlag;
+    }
 }

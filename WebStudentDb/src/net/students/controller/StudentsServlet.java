@@ -107,9 +107,9 @@ public class StudentsServlet extends HttpServlet {
                         String firstName = request.getParameter("firstName");
                         String lastName = request.getParameter("lastName");
                         // validate student data
-                        boolean validationErrorFlag = validator.validateForm(firstName, lastName, dateOfBirth, testBookNumber, groupId, request);
+                        boolean validationErrorFlag = validator.validateForm(firstName, lastName, dateOfBirth, testBookNumber,  request);
                         if (validationErrorFlag) {
-                            //request.setAttribute("student",student);
+                            request.setAttribute("validationErrorFlag", true);
                             userPath = "/editStudent";//back to list students
                         } else {
                             Student student = new Student();

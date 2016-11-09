@@ -1,0 +1,95 @@
+
+
+.error {
+    color: #c00;
+    font-style: italic;
+}
+
+.smallText { font-size: small }
+/*for footer*/
+.reallySmallText { font-size: xx-small }
+
+.indent { margin-left: 6em }
+
+.inputField { width: 190px }
+
+.hMargin { margin: 0 30px }
+
+.categoryButton {
+    margin: 15px 22px;
+    padding: 13px;
+    display: block;
+    background-color: #d3ede8;
+    border-radius: 4px;
+}
+
+.categoryText {
+    line-height: 25px;
+    font-size: x-large;
+}
+
+.lightBlue { background-color: #edf8f7 }
+
+.white { background-color: #fff }
+/*Table list */
+.detailsTable { text-align: left }
+
+.detailsTable th { padding: 5px 10px }
+
+.detailsTable td {
+    padding: 5px 10px 5px 20px;
+    font-size: small;
+    font-family: "Courier New", courier, monospace;
+}
+
+.tableHeading {
+    font-weight: bold;
+    background-color: #edf8f7;
+}
+
+.testBookNumColumn {
+    text-align: center;
+    width: 62px;
+}
+
+.dateOfBirthColumn {
+    width: 90px;
+    font-weight: normal;
+}
+
+.actionsColumn {
+    margin-top: 15px;
+    width: 50%;
+    float: left;
+}
+/*Table header*/
+.header {
+    background-color: #c3e3e0;
+    height: 30px;
+}
+/*delete button*/
+.bubbleYellow {
+    font-weight: bold;
+    background-color: #f5eabe;
+    padding: 5px;
+    color: inherit;
+    display: inline;
+    border-radius: 4px;
+}
+/*edit button*/
+.bubbleGreen {
+    font-weight: bold;
+    background-color:palegreen;
+    padding: 5px;
+    color: inherit;
+    display: inline;
+    border-radius: 4px;
+}
+/*for header*/
+.headerWidget {
+    width: 194px;
+    margin: 20px 0;
+    font-size: small;
+    float: right;
+    line-height: 25px;
+}

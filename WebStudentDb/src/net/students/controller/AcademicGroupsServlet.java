@@ -54,9 +54,9 @@ public class AcademicGroupsServlet extends HttpServlet {
                     if (request.getParameter("OK") != null) { //user press OK
                         String title = request.getParameter("title");
                         String mentorId = request.getParameter("mentorId");
-                        System.out.println("mentorId=" + mentorId);
-                        boolean validationErrorFlag = validator.validateFormGroup(title, mentorId, request);
+                        boolean validationErrorFlag = validator.validateFormGroup(title, request);
                         if (validationErrorFlag) {
+                            request.setAttribute("validationErrorFlag", true);
                             userPath = "/editAcademicGroup";//show error on edit form
                         } else {
                             userPath = "/groupsListView";//back to list students

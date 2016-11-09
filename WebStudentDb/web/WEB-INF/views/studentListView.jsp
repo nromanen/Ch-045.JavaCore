@@ -19,12 +19,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../css/students.css">
     <title>List of Students</title>
 </head>
 <body>
-
-    <jsp:include page="header.jsp"/>
-    <jsp:include page="menu.jsp"/>
+        <jsp:include page="header.jsp"/>
+        <jsp:include page="menu.jsp"/>
 
     <h3>List of Students</h3>
     <p style="color: red;">${errorString}</p>

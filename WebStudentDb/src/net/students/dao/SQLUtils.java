@@ -116,22 +116,46 @@ public class SQLUtils {
         return selectionArgs;
     }
 
+
     // For test database: populate data
     // insert 25 academic groups
     // insert 25 mentors
     // insert 800 students
+
+    private static final String[]
+            FEMALE_FIRST_NAME = new String[]{"Ірина", "Надія", "Аліна", "Ліна", "Марія",
+            "Оксана", "Людмила", "Світлана", "Катерина", "Олеся"};
+    private static final String[] MALE_FIRST_NAME = new String[]{"Микола", "Іван", "Артем", "Дмитро", "Ігор",
+            "Петро", "Степан", "Ярослав", "Сергій", "Святослав"};
+    private static final String[] FEMALE_LAST_NAME = new String[]{"Приходько", "Яремчук", "Невмержицька", "Левківська", "Петренко",
+            "Кононова", "Бойко", "Поліщук", "Неймирович-Данченко", "Спілберг"};
+    private static final String[] MALE_LAST_NAME = new String[]{"Ковальчук", "Назарчук", "Лівшиц", "Матвійчук", "Козлов",
+            "Перекотиполе", "Перильман", "Диконокадзе", "Абрамавичус", "Малисов"};
+    private static final String[] BIRTH_DAYS = new String[]{"2001-11-05", "2000-02-05", "2001-07-13", "2002-10-25", "2002-04-07",
+            "2003-09-09", "2001-08-17", "2001-12-23", "2001-04-08", "2001-06-27"};
+    private static final String[] GROUPS = new String[]{"фізика та математика", "тупо математика", "математика та інформатика", "педагогіка", "філологія",
+            "історія та провознавство", "філософія", "програмування", "географія і хімія", "астрономія"};
+
     public static void populateData(SQLDBProvider provider) {
         Random random = new Random();
         try {
+            provider.runSql("SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;");
+            provider.runSql("SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;");
+            provider.runSql("SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';");
             for (int i = 0; i < 25; i++) {
                 AcademicGroup group = new AcademicGroup();
-                group.setTitle("Academic Group " + i);
+                group.setTitle(GROUPS[random.nextInt(10)]);
                 provider.insertAcademicGroup(group);
             }
             for (int i = 0; i < 25; i++) {
                 Mentor mentor = new Mentor();
-                mentor.setFirstName("MentorFirstName" + i);
-                mentor.setLastName("MentorLastName" + i);
+                if (i % 2 == 0) {
+                    mentor.setFirstName(FEMALE_FIRST_NAME[random.nextInt(10)]);
+                    mentor.setLastName(FEMALE_LAST_NAME[random.nextInt(10)]);
+                } else {
+                    mentor.setFirstName(MALE_FIRST_NAME[random.nextInt(10)]);
+                    mentor.setLastName(MALE_LAST_NAME[random.nextInt(10)]);
+                }
                 provider.insertMentor(mentor);
             }
             List<AcademicGroup> groups = provider.queryAcademicGroups(null, null, null, null);
@@ -146,16 +170,17 @@ public class SQLUtils {
                 provider.updateAcademicGroup(g);
             }
             List<Student> students = new ArrayList<>();
-            for (int i = 0; i < 800; i++) {
+            for (int i = 0; i < 2300; i++) {
                 Student student = new Student();
-                student.setFirstName("StudentFirstName" + i);
-                student.setLastName("StudentLastName" + i);
-                if (i < 400) {
-                    student.setDateOfBirth(DateTime.parse("2001-11-05"));
+                if (i % 2 == 0) {
+                    student.setFirstName(FEMALE_FIRST_NAME[random.nextInt(10)]);
+                    student.setLastName(FEMALE_LAST_NAME[random.nextInt(10)]);
                 } else {
-                    student.setDateOfBirth(DateTime.parse("2000-01-14"));
+                    student.setFirstName(MALE_FIRST_NAME[random.nextInt(10)]);
+                    student.setLastName(MALE_LAST_NAME[random.nextInt(10)]);
                 }
-                student.setTestBookNumber(10000 + i);
+                student.setDateOfBirth(DateTime.parse(BIRTH_DAYS[random.nextInt(10)]));
+                student.setTestBookNumber(100000 + i);
                 int g = random.nextInt(25);
                 while (g == 0) {
                     g = random.nextInt(25);
@@ -169,6 +194,10 @@ public class SQLUtils {
             userAccount.setUserName("admin");
             userAccount.setPassword("1234");
             provider.insertUserAccount(userAccount);
+            provider.runSql("SET SQL_MODE=@OLD_SQL_MODE;");
+            provider.runSql("SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;");
+            provider.runSql("SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

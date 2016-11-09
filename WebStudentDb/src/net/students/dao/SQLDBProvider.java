@@ -301,6 +301,14 @@ public class SQLDBProvider {
         return result;
     }
 
+    public boolean runSql(String sql) throws SQLException{
+        boolean result;
+        PreparedStatement ps = conn.prepareStatement(sql);
+        result = ps.execute();
+        ps.close();
+        return result;
+    }
+
   public void close() {
       if (conn != null) {
           SQLDBConnection.closeConnection(conn);

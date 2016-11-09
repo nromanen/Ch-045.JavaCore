@@ -60,6 +60,7 @@ public class MentorsServlet extends HttpServlet {
                         String lastName = request.getParameter("lastName");
                         boolean validationErrorFlag = validator.validateFormMentor(firstName, lastName, request);
                         if (validationErrorFlag) {
+                            request.setAttribute("validationErrorFlag", true);
                             userPath = "/editMentor";//show error on edit form
                         } else {
                             Mentor mentor = new Mentor(firstName, lastName);

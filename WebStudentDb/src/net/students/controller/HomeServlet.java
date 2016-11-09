@@ -24,7 +24,7 @@ public class HomeServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         provider = new SQLDBProvider();
-       // SQLUtils.populateData(provider);
+       //SQLUtils.populateData(provider);
     }
 
     @Override

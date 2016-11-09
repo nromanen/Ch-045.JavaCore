@@ -12,6 +12,7 @@
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="../../css/students.css">
     <title>Edit Student</title>
 </head>
 <body>
@@ -25,24 +26,46 @@
 
     <input type="hidden" name="studentId" value="${student.studentId}"/>
     <table>
+        <c:if test="${!empty validationErrorFlag}">
+            <tr>
+                <td colspan="2" style="text-align:left">
+                    <span class="error smallText">Please provide valid entries for the following field(s):
+
+                      <c:if test="${!empty firstNameError}">
+                          <br><span class="indent"><strong>First name</strong> (e.g., Igor)</span>
+                      </c:if>
+                      <c:if test="${!empty lastNameError}">
+                          <br><span class="indent"><strong>Last name</strong> (e.g., Gavrilyuk)</span>
+                      </c:if>
+                         <c:if test="${!empty dateOfBirthError}">
+                          <br><span class="indent"><strong>Date Of Birth</strong> ( Use format: yyyy-MM-dd)</span>
+                      </c:if>
+                         <c:if test="${!empty testBookNumberError}">
+                          <br><span class="indent"><strong>Test Book Number</strong> (e.g., 10000XXXX)</span>
+                      </c:if>
+
+
+                </td>
+            </tr>
+        </c:if>
         <tr>
-            <td>First Name:</td><td><input type="text" name="firstName" value="${student.firstName}"/></td>
+            <td>First Name:</td><td class="inputField"><input class="inputField" type="text" name="firstName" value="${student.firstName}"/></td>
         </tr>
         <tr>
-            <td>Last Name:</td><td><input type="text" name="lastName" value="${student.lastName}"/></td>
+            <td>Last Name:</td><td class="inputField"><input  class="inputField" type="text" name="lastName" value="${student.lastName}"/></td>
         </tr>
         <tr>
             <td>Date of Birth:</td>
              <td>
                  <joda:format var="date" value="${student.dateOfBirth}" pattern="yyyy-MM-dd" />
-                 <input type="text" name="dateOfBirth" value="${date}"/>
+                 <input class="inputField" type="text" name="dateOfBirth" value="${date}"/>
             </td>
         </tr>
         <tr>
                 <td>Group:</td>
                 <td>
                     <label>
-                        <select name="groupId">
+                        <select class="inputField" name="groupId">
                             <c:forEach var="group" items="${groups}">
                                 <c:choose>
                                     <c:when test="${group.groupId==student.groupId}">
@@ -59,7 +82,7 @@
                 </td>
         </tr>
         <tr>
-            <td>Test Book Number:</td><td><input type="text" name="testBookNumber" value="${student.testBookNumber}"/></td>
+            <td>Test Book Number:</td><td><input class="inputField" type="text" name="testBookNumber" value="${student.testBookNumber}"/></td>
         </tr>
     </table>
     <table>

@@ -7,7 +7,7 @@
 
 --%>
 <%--@elvariable id="group" type="net.students.model.AcademicGroup"--%>
-<%--@elvariable id="errorString" type="java.lang.String"--%>
+<%--@elvariable id="errorString"  type="java.lang.String"--%>
 <%--@elvariable id="mentors" type="java.util.List"--%>
 <%--@elvariable id="students" type="java.util.List"--%>
 <%@ page contentType="text/html; charset=utf-8" %>
@@ -15,6 +15,7 @@
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="../../css/students.css">
     <title>Edit Academic Group</title>
 </head>
 <body>
@@ -27,6 +28,18 @@
 <form action="<c:url value="/editGroup"/>" method="POST">
     <input type="hidden" name="groupId" value="${group.groupId}"/>
     <table>
+        <c:if test="${!empty validationErrorFlag}">
+            <tr>
+                <td colspan="2" style="text-align:left">
+                    <span class="error smallText">Please provide valid entries for the following field(s):
+
+                      <c:if test="${!empty titleError}">
+                          <br><span class="indent"><strong>Title</strong> (e.g., Academic group)</span>
+                      </c:if>
+
+                </td>
+            </tr>
+        </c:if>
         <tr>
             <td>Title:</td>
             <td><label><input type="text" name="title" value="${group.title}"/></label></td>

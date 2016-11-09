@@ -10,12 +10,13 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../css/students.css">
   <title>Home Page</title>
 </head>
 <body>
 
-<jsp:include page="header.jsp"/>
-<jsp:include page="menu.jsp"/>
+    <jsp:include page="header.jsp"/>
+    <jsp:include page="menu.jsp"/>
 
 <h3>Home Page</h3>
 

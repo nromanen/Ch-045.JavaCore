@@ -31,7 +31,7 @@ import java.util.List;
 public class StudentsServlet extends HttpServlet {
 
     private SQLDBProvider provider;
-
+    private final static int RECORDS_PER_PAGE = 100;
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -42,24 +42,29 @@ public class StudentsServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String errorString = null;
+        int page = 1;
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
         UserAccount loginedUser = AppUtils.getLoginedUser(session);
-        if (loginedUser == null) {
-            userPath = "/loginView";
-        }
+        if (loginedUser == null)  userPath = "/loginView";
         try{
             request.setAttribute("groups", provider.queryAcademicGroups(null, null, null, null));
             switch (userPath) {
                 case "/listStudent":// load data
                     userPath = "/studentListView";
+                    if(request.getParameter("page") != null) page = Integer.parseInt(request.getParameter("page"));
                     String firstName = request.getParameter("firstName");
                     String lastName  = request.getParameter("lastName");
                     String testBookNum = request.getParameter("testBookNumber");
                     String  groupId = request.getParameter("groupId");
                     String selection = SQLUtils.buildSelectionFormFilter(firstName, lastName, testBookNum, groupId);
                     String[] selectionArgs =  SQLUtils.buildSelectionArgsFilter(firstName, lastName, testBookNum, groupId);
-                    request.setAttribute("students", provider.queryStudents(null, selection, selectionArgs, null));
+                    request.setAttribute("students", provider.queryStudents(null, selection, selectionArgs, null,
+                            (page - 1) * RECORDS_PER_PAGE, RECORDS_PER_PAGE));
+                    int numOfRecords = provider.getNumOfRecords();
+                    int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / RECORDS_PER_PAGE);
+                    request.setAttribute("numOfPages", numOfPages);
+                    request.setAttribute("currentPage", page);
                     StudentFilterForm filterForm = new StudentFilterForm();// restore filter values
                     filterForm.setFirstName(firstName);
                     filterForm.setLastName(lastName);
@@ -71,7 +76,7 @@ public class StudentsServlet extends HttpServlet {
                     String studentId = request.getParameter("studentId");
                     if (studentId != null) {
                         List students = provider.queryStudents(null, StudentsEntry.ID + " = ? ",
-                                new String[]{String.valueOf(studentId)}, null);
+                                new String[]{String.valueOf(studentId)}, null,(page-1)*RECORDS_PER_PAGE, RECORDS_PER_PAGE );
                         if (students != null && students.size() > 0) {
                             Student s = (Student) students.get(0);
                             request.setAttribute("student", s);
@@ -93,6 +98,8 @@ public class StudentsServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String errorString = null;
+        int page = 1;
+
         String userPath = request.getServletPath();
         String studentId = request.getParameter("studentId");
         Validator validator = new Validator();
@@ -125,11 +132,19 @@ public class StudentsServlet extends HttpServlet {
                                 student.setStudentId(Integer.parseInt(studentId));
                                 provider.updateStudent(student);
                             }
-                            request.setAttribute("students", provider.queryStudents(null, null, null, null));
+                            request.setAttribute("students", provider.queryStudents(null, null, null, null,(page-1)*RECORDS_PER_PAGE, RECORDS_PER_PAGE));
+                            int numOfRecords = provider.getNumOfRecords();
+                            int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / RECORDS_PER_PAGE);
+                            request.setAttribute("numOfPages", numOfPages);
+                            request.setAttribute("currentPage", page);
                             userPath = "/studentListView";//back to list students
                         }
                     } else if (request.getParameter("Cancel") != null) { //user press cancel on editMentor.jsp form
-                        request.setAttribute("students", provider.queryStudents(null, null, null, null));
+                        request.setAttribute("students", provider.queryStudents(null, null, null, null,(page-1)*RECORDS_PER_PAGE, RECORDS_PER_PAGE));
+                        int numOfRecords = provider.getNumOfRecords();
+                        int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / RECORDS_PER_PAGE);
+                        request.setAttribute("numOfPages", numOfPages);
+                        request.setAttribute("currentPage", page);
                         userPath = "/studentListView";//back to list students
                     }
                     break;
@@ -139,7 +154,11 @@ public class StudentsServlet extends HttpServlet {
                         int deletedCount = provider.deleteStudent(Integer.parseInt(studentId));
                         request.setAttribute("infoString","Successfully removed "+deletedCount+" record(s)");
                     }
-                    request.setAttribute("students", provider.queryStudents(null, null, null, null));
+                    request.setAttribute("students", provider.queryStudents(null, null, null, null,(page-1)*RECORDS_PER_PAGE, RECORDS_PER_PAGE ));
+                    int numOfRecords = provider.getNumOfRecords();
+                    int numOfPages = (int) Math.ceil(numOfRecords * 1.0 / RECORDS_PER_PAGE);
+                    request.setAttribute("numOfPages", numOfPages);
+                    request.setAttribute("currentPage", page);
 
                     break;
             }

@@ -32,6 +32,7 @@ public class AcademicGroupsServlet extends HttpServlet {
 
     private SQLDBProvider provider;
 
+
     @Override
     public void init() throws ServletException {
         super.init();
@@ -134,7 +135,7 @@ public class AcademicGroupsServlet extends HttpServlet {
                         }
                         request.setAttribute("students",
                                 provider.queryStudents(null, StudentsEntry.COL_GROUP_ID + " = ? ",
-                                        new String[]{groupId}, null));
+                                        new String[]{groupId}, null,0,100));//todo
                     }
                     break;
             }

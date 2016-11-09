@@ -22,6 +22,8 @@ public class SQLDBProvider {
 
     public final int batchSize = 1000;
 
+    private int numOfRecords;
+
     private final Connection conn;
     private static SQLDBProvider provider;
 
@@ -36,12 +38,19 @@ public class SQLDBProvider {
         return provider;
     }
 
-    public  List<Student> queryStudents(String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
+    public int getNumOfRecords() {
+        return numOfRecords;
+    }
+
+    public List<Student> queryStudents(String[] projection, String selection, String[] selectionArgs,
+                                       String sortOrder, int offset, int noOfRecords) throws SQLException {
         List<Student> result = new ArrayList<>();
         String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
-        PreparedStatement  stmt = conn.prepareStatement(sql);
+        sql = sql + " LIMIT " + offset + ", " + noOfRecords;
+        System.out.println("sql="+sql);
+        PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
-        while( rs.next() ) {
+        while (rs.next()) {
             Student student = new Student();
             student.setStudentId(rs.getInt(StudentsEntry.ID));
             student.setFirstName(rs.getString(StudentsEntry.COL_FIRST_NAME));
@@ -52,8 +61,12 @@ public class SQLDBProvider {
             result.add(student);
         }
         rs.close();
+        rs = stmt.executeQuery("SELECT COUNT(*) FROM "+StudentsEntry.TABLE_NAME);
+        if(rs.next())
+            this.numOfRecords = rs.getInt(1);
+
         stmt.close();
-       return  result;
+        return result;
     }
 
     public  List<Mentor> queryMentors(String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {

@@ -37,16 +37,30 @@
     <h3>SSN: </h3>
     <p>${employee.SSN}</p>
 
+    <div class="col-md-2">
+        <table class="table table-striped">
 
-    <p>
-        <a href="/employee?action=edit&pk=${employee.emId}" class="btn btn-info btn-sm">
-            <span class="glyphicon glyphicon-pencil"></span> Edit
-            </a>
-            <a href="/employee?action=delete&pk=${employee.emId}" class="btn btn-danger btn-sm">
-            <span class="glyphicon glyphicon-remove"></span> Remove
-            </a>
+            <tr>
+                <td>
+                    <a href="/employeeUpdate?pk=${employee.emId}" class="btn btn-info btn-sm">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </a>
+                </td>
+                <td>
 
-    </p>
+                    <form method="post" action="/employee">
+                        <input type="number" hidden name="pk" value="${employee.emId}">
+
+                        <input type="submit" name="submit" value="Remove" class="btn btn-danger btn-sm">
+
+
+                    </form>
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 

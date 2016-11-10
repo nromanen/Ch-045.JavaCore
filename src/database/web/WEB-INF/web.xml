@@ -5,17 +5,8 @@
          version="3.1">
 
     <welcome-file-list>
-        <welcome-file>WEB-INF/jsps/main.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    
-    <servlet>
-        <servlet-name>Simple</servlet-name>
-        <servlet-class>com.mysite.web.SimpleServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Simple</servlet-name>
-        <url-pattern>/simple</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>Index</servlet-name>
@@ -32,7 +23,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Department</servlet-name>
-        <url-pattern>/dep</url-pattern>
+        <url-pattern>/department</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -45,12 +36,21 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>EmployeeUp</servlet-name>
-        <servlet-class>com.ariezz.controller.EmployeeController</servlet-class>
+        <servlet-name>EmployeeUpdate</servlet-name>
+        <servlet-class>com.ariezz.controller.EmployeeUpdateController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EmployeeUp</servlet-name>
-        <url-pattern>/employeeUp</url-pattern>
+        <servlet-name>EmployeeUpdate</servlet-name>
+        <url-pattern>/employeeUpdate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewEmployee</servlet-name>
+        <servlet-class>com.ariezz.controller.NewEmployeeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewEmployee</servlet-name>
+        <url-pattern>/newEmployee</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -60,6 +60,24 @@
     <servlet-mapping>
         <servlet-name>Search</servlet-name>
         <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewDepartment</servlet-name>
+        <servlet-class>com.ariezz.controller.NewDepartmentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewDepartment</servlet-name>
+        <url-pattern>/newDepartment</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DepartmentUpdate</servlet-name>
+        <servlet-class>com.ariezz.controller.DepartmentUpdateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DepartmentUpdate</servlet-name>
+        <url-pattern>/departmentUpdate</url-pattern>
     </servlet-mapping>
 
 

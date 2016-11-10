@@ -11,7 +11,7 @@
 
 <html>
 <head>
-    <title>${message}</title>
+    <title>${dep.title}</title>
     <page:css></page:css>
 </head>
 <body>
@@ -20,11 +20,30 @@
 
 <div class="container">
 
-    <c:if test="${isResult == 1}">
-
-    <h1 style="text-align: center">${message}</h1>
+    <h1 style="text-align: center">${dep.title}</h1>
     <hr>
+    <a href="/departmentUpdate?pk=${dep.depId}" class="btn btn-info btn-sm" methods="p">
+        <span class="glyphicon glyphicon-pencil"></span> Edit department
+    </a>
+    <br><br>
+    <form method="post" action="/department">
+    <input type="number" hidden name="pk" value="${dep.depId}">
 
+    <input type="submit" name="submit" value="Remove department" class="btn btn-danger btn-sm">
+
+
+
+    </form>
+
+    <%--<a href="/dep?action=delete&pk=${dep.depId}" class="btn btn-danger btn-sm">--%>
+        <%--<span class="glyphicon glyphicon-remove"></span> Remove department--%>
+    <%--</a>--%>
+    <hr>
+    <h3>Disposition</h3>
+    <p> ${dep.disposition}</p>
+    <h3>Description</h3>
+    <p> ${dep.description}</p>
+    <h3>Employees</h3>
 
     <table class="table table-striped">
         <thead>
@@ -32,9 +51,7 @@
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Position</th>
-            <th>Department</th>
             <th>Action</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -44,11 +61,10 @@
                 <td> ${employee.firstName}</td>
                 <td> ${employee.lastName}</td>
                 <td> ${employee.position} </td>
-                <td> <a <c:if test="${employee.department.depId == 1}">style="color: black; pointer-events: none; cursor: default;" </c:if> href="/department?&pk=${employee.department.depId}" >${employee.department}</a></td>
                 <td>
 
                     <a href="/employee?pk=${employee.emId}" class="btn btn-default btn-sm" role="button">Detail</a>
-                    </td>
+                </td>
                 <td>
                     <a href="/employeeUpdate?pk=${employee.emId}" class="btn btn-info btn-sm">
                         <span class="glyphicon glyphicon-pencil"></span> Edit
@@ -68,15 +84,12 @@
                 </td>
             </tr>
         </c:forEach>
+        </tbody>
     </table>
-    </c:if>
-    <c:if test="${isResult == 0}">
-        <h1 style="text-align: center">No results</h1>
-        <hr>
-    </c:if>
 </div>
 
 
+</div>
 
 <page:footer/>
 <page:js/>

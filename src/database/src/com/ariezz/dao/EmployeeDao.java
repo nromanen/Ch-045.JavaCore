@@ -236,8 +236,6 @@ public class EmployeeDao extends AbstractDao<Employee, Integer> {
 
         try {
 
-
-
             PreparedStatement ps = getPrepareStatement("SELECT * FROM employee WHERE lastName LIKE ?");
             ps.setString(1, name);
 
@@ -258,7 +256,7 @@ public class EmployeeDao extends AbstractDao<Employee, Integer> {
                 employee.setCharacteristic(rs.getString("characteristic"));
                 employee.setRate(rs.getInt("rate"));
 
-                if (!employeeList.contains(employee)){
+                if (!isInResult(employeeList, employee.getEmId())){
                     employeeList.add(employee);
                 }
 
@@ -269,4 +267,16 @@ public class EmployeeDao extends AbstractDao<Employee, Integer> {
 
         return employeeList;
     }
+
+    private boolean isInResult(List<Employee> employees, int id){
+
+        for (Employee employee: employees) {
+            if(employee.getEmId() == id){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

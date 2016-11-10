@@ -36,5 +36,8 @@ public class CollectionApp {
         myCollection.insertValueInPos(2,-9);
         System.out.println("My list after insert value :");
         System.out.print(myCollection.printList());
+		
+		//sort myCollection
+        Collections.sort(myCollection.getMyList());
     }
 }

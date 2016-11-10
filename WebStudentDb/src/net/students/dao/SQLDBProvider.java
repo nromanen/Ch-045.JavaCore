@@ -8,6 +8,7 @@ import net.students.model.AcademicGroup;
 import net.students.model.Mentor;
 import net.students.model.Student;
 import net.students.model.UserAccount;
+import net.students.util.AppUtils;
 import org.joda.time.DateTime;
 
 import java.sql.*;
@@ -20,9 +21,9 @@ import java.util.List;
  */
 public class SQLDBProvider {
 
-    public final int batchSize = 1000;
+    public final static int BATCH_SIZE = 1000;
 
-    private int numOfRecords;
+    private int numOfRecordsStudents;
 
     private final Connection conn;
     private static SQLDBProvider provider;
@@ -38,16 +39,18 @@ public class SQLDBProvider {
         return provider;
     }
 
-    public int getNumOfRecords() {
-        return numOfRecords;
+    public int getNumOfRecordsStudents() {
+        return numOfRecordsStudents;
     }
 
     public List<Student> queryStudents(String[] projection, String selection, String[] selectionArgs,
-                                       String sortOrder, int offset, int noOfRecords) throws SQLException {
+                                       String sortOrder ) throws SQLException {
+        return queryStudents(projection, selection, selectionArgs, sortOrder, null, null);
+    }
+    public List<Student> queryStudents(String[] projection, String selection, String[] selectionArgs,
+                                       String sortOrder, String offset, String noOfRecords) throws SQLException {
         List<Student> result = new ArrayList<>();
-        String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
-        sql = sql + " LIMIT " + offset + ", " + noOfRecords;
-        System.out.println("sql="+sql);
+        String sql = SQLUtils.buildSqlQuery(StudentsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder, offset, noOfRecords);
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
@@ -61,17 +64,17 @@ public class SQLDBProvider {
             result.add(student);
         }
         rs.close();
-        rs = stmt.executeQuery("SELECT COUNT(*) FROM "+StudentsEntry.TABLE_NAME);
-        if(rs.next())
-            this.numOfRecords = rs.getInt(1);
-
+        String countSQL = SQLUtils.buildCountSQLQuery(StudentsEntry.TABLE_NAME, selection, selectionArgs);
+        rs = stmt.executeQuery(countSQL);
+        if(rs.next())  this.numOfRecordsStudents = rs.getInt(1);
+        rs.close();
         stmt.close();
         return result;
     }
 
     public  List<Mentor> queryMentors(String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
         List<Mentor> result = new ArrayList<>();
-        String sql = SQLUtils.buildSqlQuery(MentorsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
+        String sql = SQLUtils.buildSqlQuery(MentorsEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder, null, null);
         PreparedStatement  stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
         while( rs.next() ) {
@@ -88,7 +91,7 @@ public class SQLDBProvider {
 
     public  List<AcademicGroup> queryAcademicGroups(String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
         List<AcademicGroup> result = new ArrayList<>();
-        String sql = SQLUtils.buildSqlQuery(AcademicGroupEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
+        String sql = SQLUtils.buildSqlQuery(AcademicGroupEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder, null, null);
         PreparedStatement  stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
         while( rs.next() ) {
@@ -105,7 +108,7 @@ public class SQLDBProvider {
 
     public  List<UserAccount> queryUserAccounts(String[] projection, String selection, String[] selectionArgs, String sortOrder) throws SQLException {
         List<UserAccount> result = new ArrayList<>();
-        String sql = SQLUtils.buildSqlQuery(UsersEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder);
+        String sql = SQLUtils.buildSqlQuery(UsersEntry.TABLE_NAME, projection, selection, selectionArgs, sortOrder, null, null);
         PreparedStatement  stmt = conn.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
         while( rs.next() ) {
@@ -281,8 +284,9 @@ public class SQLDBProvider {
 
     public  int bulkInsertStudents( List<Student> students) throws SQLException {
         int result = 0;
-
         int count = 0;
+        int insertRowCount = 0;
+        int[] insertedRows;
         String query = "INSERT INTO " + StudentsEntry.TABLE_NAME +
                 " (" + StudentsEntry.COL_FIRST_NAME + ", " + StudentsEntry.COL_LAST_NAME +
                 ", " + StudentsEntry.COL_BOOK_NUM + ", " + StudentsEntry.COL_BIRTH_DAY + ", "
@@ -296,16 +300,18 @@ public class SQLDBProvider {
                 ps.setDate(4, Date.valueOf((student.getDateOfBirth().toString("yyyy-MM-dd"))));
                 ps.setInt(5, student.getGroupId());
                 ps.addBatch();
-                if (++count % batchSize == 0) {//don't OutOfMemoryError
-                    ps.executeBatch();
+                if (++count % BATCH_SIZE == 0) {//don't OutOfMemoryError
+                    insertedRows = ps.executeBatch();
+                    for (int i : insertedRows) {
+                        insertRowCount += i;
+                    }
                 }
             }
-            int[] insertedRows = ps.executeBatch();
-            ps.close();
-            int insertRowCount = 0;
+            insertedRows = ps.executeBatch();
             for (int i : insertedRows) {
                 insertRowCount += i;
             }
+            ps.close();
             if (insertRowCount != students.size()) {
                 System.out.println("Warning " + (students.size() - insertRowCount) + " records not inserted");
             }
@@ -314,11 +320,13 @@ public class SQLDBProvider {
         return result;
     }
 
-    public boolean runSql(String sql) throws SQLException{
-        boolean result;
-        PreparedStatement ps = conn.prepareStatement(sql);
-        result = ps.execute();
-        ps.close();
+    public boolean runSQL(String sql) throws SQLException {
+        boolean result = false;
+        if (!AppUtils.isEmpty(sql)) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            result = ps.execute();
+            ps.close();
+        }
         return result;
     }
 

@@ -32,7 +32,6 @@ public class AcademicGroupsServlet extends HttpServlet {
 
     private SQLDBProvider provider;
 
-
     @Override
     public void init() throws ServletException {
         super.init();
@@ -135,7 +134,7 @@ public class AcademicGroupsServlet extends HttpServlet {
                         }
                         request.setAttribute("students",
                                 provider.queryStudents(null, StudentsEntry.COL_GROUP_ID + " = ? ",
-                                        new String[]{groupId}, null,0,100));//todo
+                                        new String[]{groupId}, null));
                     }
                     break;
             }
@@ -143,7 +142,7 @@ public class AcademicGroupsServlet extends HttpServlet {
             e.printStackTrace();
             errorString = e.getMessage();
         }
-        if (errorString!=null) {
+        if (errorString != null) {
             request.setAttribute("errorString", errorString);
         }
         // use RequestDispatcher to forward request internally

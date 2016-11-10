@@ -1,6 +1,7 @@
 package net.students.controller;
 
 import net.students.dao.SQLDBProvider;
+import net.students.dao.SQLUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,7 +25,7 @@ public class HomeServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         provider = new SQLDBProvider();
-       //SQLUtils.populateData(provider);
+        SQLUtils.populateData(provider);
     }
 
     @Override

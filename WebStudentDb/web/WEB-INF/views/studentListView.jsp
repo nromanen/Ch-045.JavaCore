@@ -30,7 +30,7 @@
     <p style="color: red;">${errorString}</p>
     <p style="color: green;">${infoString}</p>
     <form action="<c:url value="/editStudent"/>"  method="post">
-        <input type="submit"  value="Add New" name="insert">
+        <input  class="bubbleGreen hMargin" type="submit"  value="Add New" name="insert">
     </form>
     <br>
  <form action="<c:url value="/listStudent"/>" >
@@ -62,7 +62,7 @@
     </form>
     <br>
   <table border="1" cellpadding="5" cellspacing="1" >
-    <thead>
+    <thead class="header">
     <tr>
         <th> </th>
         <th>First Name</th>
@@ -74,42 +74,44 @@
     </tr>
     </thead>
     <tbody>
-        <c:forEach items="${students}" var="student">
-            <tr>
-                <td><label><input type="radio" name="studentId" value="${student.studentId}"></label></td>
+        <c:forEach items="${students}" var="student" varStatus="iter" >
+            <tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
+                <td><label>${(currentPage-1)*100+iter.index+1}</label></td>
                 <td><c:out value="${student.firstName}" /></td>
                 <td><c:out value="${student.lastName}" /></td>
                 <td><joda:format value="${student.dateOfBirth}" pattern="yyyy-MM-dd" /></td>
                 <td><c:out value="${student.testBookNumber}" /></td>
                 <td><c:forEach var="group" items="${groups}">
                     <c:if test="${group.groupId==student.groupId}">
-                        <c:out value="${group.title}"/>
+                         <span class="smallText"><c:out value="${group.title}"/></span>
                     </c:if>
                     </c:forEach>
                 </td>
 
                 <td> <form action="<c:url value="/editStudent"/>"  method="get">
                         <input type="hidden" name="studentId"  value="${student.studentId }">
-                        <input type="submit"  value="Edit" name="edit">
+                        <input class="bubbleYellow hMargin" type="submit"  value="Edit" name="edit">
                     </form>
                 </td>
 
                 <td> <form action="<c:url value="/deleteStudent"/>"  method="post">
                         <input type="hidden" name="studentId"  value="${student.studentId }">
-                        <input type="submit"  value="Delete" name="delete">
+                        <input class="bubbleYellow hMargin" type="submit"  value="Delete" name="delete">
                      </form>
                 </td>
             </tr>
         </c:forEach>
     </tbody>
   </table>
-        <%--For displaying Previous link except for the 1st page --%>
+        <%-- Previous link  --%>
         <c:if test="${currentPage != 1}">
             <td><a href="listStudent?page=${currentPage - 1}">Previous</a></td>
         </c:if>
-        <%--For displaying Page numbers. --%>
-        <table border="1" cellpadding="5" cellspacing="5">
+        <table  cellpadding="5" cellspacing="5">
             <tr>
+                <%-- begin link--%>
+                <td><a href="listStudent?page=${1}"> << </a></td>
+                <%-- Page numbers. --%>
                 <c:forEach begin="1" end="${numOfPages}" var="i">
                     <c:choose>
                         <c:when test="${currentPage eq i}">
@@ -120,9 +122,11 @@
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
+                <%-- end link --%>
+                <td><a href="listStudent?page=${numOfPages}"> >> </a></td>
             </tr>
         </table>
-        <%--For displaying Next link --%>
+        <%-- Next link --%>
         <c:if test="${currentPage lt numOfPages}">
             <td><a href="listStudent?page=${currentPage + 1}">Next</a></td>
         </c:if>

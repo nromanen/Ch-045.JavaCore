@@ -26,7 +26,8 @@ public class SQLUtils {
      * @param sortOrder sorting order string sample  first_name DESC  or null none
      * @return String build sql query (select * from student where first_name='name' AND last_name='last' ORDER BY first_name)
      */
-    public static String buildSqlQuery(String table, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+    public static String buildSqlQuery(String table, String[] projection, String selection, String[] selectionArgs,
+                                       String sortOrder, String offset, String numOfRecords) {
         StringBuilder sql= new StringBuilder();
         sql.append("SELECT").append(" ");
         if (projection != null) {
@@ -40,19 +41,37 @@ public class SQLUtils {
         sql.append("FROM").append(" ");
         sql.append(table).append(" ");
         if (selection != null && selectionArgs != null) {
-
             sql.append(" WHERE ");
             for (String s : selectionArgs) {
                 selection= selection.replaceFirst("\\?",s);
             }
-
             sql.append(selection).append(" ");
         }
         if (sortOrder != null) {
-            sql.append("ORDER BY").append(" ").append(sortOrder);
+            sql.append(" ORDER BY").append(" ").append(sortOrder);
         }
-
+        if (offset != null && numOfRecords != null) {
+            sql.append(" LIMIT ").append(offset).append(",").append(numOfRecords);
+        }
         return sql.toString();
+    }
+
+    //build sql query for calculate count records
+    public static String buildCountSQLQuery(String table , String selection, String[] selectionArgs) {
+        StringBuilder exprBuilder  = new StringBuilder();
+        exprBuilder.append("SELECT COUNT(*) ");
+        if (selection == null  ) {
+            exprBuilder.append("FROM ").append(table);
+        } else {
+            if (selectionArgs != null && selectionArgs.length > 0) {
+                exprBuilder.append("FROM ").append(table).append(" WHERE ");
+                for (String s : selectionArgs) {
+                    selection= selection.replaceFirst("\\?",s);
+                }
+                exprBuilder.append(selection).append(" ");
+            } else exprBuilder.append("FROM ").append(table);
+        }
+        return exprBuilder.toString();
     }
 
 
@@ -87,16 +106,12 @@ public class SQLUtils {
             }
             i++;
         }
-
         selection = selectionBuilder.length() > 0 ? selectionBuilder.toString() : null;
-
         return selection;
     }
 
     public static String[] buildSelectionArgsFilter(String firstName, String lastName, String testBookNum,String  groupId) {
-
         String[] selectionArgs;
-
         Map<String,String> selections = new LinkedHashMap<>();
         if (!AppUtils.isEmpty(testBookNum)) {
             selections.put(SQLContract.StudentsEntry.COL_BOOK_NUM, testBookNum);
@@ -110,9 +125,7 @@ public class SQLUtils {
         if (!AppUtils.isEmpty(groupId)) {
             selections.put(SQLContract.StudentsEntry.COL_GROUP_ID, groupId);
         }
-
         selectionArgs = selections.values().toArray(new String[selections.size()]);
-
         return selectionArgs;
     }
 
@@ -120,7 +133,10 @@ public class SQLUtils {
     // For test database: populate data
     // insert 25 academic groups
     // insert 25 mentors
-    // insert 800 students
+    // insert 2300 students
+    private static final int GROUP_COUNT = 25;
+    private static final int MENTOR_COUNT = 25;
+    private static final int STUDENT_COUNT = 1300;
 
     private static final String[]
             FEMALE_FIRST_NAME = new String[]{"Ірина", "Надія", "Аліна", "Ліна", "Марія",
@@ -136,25 +152,26 @@ public class SQLUtils {
     private static final String[] GROUPS = new String[]{"фізика та математика", "тупо математика", "математика та інформатика", "педагогіка", "філологія",
             "історія та провознавство", "філософія", "програмування", "географія і хімія", "астрономія"};
 
-    public static void populateData(SQLDBProvider provider) {
+    public static int populateData(SQLDBProvider provider) {
+        int count = 0;
         Random random = new Random();
         try {
-            provider.runSql("SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;");
-            provider.runSql("SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;");
-            provider.runSql("SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';");
-            for (int i = 0; i < 25; i++) {
+            provider.runSQL("SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;");
+            provider.runSQL("SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;");
+            provider.runSQL("SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';");
+            for (int i = 0; i < GROUP_COUNT; i++) {
                 AcademicGroup group = new AcademicGroup();
-                group.setTitle(GROUPS[random.nextInt(10)]);
+                group.setTitle(GROUPS[random.nextInt(GROUPS.length)]);
                 provider.insertAcademicGroup(group);
             }
-            for (int i = 0; i < 25; i++) {
+            for (int i = 0; i < MENTOR_COUNT; i++) {
                 Mentor mentor = new Mentor();
                 if (i % 2 == 0) {
-                    mentor.setFirstName(FEMALE_FIRST_NAME[random.nextInt(10)]);
-                    mentor.setLastName(FEMALE_LAST_NAME[random.nextInt(10)]);
+                    mentor.setFirstName(FEMALE_FIRST_NAME[random.nextInt(FEMALE_FIRST_NAME.length)]);
+                    mentor.setLastName(FEMALE_LAST_NAME[random.nextInt(FEMALE_LAST_NAME.length)]);
                 } else {
-                    mentor.setFirstName(MALE_FIRST_NAME[random.nextInt(10)]);
-                    mentor.setLastName(MALE_LAST_NAME[random.nextInt(10)]);
+                    mentor.setFirstName(MALE_FIRST_NAME[random.nextInt(MALE_FIRST_NAME.length)]);
+                    mentor.setLastName(MALE_LAST_NAME[random.nextInt(MALE_LAST_NAME.length)]);
                 }
                 provider.insertMentor(mentor);
             }
@@ -170,36 +187,36 @@ public class SQLUtils {
                 provider.updateAcademicGroup(g);
             }
             List<Student> students = new ArrayList<>();
-            for (int i = 0; i < 2300; i++) {
+            for (int i = 0; i < STUDENT_COUNT; i++) {
                 Student student = new Student();
                 if (i % 2 == 0) {
-                    student.setFirstName(FEMALE_FIRST_NAME[random.nextInt(10)]);
-                    student.setLastName(FEMALE_LAST_NAME[random.nextInt(10)]);
+                    student.setFirstName(FEMALE_FIRST_NAME[random.nextInt(FEMALE_FIRST_NAME.length)]);
+                    student.setLastName(FEMALE_LAST_NAME[random.nextInt(FEMALE_LAST_NAME.length)]);
                 } else {
-                    student.setFirstName(MALE_FIRST_NAME[random.nextInt(10)]);
-                    student.setLastName(MALE_LAST_NAME[random.nextInt(10)]);
+                    student.setFirstName(MALE_FIRST_NAME[random.nextInt(MALE_FIRST_NAME.length)]);
+                    student.setLastName(MALE_LAST_NAME[random.nextInt(MALE_LAST_NAME.length)]);
                 }
-                student.setDateOfBirth(DateTime.parse(BIRTH_DAYS[random.nextInt(10)]));
+                student.setDateOfBirth(DateTime.parse(BIRTH_DAYS[random.nextInt(BIRTH_DAYS.length)]));
                 student.setTestBookNumber(100000 + i);
-                int g = random.nextInt(25);
+                int g = random.nextInt(GROUP_COUNT);
                 while (g == 0) {
-                    g = random.nextInt(25);
+                    g = random.nextInt(GROUP_COUNT);
                 }
                 student.setGroupId(g);
                 students.add(student);
             }
-            int count = provider.bulkInsertStudents(students);
-            System.out.println("bulk inserted "+count+ " records!");
+            count = provider.bulkInsertStudents(students);
             UserAccount userAccount = new UserAccount();
             userAccount.setUserName("admin");
             userAccount.setPassword("1234");
             provider.insertUserAccount(userAccount);
-            provider.runSql("SET SQL_MODE=@OLD_SQL_MODE;");
-            provider.runSql("SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;");
-            provider.runSql("SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;");
-
+            provider.runSQL("SET SQL_MODE=@OLD_SQL_MODE;");
+            provider.runSQL("SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;");
+            provider.runSQL("SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;");
+            return count;
         } catch (SQLException e) {
             e.printStackTrace();
+            return count;
         }
     }
 

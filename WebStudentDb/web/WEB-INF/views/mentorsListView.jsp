@@ -30,13 +30,13 @@
     <p style="color: red;">${errorString}</p>
     <p style="color: green;">${infoString}</p>
     <form action="<c:url value="/editMentor"/>"  method="post">
-        <input class="bubbleYellow hMargin" type="submit"  value="Add New" name="insert">
+        <input class="bubbleGreen hMargin" type="submit"  value="Add New" name="insert">
     </form>
     <br>
 
     <table border="1" cellpadding="5" cellspacing="1">
     <thead class="header">
-    <tr class="tableHeading">
+    <tr >
         <th> </th>
         <th>First Name</th>
         <th>Last Name</th>
@@ -58,7 +58,7 @@
             </td>
             <td> <form action="<c:url value="/editMentor"/>"  method="get">
                 <input type="hidden" name="mentorId"  value="${mentor.mentorId }">
-                <input  class="bubbleGreen hMargin" type="submit"  value="Edit" name="edit">
+                <input  class="bubbleYellow hMargin" type="submit"  value="Edit" name="edit">
             </form>
             </td>
             <td> <form action="<c:url value="/deleteMentor"/>"  method="post">

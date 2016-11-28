@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Softserve.iml" filepath="$PROJECT_DIR$/Softserve.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CompanyProject.iml" filepath="$PROJECT_DIR$/.idea/modules/CompanyProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CompanyProject_main.iml" filepath="$PROJECT_DIR$/.idea/modules/CompanyProject_main.iml" group="CompanyProject" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CompanyProject_test.iml" filepath="$PROJECT_DIR$/.idea/modules/CompanyProject_test.iml" group="CompanyProject" />
     </modules>
   </component>
 </project>
